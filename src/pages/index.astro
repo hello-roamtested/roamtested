@@ -1,0 +1,81 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import ComparisonTable from '../components/ComparisonTable.astro';
+import SampleBanner from '../components/SampleBanner.astro';
+import { SITE } from '../config/site';
+
+const providers = (await getCollection('providers')).filter(
+  (p) => p.data.listed && p.data.lang === 'en'
+);
+const hasSampleData = providers.some((p) => p.data.sampleData);
+
+const posts = (await getCollection('posts'))
+  .filter((p) => !p.data.draft && p.data.lang === 'en')
+  .sort((a, b) => b.data.date.localeCompare(a.data.date));
+
+const roundup = posts.find((p) => p.data.kind === 'roundup');
+---
+
+<Base title={SITE.name} description={SITE.description}>
+  <section class="hero">
+    <div class="wrap">
+      <p class="eyebrow mono">Independent · bought with our own money · tested in China</p>
+      <h1>eSIMs for China,<br />tested on the ground.</h1>
+      <p class="lede">
+        Which eSIMs open Google, WhatsApp and Instagram the moment you land — and which leave
+        you offline? We test every one in real Chinese cities and publish the evidence.
+      </p>
+    </div>
+  </section>
+
+  <section class="wrap">
+    <h2 class="table-title">China eSIM rankings</h2>
+    {hasSampleData && <SampleBanner />}
+    <ComparisonTable providers={providers} />
+    {roundup && (
+      <p>
+        <a href={`/${roundup.id.replace(/^en\//, '')}/`} class="btn btn-ghost">
+          Read the full comparison →
+        </a>
+      </p>
+    )}
+  </section>
+
+  <section class="wrap">
+    <h2>Latest tests</h2>
+    <ul class="post-list">
+      {posts.map((post) => (
+        <li>
+          <a href={`/${post.id.replace(/^en\//, '')}/`}>{post.data.title}</a>
+          <span class="chip">{post.data.updated ?? post.data.date}</span>
+          <p class="small muted">{post.data.description}</p>
+        </li>
+      ))}
+    </ul>
+  </section>
+</Base>
+
+<style>
+  .hero {
+    background: #fff;
+    border-bottom: 1px solid var(--line);
+    padding: 3rem 0 2.6rem;
+  }
+  .eyebrow {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--jade-deep);
+    margin-bottom: 0.8rem;
+  }
+  .lede {
+    font-size: 1.15rem;
+    max-width: 38rem;
+    color: var(--ink-soft);
+  }
+  .table-title { margin-top: 2rem; }
+  .post-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 1.1rem; }
+  .post-list a { font-weight: 600; margin-right: 0.6rem; }
+  .post-list p { margin: 0.25rem 0 0; max-width: 40rem; }
+</style>

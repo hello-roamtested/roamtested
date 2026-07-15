@@ -1,0 +1,36 @@
+---
+/** 优缺点双栏。 */
+interface Props {
+  pros: string[];
+  cons: string[];
+}
+const { pros, cons } = Astro.props;
+---
+
+<div class="pc-grid">
+  <div class="card">
+    <h3 class="pc-title pro">What's good</h3>
+    <ul>{pros.map((p) => <li>{p}</li>)}</ul>
+  </div>
+  <div class="card">
+    <h3 class="pc-title con">What's not</h3>
+    <ul>{cons.map((c) => <li>{c}</li>)}</ul>
+  </div>
+</div>
+
+<style>
+  .pc-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+  @media (max-width: 640px) {
+    .pc-grid { grid-template-columns: 1fr; }
+  }
+  .pc-title { margin-top: 0; font-size: 1rem; }
+  .pc-title.pro { color: var(--jade-deep); }
+  .pc-title.con { color: var(--cinnabar); }
+  ul { margin: 0; padding-left: 1.1rem; }
+  li { margin-bottom: 0.4rem; }
+</style>

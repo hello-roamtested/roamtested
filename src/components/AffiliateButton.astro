@@ -1,0 +1,15 @@
+---
+/** 联盟按钮:rel="sponsored nofollow" 是 Google 对联盟链接的规范要求,别去掉。 */
+interface Props {
+  href: string;
+  label?: string;
+  small?: boolean;
+}
+const { href, label = 'Check current price', small = false } = Astro.props;
+---
+<a
+  href={href}
+  class={`btn ${small ? 'btn-sm' : ''}`}
+  rel="sponsored nofollow noopener"
+  target="_blank"
+>{label} ↗</a>

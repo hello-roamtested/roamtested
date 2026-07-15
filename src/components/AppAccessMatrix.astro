@@ -1,0 +1,47 @@
+---
+/** App 直连实测矩阵:本站的招牌栏目。逐个 App 打 WORKS / BLOCKED。 */
+interface Props {
+  items: { app: string; works: boolean; notes?: string }[];
+  chip?: string; // 存证标签,如 "Tested Chengdu · Jul 2026"
+}
+const { items, chip } = Astro.props;
+---
+
+<div class="matrix-head">
+  <h3>App access — tested without a VPN</h3>
+  {chip && <span class="chip">{chip}</span>}
+</div>
+<div class="table-scroll">
+  <table>
+    <thead>
+      <tr>
+        <th scope="col">App</th>
+        <th scope="col">Result</th>
+        <th scope="col">Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      {items.map((row) => (
+        <tr>
+          <td>{row.app}</td>
+          <td>
+            {row.works
+              ? <span class="mark-pass">WORKS</span>
+              : <span class="mark-fail">BLOCKED</span>}
+          </td>
+          <td class="small muted">{row.notes ?? ''}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+
+<style>
+  .matrix-head {
+    display: flex;
+    align-items: baseline;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+  }
+  .matrix-head h3 { margin-bottom: 0.6rem; }
+</style>

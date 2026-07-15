@@ -1,0 +1,45 @@
+---
+/** "无限流量"的真实规则:每日高速上限、超限后速度、政策是否公开。 */
+interface Props {
+  policy: { dailyCap: string; afterCap: string; published: boolean; notes?: string };
+}
+const { policy } = Astro.props;
+---
+
+<h3>What “unlimited” actually means here</h3>
+<div class="card throttle">
+  <dl>
+    <div class="row">
+      <dt>High-speed allowance</dt>
+      <dd class="mono">{policy.dailyCap}</dd>
+    </div>
+    <div class="row">
+      <dt>After the cap</dt>
+      <dd class="mono">{policy.afterCap}</dd>
+    </div>
+    <div class="row">
+      <dt>Policy published by provider?</dt>
+      <dd>
+        {policy.published
+          ? <span class="mark-pass">YES</span>
+          : <span class="mark-fail">NO</span>}
+      </dd>
+    </div>
+  </dl>
+  {policy.notes && <p class="small muted notes">{policy.notes}</p>}
+</div>
+
+<style>
+  dl { margin: 0; }
+  .row {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.45rem 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .row:last-child { border-bottom: none; }
+  dt { color: var(--ink-soft); font-size: 0.9rem; }
+  dd { margin: 0; font-weight: 500; text-align: right; }
+  .notes { margin: 0.6rem 0 0; }
+</style>

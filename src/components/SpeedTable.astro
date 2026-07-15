@@ -1,0 +1,53 @@
+---
+/** 实测速度表:城市、地点、网络、下/上行、延迟、日期。每条都是可追溯的证据。 */
+interface Props {
+  tests: {
+    city: string;
+    spot: string;
+    network: string;
+    downMbps: number;
+    upMbps: number;
+    pingMs: number;
+    date: string;
+  }[];
+}
+const { tests } = Astro.props;
+---
+
+<h3>Speed tests on location</h3>
+<div class="table-scroll">
+  <table>
+    <thead>
+      <tr>
+        <th scope="col">Location</th>
+        <th scope="col">Network</th>
+        <th scope="col">Down</th>
+        <th scope="col">Up</th>
+        <th scope="col">Ping</th>
+        <th scope="col">Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      {tests.map((t) => (
+        <tr>
+          <td>
+            <strong>{t.city}</strong>
+            <div class="small muted">{t.spot}</div>
+          </td>
+          <td class="mono">{t.network}</td>
+          <td class="mono strong-num">{t.downMbps} Mbps</td>
+          <td class="mono">{t.upMbps} Mbps</td>
+          <td class="mono">{t.pingMs} ms</td>
+          <td class="mono">{t.date}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+<p class="small muted">
+  Method: Ookla Speedtest, three runs per spot, median reported. VPN off, no background downloads.
+</p>
+
+<style>
+  .strong-num { font-weight: 600; color: var(--jade-deep); }
+</style>

@@ -1,0 +1,107 @@
+---
+import { SITE, NAV } from '../config/site';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+const { title, description = SITE.description } = Astro.props;
+const pageTitle = title === SITE.name ? title : `${title} — ${SITE.name}`;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;650&display=swap"
+    />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="wrap header-row">
+        <a href="/" class="brand" aria-label={`${SITE.name} home`}>
+          <span class="brand-mark" aria-hidden="true">▮▮▯</span>
+          {SITE.name}
+        </a>
+        <nav aria-label="Main">
+          {NAV.map((item) => (
+            <a href={item.href} class="nav-link">{item.label}</a>
+          ))}
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap">
+        <p class="small muted">
+          {SITE.name} — {SITE.tagline}
+        </p>
+        <p class="small muted">
+          Some links on this site are affiliate links: if you buy through them we may earn a
+          commission, at no extra cost to you. It never changes our test results.
+          <a href="/affiliate-disclosure/">How we make money</a> ·
+          <a href="/privacy/">Privacy</a> ·
+          <a href={`mailto:${SITE.contactEmail}`}>{SITE.contactEmail}</a>
+        </p>
+        <p class="small muted">© {new Date().getFullYear()} {SITE.name}</p>
+      </div>
+    </footer>
+  </body>
+</html>
+
+<style>
+  .site-header {
+    border-bottom: 1px solid var(--line);
+    background: #fff;
+  }
+  .header-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 0.9rem;
+    padding-bottom: 0.9rem;
+  }
+  .brand {
+    font-weight: 650;
+    font-size: 1.15rem;
+    color: var(--ink);
+    text-decoration: none;
+    letter-spacing: -0.01em;
+  }
+  .brand-mark {
+    color: var(--jade);
+    font-family: var(--font-mono);
+    font-size: 0.8em;
+    margin-right: 0.15rem;
+  }
+  .nav-link {
+    margin-left: 1.1rem;
+    color: var(--ink);
+    text-decoration: none;
+    font-size: 0.95rem;
+  }
+  .nav-link:hover { color: var(--jade); }
+  main { min-height: 60vh; padding-bottom: 4rem; }
+  .site-footer {
+    border-top: 1px solid var(--line);
+    background: #fff;
+    padding: 1.6rem 0 2.2rem;
+  }
+</style>

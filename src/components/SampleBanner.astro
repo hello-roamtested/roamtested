@@ -1,0 +1,20 @@
+---
+/** 演示数据横幅:provider JSON 里 sampleData: true 时显示。
+    发布真实数据前的保险丝,防止把占位数字当成实测结果发出去。 */
+---
+<div class="sample-banner" role="note">
+  <strong>Demo data.</strong> The numbers on this page are placeholders for layout preview — they
+  are not real test results. (换成实测数据后,把 provider JSON 里的 sampleData 改为 false,这个横幅就会消失。)
+</div>
+
+<style>
+  .sample-banner {
+    background: var(--amber-tint);
+    color: var(--amber-ink);
+    border: 1px solid #e8d9ae;
+    border-radius: var(--radius);
+    padding: 0.7rem 1rem;
+    font-size: 0.9rem;
+    margin: 1rem 0;
+  }
+</style>

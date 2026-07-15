@@ -1,0 +1,82 @@
+---
+/**
+ * 首页主对比表。列结构 = 排名 + 服务商 + 各指标分 + 价格 + 按钮。
+ * 指标列自动读取 src/config/metrics.ts,增删指标无需改这里。
+ */
+import { METRICS, overallScore } from '../config/metrics';
+import AffiliateButton from './AffiliateButton.astro';
+
+interface Props {
+  providers: any[]; // collection entries
+}
+const { providers } = Astro.props;
+
+const ranked = [...providers].sort(
+  (a, b) => overallScore(b.data.scores) - overallScore(a.data.scores)
+);
+---
+
+<div class="table-scroll">
+  <table>
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">eSIM</th>
+        <th scope="col">Overall</th>
+        {METRICS.map((m) => (
+          <th scope="col" title={m.blurb}>{m.short}</th>
+        ))}
+        <th scope="col">From</th>
+        <th scope="col"><span class="sr-only">Buy</span></th>
+      </tr>
+    </thead>
+    <tbody>
+      {ranked.map((p, i) => (
+        <tr>
+          <td class="mono rank">{i + 1}</td>
+          <td>
+            <div class="p-name">
+              {p.data.reviewSlug ? (
+                <a href={`/${p.data.reviewSlug}/`}>{p.data.name}</a>
+              ) : (
+                p.data.name
+              )}
+            </div>
+            <div class="small muted">{p.data.verdict}</div>
+          </td>
+          <td><span class="score-big mono">{overallScore(p.data.scores).toFixed(1)}</span></td>
+          {METRICS.map((m) => (
+            <td class="mono">{typeof p.data.scores[m.id] === 'number' ? p.data.scores[m.id].toFixed(1) : '—'}</td>
+          ))}
+          <td class="mono price-cell">{p.data.price.headline}</td>
+          <td><AffiliateButton href={p.data.affiliateUrl} label="See plans" small /></td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+<p class="small muted">
+  Scores are 0–10, weighted: {METRICS.map((m, i) => `${m.label} ${m.weight}%`).join(' · ')}.
+  <a href="/about/">How we test →</a>
+</p>
+
+<style>
+  .rank { color: var(--ink-soft); }
+  .p-name { font-weight: 600; }
+  .p-name a { color: var(--ink); }
+  .p-name a:hover { color: var(--jade); }
+  .score-big {
+    font-weight: 600;
+    font-size: 1.05rem;
+    color: var(--jade-deep);
+  }
+  .price-cell { white-space: nowrap; }
+  .sr-only {
+    position: absolute;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    border: 0;
+  }
+</style>

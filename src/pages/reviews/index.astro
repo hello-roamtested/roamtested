@@ -1,0 +1,31 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+
+const reviews = (await getCollection('posts'))
+  .filter((p) => !p.data.draft && p.data.kind === 'review' && p.data.lang === 'en')
+  .sort((a, b) => b.data.date.localeCompare(a.data.date));
+---
+
+<Base title="All reviews" description="Every eSIM we've tested in China, one hands-on review at a time.">
+  <section class="wrap">
+    <h1 class="page-title">All reviews</h1>
+    {reviews.length === 0 && <p class="muted">No reviews published yet — first tests are underway.</p>}
+    <ul class="post-list">
+      {reviews.map((post) => (
+        <li>
+          <a href={`/${post.id.replace(/^en\//, '')}/`}>{post.data.title}</a>
+          <span class="chip">{post.data.updated ?? post.data.date}</span>
+          <p class="small muted">{post.data.description}</p>
+        </li>
+      ))}
+    </ul>
+  </section>
+</Base>
+
+<style>
+  .page-title { padding-top: 2rem; }
+  .post-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 1.1rem; }
+  .post-list a { font-weight: 600; margin-right: 0.6rem; }
+  .post-list p { margin: 0.25rem 0 0; max-width: 40rem; }
+</style>

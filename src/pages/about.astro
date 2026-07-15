@@ -1,0 +1,46 @@
+---
+import Base from '../layouts/Base.astro';
+import { METRICS } from '../config/metrics';
+import { SITE } from '../config/site';
+---
+
+<Base title="About & how we test" description="Who is behind RoamTested and exactly how every eSIM gets scored.">
+  <section class="wrap prose">
+    <h1 class="page-title">About {SITE.name}</h1>
+
+    <!-- 占位:你的笔名、一句话身份、为什么做这个站。想好了再填。 -->
+    <p class="muted"><em>(Author introduction coming soon.)</em></p>
+
+    <h2>How we test</h2>
+    <p>
+      Every eSIM reviewed here is bought with our own money and tested inside mainland China —
+      not from a desk. Each provider goes through the same protocol and is scored 0–10 on
+      {METRICS.length} weighted criteria:
+    </p>
+
+    <ul>
+      {METRICS.map((m) => (
+        <li>
+          <strong>{m.label}</strong> ({m.weight}%) — {m.blurb}
+        </li>
+      ))}
+    </ul>
+
+    <p>
+      Speed figures are medians of three Ookla Speedtest runs at the same spot, VPN off,
+      background downloads paused. App access is checked app by app on cellular data only.
+      Every data table carries the city and date it was tested, and results are re-tested on
+      each return trip.
+    </p>
+
+    <h2>Contact</h2>
+    <p>
+      Questions, corrections, or an eSIM you want tested:
+      <a href={`mailto:${SITE.contactEmail}`}>{SITE.contactEmail}</a>
+    </p>
+  </section>
+</Base>
+
+<style>
+  .page-title { padding-top: 2rem; }
+</style>

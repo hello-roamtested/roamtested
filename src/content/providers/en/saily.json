@@ -1,0 +1,35 @@
+{
+  "name": "Saily",
+  "lang": "en",
+  "sampleData": true,
+  "listed": true,
+  "verdict": "Sample verdict — e.g. best budget starter plan",
+  "affiliateUrl": "https://example.com/REPLACE-WITH-SAILY-AFFILIATE-LINK",
+  "price": { "headline": "$4.49 · 1GB · 7d", "perGB": 4.5 },
+  "scores": {
+    "appAccess": 8.8,
+    "activation": 9.0,
+    "throttling": 7.5,
+    "speed": 8.2,
+    "price": 7.5
+  },
+  "exitCountry": "Demo",
+  "throttlePolicy": {
+    "dailyCap": "5 GB/day high-speed (demo)",
+    "afterCap": "throttled to 1 Kbps (demo)",
+    "published": true
+  },
+  "appAccess": [
+    { "app": "Google Search", "works": true },
+    { "app": "Google Maps", "works": true },
+    { "app": "Gmail", "works": true },
+    { "app": "WhatsApp (messages)", "works": true },
+    { "app": "Instagram", "works": true },
+    { "app": "YouTube", "works": true }
+  ],
+  "speedTests": [
+    { "city": "Chengdu", "spot": "Airport arrivals, indoors", "network": "China Unicom 5G", "downMbps": 96, "upMbps": 31, "pingMs": 160, "date": "2026-07-19" }
+  ],
+  "pros": ["Demo pro", "Demo pro"],
+  "cons": ["Demo con"]
+}

@@ -1,0 +1,47 @@
+{
+  "name": "Airalo",
+  "lang": "en",
+  "sampleData": true,
+  "listed": true,
+  "verdict": "Sample verdict — e.g. strong pick for city-focused trips",
+  "affiliateUrl": "https://example.com/REPLACE-WITH-AIRALO-AFFILIATE-LINK",
+  "reviewSlug": "airalo-china-esim-review",
+  "price": { "headline": "$9.50 · 5GB · 30d", "perGB": 1.9 },
+  "scores": {
+    "appAccess": 9.0,
+    "activation": 8.5,
+    "throttling": 8.0,
+    "speed": 7.5,
+    "price": 8.0
+  },
+  "exitCountry": "Singapore (demo)",
+  "throttlePolicy": {
+    "dailyCap": "3 GB/day high-speed (demo)",
+    "afterCap": "throttled to 1 Mbps (demo)",
+    "published": true,
+    "notes": "Demo note: replace with the provider's actual published fair-use policy and a link to it."
+  },
+  "appAccess": [
+    { "app": "Google Search", "works": true },
+    { "app": "Google Maps", "works": true },
+    { "app": "Gmail", "works": true },
+    { "app": "WhatsApp (messages)", "works": true },
+    { "app": "WhatsApp (voice call)", "works": true, "notes": "demo note" },
+    { "app": "Instagram", "works": true },
+    { "app": "YouTube", "works": true },
+    { "app": "TikTok (international)", "works": false, "notes": "demo note" }
+  ],
+  "speedTests": [
+    { "city": "Chengdu", "spot": "Chunxi Road, outdoors", "network": "China Unicom 5G", "downMbps": 85, "upMbps": 22, "pingMs": 180, "date": "2026-07-20" },
+    { "city": "Chengdu", "spot": "Metro Line 1, underground", "network": "China Unicom 4G", "downMbps": 24, "upMbps": 8, "pingMs": 240, "date": "2026-07-20" }
+  ],
+  "pros": [
+    "Demo pro — replace with your findings",
+    "Demo pro — e.g. transparent throttling policy",
+    "Demo pro — e.g. easy in-app top-up"
+  ],
+  "cons": [
+    "Demo con — replace with your findings",
+    "Demo con — e.g. speeds drop at rush hour"
+  ]
+}

@@ -1,0 +1,84 @@
+---
+/** 单品测评页顶部的评分卡:总分 + 各指标分条 + 结论 + 联盟按钮。 */
+import { METRICS, overallScore } from '../config/metrics';
+import AffiliateButton from './AffiliateButton.astro';
+
+interface Props {
+  provider: any;
+}
+const { provider } = Astro.props;
+const d = provider.data;
+const overall = overallScore(d.scores);
+---
+
+<aside class="card score-card">
+  <div class="score-head">
+    <div>
+      <div class="overall mono">{overall.toFixed(1)}<span class="of">/10</span></div>
+      <div class="verdict">{d.verdict}</div>
+    </div>
+    <AffiliateButton href={d.affiliateUrl} />
+  </div>
+
+  <ul class="bars">
+    {METRICS.map((m) => {
+      const s = d.scores[m.id];
+      return (
+        <li>
+          <div class="bar-label">
+            <span>{m.label}</span>
+            <span class="mono">{typeof s === 'number' ? s.toFixed(1) : '—'}</span>
+          </div>
+          <div class="bar-track" aria-hidden="true">
+            <div class="bar-fill" style={`width:${typeof s === 'number' ? s * 10 : 0}%`}></div>
+          </div>
+        </li>
+      );
+    })}
+  </ul>
+
+  {d.exitCountry && (
+    <p class="small muted exit">
+      Data exit: <span class="mono">{d.exitCountry}</span>
+    </p>
+  )}
+</aside>
+
+<style>
+  .score-card { margin: 1.5rem 0; }
+  .score-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+  }
+  .overall {
+    font-size: 2.4rem;
+    font-weight: 600;
+    color: var(--jade-deep);
+    line-height: 1;
+  }
+  .of { font-size: 1rem; color: var(--ink-soft); font-weight: 400; }
+  .verdict { font-weight: 600; margin-top: 0.3rem; }
+  .bars { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.6rem; }
+  .bar-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    margin-bottom: 0.15rem;
+  }
+  .bar-track {
+    height: 6px;
+    background: var(--line);
+    border-radius: 999px;
+    overflow: hidden;
+  }
+  .bar-fill {
+    height: 100%;
+    background: var(--jade);
+    border-radius: 999px;
+  }
+  .exit { margin: 0.9rem 0 0; }
+</style>
