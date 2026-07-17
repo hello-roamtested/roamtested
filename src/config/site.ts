@@ -15,5 +15,7 @@ export const SITE = {
 export const NAV = [
   { href: '/', label: 'Rankings' },
   { href: '/reviews/', label: 'Reviews' },
+  { href: '/guides/', label: 'Guides' },
+  { href: '/esim-promo-codes/', label: 'Deals' },
   { href: '/about/', label: 'About' },
 ];
