@@ -1,1 +1,84 @@
+---
+layout: ../layouts/ArticleLayout.astro
+title: "VPN Pricing & New User Deals Compared (2026): ExpressVPN, NordVPN, Surfshark, Astrill & PureVPN"
+description: "What five major VPNs actually cost new users in 2026 — intro deals, free trials, renewal traps, and which ones really work in mainland China."
+---
 
+import data from '../data/providers.json';
+
+export const E = data.vpn.expressvpn;
+export const NO = data.vpn.nordvpn;
+export const S = data.vpn.surfshark;
+export const AS = data.vpn.astrill;
+export const P = data.vpn.purevpn;
+
+# VPN Pricing & New User Deals Compared (2026): ExpressVPN, NordVPN, Surfshark, Astrill & PureVPN
+
+*Last updated: {data.meta.last_verified} · Prices in USD, pulled from official pricing pages and verified deal trackers. VPN promo pricing changes weekly — confirm at checkout.*
+
+If you're heading somewhere with restricted internet — mainland China included — a VPN is still worth having even with a travel eSIM (hotel and café Wi-Fi won't route through your eSIM). We compared what five major providers actually cost new users right now, including the intro deals, free trials, and the renewal-price traps nobody advertises.
+
+## New User Pricing at a Glance
+
+| | **ExpressVPN** | **NordVPN** | **Surfshark** | **Astrill** | **PureVPN** |
+|---|---|---|---|---|---|
+| **Best intro deal** | ${E.best_deal_monthly}/mo (Basic, 2yr + 4 months free) | ${NO.best_deal_monthly}/mo (Basic, 2yr + 3 months free) | ~${S.best_deal_monthly}–{S.starter_2yr_monthly}/mo (Starter, 2yr + 3 months free) | ${AS.two_year_monthly}/mo (2yr) | ~$2/mo on long-term promos (up to {P.max_discount_percent}% off) |
+| **Monthly (no commitment)** | ${E.monthly} | ${NO.monthly} | ${S.monthly} | ${AS.monthly} | ${P.monthly} |
+| **1-year plan** | ${E.annual_monthly}/mo + 3 months free | ~${NO.annual_monthly}/mo | mid-tier | ${AS.annual_monthly}/mo | ~$4/mo on promo |
+| **Free trial** | 7 days (mobile app) | — | **7 days (app stores)** | 7 days on request via support | **{P.trial_days} days for ${P.trial_price}** |
+| **Money-back guarantee** | 30 days | 30 days | 30 days | No refunds (trial instead) | 31 days |
+| **Renewal price** | ~${E.renewal_annual}/yr (Basic) | Jumps to standard annual rate | Jumps sharply after intro term | No intro discount to lose | Jumps after intro term |
+
+**Cheapest way in:** Surfshark's 2-year Starter deal (~${S.best_deal_monthly}/mo with bonus months) is the lowest real price among the five. **Most expensive:** Astrill, by a wide margin — but it's priced that way because it sells reliability in hard-censorship regions, not bargains.
+
+## Provider Breakdowns
+
+### Surfshark — cheapest entry, real free trial
+
+The 2-year Starter plan at ~${S.starter_2yr_monthly}/mo (down to ~${S.best_deal_monthly}/mo when the 3-free-months promo runs) undercuts everyone here. A 7-day free trial via the Android/iOS app stores plus a 30-day money-back guarantee means up to 37 risk-free days. Unlimited simultaneous devices is the quiet killer feature for families. Watch the monthly price though — ${S.monthly} is the highest single-month rate in this group.
+
+### NordVPN — mid-priced, strongest ecosystem
+
+From ${NO.best_deal_monthly}/mo on the 2-year Basic deal, scaling through Plus/Complete/Prime tiers that bundle a password manager, cloud storage, and identity tools. No free trial, but a 30-day money-back guarantee. In restricted regions you'll need its obfuscated servers, which work but require manual setup. Renewal jumps to standard rates — set a calendar reminder before your term ends.
+
+### ExpressVPN — premium default, now tiered
+
+Since introducing Basic/Advanced/Pro tiers, ExpressVPN's headline price dropped to ${E.best_deal_monthly}/mo (Basic, 2-year + 4 free months) — historically its lowest. Mobile users get a 7-day app trial; everyone gets the 30-day guarantee. Renewal reverts to ~${E.renewal_annual}/yr for Basic. Consistently the most reliable of the big three in restricted-network testing, and the easiest to set up: no manual server fiddling.
+
+### Astrill — the expensive specialist
+
+${AS.monthly}/month, ${AS.annual_monthly}/mo annually, ${AS.two_year_monthly}/mo on two years — four to five times the others' intro rates, with no money-back guarantee (7-day trials are granted case-by-case via support). What you're paying for: purpose-built stealth protocols and a track record in mainland China that the mainstream brands can't consistently match. If uninterrupted connectivity in China is mission-critical, Astrill is the insurance policy. If it isn't, the price is hard to justify.
+
+### PureVPN — budget option with a paid trial
+
+Standard tier at ${P.monthly} monthly, with long-term promos regularly hitting up to {P.max_discount_percent}% off (~$2/mo territory) and a ${P.trial_price} {P.trial_days}-day trial — the cheapest way to properly test any VPN here without app-store trial hoops. A 31-day money-back guarantee tops the group by one day. The catch: performance in restricted regions is the least consistent of the five, so treat it as a budget pick for general travel rather than a China workhorse.
+
+## The Renewal Trap (Read Before Buying)
+
+Every provider here except Astrill uses steep intro pricing that expires. ExpressVPN Basic renews at ~${E.renewal_annual}/year; NordVPN and Surfshark revert to standard rates that can be 2–4× the intro price. Three ways to handle it: set a reminder to cancel/renegotiate before renewal, stack the longest intro term available (the 2-year deals lock the low rate longest), or simply switch providers at renewal — loyalty is penalized in this market.
+
+## Which One Should You Pick?
+
+- **Tightest budget:** Surfshark — lowest 2-year rate, real free trial, unlimited devices.
+- **Best balance of price and reliability:** ExpressVPN Basic at ${E.best_deal_monthly}/mo is the strongest deal it has ever run.
+- **Want one subscription for VPN + password manager + storage:** NordVPN Complete.
+- **China connectivity is non-negotiable:** Astrill — expensive, but that's the price of "it just works."
+- **Just want to test cheaply:** PureVPN's ${P.trial_price} week, then decide.
+
+## FAQ
+
+**Do these VPNs work in mainland China?**
+ExpressVPN, Surfshark, and Astrill test most reliably in 2026; NordVPN works via obfuscated servers; PureVPN is hit-or-miss. Install and log in **before** you arrive — provider websites are blocked inside China.
+
+**Can I get a truly free VPN for China?**
+Effectively no — independent tests show free tiers rarely survive current firewall upgrades. The 30-day money-back guarantees above are the practical "free month."
+
+**Do I still need a VPN if I have a travel eSIM?**
+For eSIM data, no — roaming data routes outside the firewall. But hotel Wi-Fi, laptops, and any local network still need a VPN. Most travelers to China want both; see our [eSIM comparison for China](/best-esim-for-china/).
+
+**Are prices different if I buy from inside China?**
+Prices are the same, but payment pages may not load. Buy and install before departure.
+
+---
+
+*Sources: official pricing pages ([ExpressVPN](https://www.expressvpn.com/), [NordVPN](https://nordvpn.com/pricing/), [Surfshark](https://surfshark.com/pricing), [Astrill](https://www.astrill.com/pricing), [PureVPN](https://www.purevpn.com/vpn-deals)); pricing verification via [cybernews](https://cybernews.com/best-vpn/expressvpn-review/expressvpn-cost/), [VPNpro](https://vpnpro.com/best-vpn-services/nordvpn-pricing-2026/), [Security.org](https://www.security.org/vpn/astrill-vpn/review/), and [Tom's Guide](https://www.tomsguide.com/computing/vpns/nordvpn-price-plans). Prices checked {data.meta.last_verified}.*
