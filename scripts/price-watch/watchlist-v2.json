@@ -1,0 +1,160 @@
+{
+  "$comment": "v2：价格监控 + 新人优惠监控。优惠类条目监控官方页面上的折扣信号：数字变了=优惠变化，匹配不到=优惠可能下线（都会开Issue提醒）。",
+  "targets": [
+    {
+      "id": "airalo-china-from-price",
+      "provider": "Airalo",
+      "label": "China eSIM 起步价（页面标题）",
+      "url": "https://www.airalo.com/china-esim",
+      "type": "title",
+      "pattern": "from \\$(?<price>[0-9]+(?:\\.[0-9]+)?)\\s*USD",
+      "currency": "USD"
+    },
+    {
+      "id": "airalo-china-unlimited-3d",
+      "provider": "Airalo",
+      "label": "China Unlimited 3天",
+      "url": "https://www.airalo.com/china-esim",
+      "type": "text",
+      "pattern": "3 days[\\s\\S]{0,150}?Unlimited\\s*GB[\\s\\S]{0,150}?\\$(?<price>[0-9]+(?:\\.[0-9]+)?)\\s*USD",
+      "currency": "USD"
+    },
+    {
+      "id": "airalo-china-unlimited-30d",
+      "provider": "Airalo",
+      "label": "China Unlimited 30天",
+      "url": "https://www.airalo.com/china-esim",
+      "type": "text",
+      "pattern": "30 days[\\s\\S]{0,150}?Unlimited\\s*GB[\\s\\S]{0,150}?\\$(?<price>[0-9]+(?:\\.[0-9]+)?)\\s*USD",
+      "currency": "USD"
+    },
+    {
+      "id": "nomad-china-from-price",
+      "provider": "Nomad",
+      "label": "China eSIM 起步价（页面标题）",
+      "url": "https://www.nomadesim.com/china-eSIM",
+      "type": "title",
+      "pattern": "from US\\$\\s*(?<price>[0-9]+(?:\\.[0-9]+)?)",
+      "currency": "USD"
+    },
+    {
+      "id": "nomad-china-1gb-7d",
+      "provider": "Nomad",
+      "label": "China 1GB / 7天",
+      "url": "https://www.nomadesim.com/china-eSIM",
+      "type": "text",
+      "pattern": "1 GB\\s+For 7 DAYS[\\s\\S]{0,120}?USD\\s*(?<price>[0-9]+(?:\\.[0-9]+)?)",
+      "currency": "USD"
+    },
+    {
+      "id": "nomad-china-20gb-30d",
+      "provider": "Nomad",
+      "label": "China 20GB / 30天",
+      "url": "https://www.nomadesim.com/china-eSIM",
+      "type": "text",
+      "pattern": "20 GB\\s+For 30 DAYS[\\s\\S]{0,120}?USD\\s*(?<price>[0-9]+(?:\\.[0-9]+)?)",
+      "currency": "USD"
+    },
+    {
+      "id": "toosim-china-1gb-7d",
+      "provider": "TooSim",
+      "label": "China 1GB / 7天",
+      "url": "https://toosim.com/esim-china",
+      "type": "text",
+      "pattern": "1 GB, 7 days[\\s\\S]{0,60}?\\$(?<price>[0-9]+(?:\\.[0-9]+)?)",
+      "currency": "USD"
+    },
+    {
+      "id": "toosim-china-20gb-30d",
+      "provider": "TooSim",
+      "label": "China 20GB / 30天",
+      "url": "https://toosim.com/esim-china",
+      "type": "text",
+      "pattern": "20 GB, 30 days[\\s\\S]{0,60}?\\$(?<price>[0-9]+(?:\\.[0-9]+)?)",
+      "currency": "USD"
+    },
+    {
+      "id": "yesim-china-from-price",
+      "provider": "Yesim",
+      "label": "China 起步价（JS页面，允许失败）",
+      "url": "https://yesim.app/country/china/",
+      "type": "text",
+      "pattern": "from \\$(?<price>[0-9]+(?:\\.[0-9]+)?)",
+      "currency": "USD",
+      "allowFailure": true
+    },
+    {
+      "id": "nxtl-usa-per-gb",
+      "provider": "NXTL",
+      "label": "USA 每GB费率（定价页示例区）",
+      "url": "https://nxtlsim.com/pricing/",
+      "type": "text",
+      "pattern": "USA\\s*from \\$(?<price>[0-9]+(?:\\.[0-9]+)?)/GB",
+      "currency": "USD"
+    },
+    {
+      "id": "nxtl-uk-per-gb",
+      "provider": "NXTL",
+      "label": "UK 每GB费率（定价页示例区）",
+      "url": "https://nxtlsim.com/pricing/",
+      "type": "text",
+      "pattern": "United Kingdom\\s*from \\$(?<price>[0-9]+(?:\\.[0-9]+)?)/GB",
+      "currency": "USD"
+    },
+    {
+      "id": "airalo-promo-first-esim-percent",
+      "provider": "Airalo",
+      "label": "【优惠】新人首单折扣比例（官方优惠页）",
+      "url": "https://www.airalo.com/m/features/airalo-discounts-deals",
+      "type": "text",
+      "pattern": "enjoy\\s+(?<price>[0-9]+)%\\s*off your first eSIM",
+      "currency": "%"
+    },
+    {
+      "id": "airalo-referral-amount",
+      "provider": "Airalo",
+      "label": "【优惠】推荐奖励金额 Give $X get $X",
+      "url": "https://www.airalo.com/m/features/airalo-discounts-deals",
+      "type": "text",
+      "pattern": "Give \\$(?<price>[0-9]+), get \\$[0-9]+",
+      "currency": "USD"
+    },
+    {
+      "id": "nomad-trial-gb",
+      "provider": "Nomad",
+      "label": "【优惠】免费试用流量（页面标题）",
+      "url": "https://www.nomadesim.com/documents/landing-trial-plan",
+      "type": "title",
+      "pattern": "Free Trial eSIM,\\s*(?<price>[0-9]+)GB",
+      "currency": "GB"
+    },
+    {
+      "id": "nomad-trial-destinations",
+      "provider": "Nomad",
+      "label": "【优惠】免费试用覆盖目的地数（页面标题）",
+      "url": "https://www.nomadesim.com/documents/landing-trial-plan",
+      "type": "title",
+      "pattern": "in (?<price>[0-9]+) destinations",
+      "currency": "个"
+    },
+    {
+      "id": "nxtl-referral-reward",
+      "provider": "NXTL",
+      "label": "【优惠】推荐奖励金额（官方referrals页）",
+      "url": "https://nxtlsim.com/referrals/",
+      "type": "text",
+      "pattern": "≈\\s*\\$(?<price>[0-9]+)",
+      "currency": "USD"
+    },
+    {
+      "id": "yesim-promo-percent",
+      "provider": "Yesim",
+      "label": "【优惠】官方折扣码页最高折扣（JS页面，允许失败）",
+      "url": "https://yesim.app/promocodes/",
+      "type": "text",
+      "pattern": "(?<price>[0-9]+)%\\s*(?:off|discount)",
+      "currency": "%",
+      "allowFailure": true
+    }
+  ]
+}
