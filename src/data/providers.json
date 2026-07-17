@@ -1,1 +1,88 @@
+```json
+{
+  "$comment": "全站唯一数据源。价格监控 Issue 提醒变价时，只改这里，全站文章自动更新。",
+  "meta": {
+    "last_verified": "July 2026",
+    "last_verified_date": "2026-07-17"
+  },
+  "esim": {
+    "airalo": {
+      "china_from_price": 4.00,
+      "china_unlimited_3d": 11.50,
+      "china_unlimited_30d": 69.00,
+      "promo_percent": 15,
+      "promo_code": "NEWTOAIRALO15",
+      "referral_amount": 3
+    },
+    "nomad": {
+      "china_from_price": 4.00,
+      "china_1gb_7d": 4.00,
+      "china_10gb_30d": 12.00,
+      "china_20gb_30d": 25.00,
+      "china_unlimited_3d_from": 11.00,
+      "trial_gb": 1,
+      "trial_destinations": 76,
+      "referral_amount": 5,
+      "promo_percent_max": 25,
+      "europe_50gb_eur": 28.15
+    },
+    "yesim": {
+      "china_from_price": 0.54,
+      "china_20gb_30d": 20.00,
+      "china_unlimited_7d": 28.80,
+      "china_unlimited_30d": 65.00,
+      "usa_unlimited_per_day": 3.60,
+      "promo_code": "YESIMSPECIAL10",
+      "promo_percent": 10,
+      "promo_percent_max": 35,
+      "global_unlimited_7d": 40.09
+    },
+    "toosim": {
+      "starting_price": 3.99,
+      "china_1gb_7d": 13.99,
+      "china_20gb_30d": 117.99,
+      "usa_per_gb_from": 2.40,
+      "global_from": 20.99
+    },
+    "nxtl": {
+      "starter_price": 11.99,
+      "starter_credit": 10,
+      "usa_per_gb": 1.21,
+      "uk_per_gb": 1.49,
+      "referral_amount": 5,
+      "token_cashback_percent": 5
+    }
+  },
+  "vpn": {
+    "expressvpn": {
+      "monthly": 12.99,
+      "best_deal_monthly": 2.49,
+      "annual_monthly": 3.99,
+      "renewal_annual": 99.95
+    },
+    "nordvpn": {
+      "monthly": 12.99,
+      "best_deal_monthly": 3.49,
+      "annual_monthly": 4.59
+    },
+    "surfshark": {
+      "monthly": 16.45,
+      "best_deal_monthly": 1.78,
+      "starter_2yr_monthly": 2.49
+    },
+    "astrill": {
+      "monthly": 30.00,
+      "annual_monthly": 15.00,
+      "two_year_monthly": 12.50
+    },
+    "purevpn": {
+      "monthly": 12.95,
+      "trial_price": 0.99,
+      "trial_days": 7,
+      "max_discount_percent": 90
+    }
+  }
+}
+```
 
+Commit 后会自动触发新构建，一两分钟后看结果。这次如果还失败，大概率是轮到下一个文件报错（构建是遇到第一个错就停），同样把日志最后 20 行截图发我。
