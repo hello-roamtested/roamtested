@@ -9,6 +9,7 @@ import ThrottleCard from '../components/ThrottleCard.astro';
 import ProsCons from '../components/ProsCons.astro';
 import SampleBanner from '../components/SampleBanner.astro';
 import AffiliateButton from '../components/AffiliateButton.astro';
+import ReviewSchema from '../components/ReviewSchema.astro';
 
 export async function getStaticPaths() {
   const posts = await getCollection('posts', ({ data }) => !data.draft);
@@ -61,7 +62,7 @@ function evidenceChip(p: any): string | undefined {
       </section>
     )}
 
-    {provider && <ScoreCard provider={provider} />}
+    {provider && <ReviewSchema provider={provider} post={post} />}
 
     <div class="prose">
       <Content />
