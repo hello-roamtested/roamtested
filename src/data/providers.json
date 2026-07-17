@@ -33,6 +33,9 @@
       "usa_unlimited_per_day": 3.60,
       "promo_code": "YESIMSPECIAL10",
       "promo_percent": 10,
+      "referral_amount": 5,
+      "number_friends": 5,
+      "bonus_amount": 50,
       "promo_percent_max": 35,
       "global_unlimited_7d": 40.09
     },
