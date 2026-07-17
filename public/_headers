@@ -1,0 +1,9 @@
+# 放到 public/_headers （文件名就叫 _headers，没有扩展名）
+# 作用：让 Cloudflare Pages 的预览域名(*.pages.dev)不被搜索引擎收录，
+# 避免和正式域名 roamtested.com 形成重复内容。正式域名不受影响。
+
+https://roamtested.pages.dev/*
+  X-Robots-Tag: noindex
+
+https://:version.roamtested.pages.dev/*
+  X-Robots-Tag: noindex
