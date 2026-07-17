@@ -1,0 +1,44 @@
+---
+// 放到 src/components/ReviewSchema.astro
+// 评测页结构化数据：告诉 Google "这是一篇评测、评的是什么、几分"。
+// 有资格在搜索结果显示评分星星。演示数据(sampleData)时自动不输出，防止假数据进搜索结果。
+import { SITE } from '../config/site';
+import { overallScore } from '../config/metrics';
+
+interface Props {
+  provider: any; // providers 集合的条目
+  post: any; // posts 集合的条目
+}
+const { provider, post } = Astro.props;
+
+const score = overallScore(provider.data.scores);
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Review',
+  itemReviewed: {
+    '@type': 'Product',
+    name: `${provider.data.name} China eSIM`,
+    brand: { '@type': 'Brand', name: provider.data.name },
+    description: post.data.description,
+  },
+  reviewRating: {
+    '@type': 'Rating',
+    ratingValue: score,
+    bestRating: 10,
+    worstRating: 0,
+  },
+  author: { '@type': 'Organization', name: SITE.name, url: `https://${SITE.domain}/about/` },
+  publisher: { '@type': 'Organization', name: SITE.name },
+  datePublished: post.data.date,
+  ...(post.data.updated ? { dateModified: post.data.updated } : {}),
+  url: new URL(Astro.url.pathname, Astro.site).href,
+};
+---
+
+{
+  /* 演示数据不输出 schema —— 假评分进了 Google 会伤信誉 */
+  !provider.data.sampleData && (
+    <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  )
+}
