@@ -1,1 +1,73 @@
+---
+layout: ../layouts/ArticleLayout.astro
+title: "NXTL vs Yesim vs TooSim vs Nomad vs Airalo: Travel eSIM Comparison (2026)"
+description: "Five travel eSIM providers compared on plans, per-GB cost, coverage, and activation — fixed bundles vs pay-as-you-go, with prices verified July 2026."
+---
 
+import data from '../data/providers.json';
+
+export const A = data.esim.airalo;
+export const N = data.esim.nomad;
+export const Y = data.esim.yesim;
+export const T = data.esim.toosim;
+export const X = data.esim.nxtl;
+
+# NXTL vs Yesim vs TooSim vs Nomad vs Airalo: Travel eSIM Comparison (2026)
+
+*Last updated: {data.meta.last_verified} · Prices in USD unless noted, verified at time of writing.*
+
+Five travel eSIM providers, two very different pricing philosophies: fixed data bundles (Airalo, Nomad, TooSim, and mostly Yesim) versus pay-as-you-go wallets (NXTL, and Yesim's Pay & Fly). Here's how they compare on plans, coverage, and activation.
+
+## At a Glance
+
+| | **Airalo** | **Nomad** | **Yesim** | **TooSim** | **NXTL** |
+|---|---|---|---|---|---|
+| **Founded / HQ** | 2019, global (pioneer) | Singapore/US | Switzerland | 2023, Cyprus | Lithuania |
+| **Coverage** | 200+ countries | 200+ destinations | 200+ destinations | 180+ countries | 190+ countries, 800+ networks |
+| **Pricing model** | Fixed bundles | Fixed bundles | Bundles + unlimited passes + Pay & Fly PAYG | Fixed bundles | Pure pay-as-you-go wallet |
+| **Starting price** | from ${A.china_from_price} / 1GB / 7d | ${N.china_1gb_7d} / 1GB / 7d | PAYG from ${Y.china_from_price}/GB | ${T.starting_price} / 1GB / 7d | ${X.starter_price} one-time (incl. ${X.starter_credit} credit) |
+| **Data range** | 1GB–100GB, 7–365d | 1–50GB+, unlimited options | 500MB–20GB + unlimited 1–80d | 1–150GB, 7–180d | Any amount; balance never expires |
+| **5G** | Yes (plan-dependent) | Yes | Yes | Yes | Yes, where available |
+| **Hotspot** | Most plans | All plans, free | Yes | Free on all plans | Yes |
+| **Phone number** | Select plans (US/UK voice) | Data only | Virtual numbers as add-on | Data only | Data only (free incoming calls/SMS) |
+| **Free trial** | No | {N.trial_gb}GB in {N.trial_destinations} destinations | No | No | No |
+
+## Plans & Per-GB Cost (sample destinations)
+
+| Destination | Airalo | Nomad | Yesim | TooSim | NXTL (PAYG) |
+|---|---|---|---|---|---|
+| **USA** | from $4.50/1GB | from ~$5/1GB | unlimited ${Y.usa_unlimited_per_day}/day | from ${T.usa_per_gb_from}/GB | from ${X.usa_per_gb}/GB |
+| **Europe (regional)** | Eurolink from ~$5 | 50GB / €{N.europe_50gb_eur} (€{(N.europe_50gb_eur / 50).toFixed(2)}/GB) — class-leading | regional + unlimited passes | Europe 36+ countries | UK from ${X.uk_per_gb}/GB |
+| **Global plan** | Discover: $8.50–$66 (20GB/365d), 130+ countries | Global plans $4.50–$45 | Global unlimited from ${Y.global_unlimited_7d}/7d | Global 105+ countries from ${T.global_from} | One eSIM works everywhere; per-country rate |
+
+**Cheapest per GB overall:** NXTL and Yesim Pay & Fly for light users; Nomad's Europe 50GB for heavy users. **Watch out:** "unlimited" plans always carry fair-use caps — Yesim throttles after ~50GB/30 days; Nomad's unlimited gives 2GB/day at full speed.
+
+## Coverage & Networks
+
+**Airalo** partners with named local carriers per plan (shown before purchase), e.g., China Unicom in China; 5G on many plans. **Nomad** lists named carriers too, often dual-network (e.g., China Unicom + Telecom). **Yesim** connects to multiple networks per country — in the US it uses T-Mobile and AT&T simultaneously, auto-selecting the stronger signal. **TooSim** rides AT&T/T-Mobile/Verizon in the US and Deutsche Telekom/Vodafone/Orange in Europe, but doesn't always disclose the carrier pre-purchase. **NXTL** is unique: you can manually pick among networks in a country to get a cheaper per-GB rate.
+
+## Purchase & Activation
+
+| | How to buy | Activation | Validity starts | eKYC |
+|---|---|---|---|---|
+| **Airalo** | App / website | QR or direct install | On first network connection (most plans) — install before you fly | Required for some countries (e.g., UAE, Singapore locals) |
+| **Nomad** | App / website | One-tap in-app, no QR needed | On first use | Rarely |
+| **Yesim** | App / website | QR emailed instantly; ~5–10 min | Varies by destination | Rarely |
+| **TooSim** | App / website | QR via email or app; needs internet | On first connection at destination | Not required |
+| **NXTL** | Website / app | Install once, top up wallet | No expiry — balance carries across trips | Not required |
+
+**Universal advice:** install your eSIM on Wi-Fi before departure, and check that your phone is carrier-unlocked and eSIM-capable.
+
+## Which One Should You Pick?
+
+- **First-time eSIM user / want the safest choice:** Airalo — biggest catalog, mature app, solid support.
+- **Best all-rounder on price + features:** Nomad — free hotspot everywhere, named carriers, free {N.trial_gb}GB trial to test before paying.
+- **Light user or unpredictable itinerary:** NXTL or Yesim Pay & Fly — pay only for what you use, no expiring bundles.
+- **Heavy data user:** Nomad's 50GB Europe plan or Yesim's unlimited passes (mind the FUP).
+- **TooSim:** competitive in the US and Europe (from ${T.usa_per_gb_from}/GB), long-validity plans up to 180 days — but compare per-destination, as some markets (e.g., China) are priced far above rivals, and there's no plan top-up.
+
+Looking for new-user discounts? See our [eSIM promo codes guide](/esim-promo-codes/). Traveling to China specifically? Start with our [on-the-ground China eSIM rankings](/best-esim-for-china/).
+
+---
+
+*Sources: [Airalo](https://www.airalo.com/all-esim), [Nomad](https://www.nomadesim.com/), [Yesim](https://yesim.app/), [TooSim](https://toosim.com/), [NXTL](https://nxtlsim.com/pricing/); independent reviews by [Traveltomtom](https://www.traveltomtom.net/tech-tips/yesim-review), [esimdb](https://esimdb.com/), [BetterSIM](https://www.bettersim.com/esim-providers/nomad), and [AvailSim](https://www.availsim.com/provider/toosim). Prices checked {data.meta.last_verified}.*
