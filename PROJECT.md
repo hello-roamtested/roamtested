@@ -73,6 +73,7 @@ Plausible：第三方极简统计，一眼能看懂，无 Cookie 弹窗烦恼，
         ├── index.astro                 # 首页：中国eSIM排名表（读 providers 集合）
         ├── [slug].astro                # 动态路由：渲染 posts 集合的所有文章
         ├── reviews/index.astro         # 评测列表页
+        ├── guides/index.astro          # 攻略列表页：手动登记的MDX攻略 + 自动收录 kind:guide 文章     
         ├── about.astro                 # About+评测方法论（作者介绍是占位符待填）
         ├── affiliate-disclosure.astro / privacy.astro / 404.astro
         ├── travel-esim-comparison.mdx  # 全球eSIM对比（数据驱动，读 data/providers.json）
@@ -128,6 +129,7 @@ App access without VPN 30% · Real-world speed 25% · Activation & setup 15% · 
 | `/best-esim-for-china/` | roundup 文章 | posts + providers 集合 |
 | `/airalo-china-esim-review/` | review 文章 | posts + airalo.json |
 | `/reviews/` | 评测列表 | posts 集合 |
+| `/guides/` | 攻略列表 | 页内手动清单 + posts 集合(kind:guide) |
 | `/travel-esim-comparison/` | 全球对比（MDX） | data/providers.json |
 | `/esim-promo-codes/` | 优惠码指南（MDX） | data/providers.json |
 | `/vpn-for-china/` | VPN对比（MDX） | data/providers.json |
