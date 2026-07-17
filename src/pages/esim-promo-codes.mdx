@@ -1,1 +1,76 @@
+---
+layout: ../layouts/ArticleLayout.astro
+title: "eSIM New User Deals & Promo Codes (July 2026): Airalo, Nomad, Yesim, TooSim & NXTL"
+description: "Every verified new-user eSIM discount in one place — Airalo 15% code, Nomad free 1GB trial, Yesim codes, and NXTL's $10-credit starter. Updated July 2026."
+---
 
+import data from '../data/providers.json';
+
+export const A = data.esim.airalo;
+export const N = data.esim.nomad;
+export const Y = data.esim.yesim;
+export const X = data.esim.nxtl;
+
+# eSIM New User Deals & Promo Codes ({data.meta.last_verified}): Airalo, Nomad, Yesim, TooSim & NXTL
+
+*Last updated: {data.meta.last_verified} · Promo codes change frequently — codes below were reported as working at time of writing. Always confirm at checkout before paying.*
+
+Every major travel eSIM provider offers something for first-time customers — from flat percentage discounts to free trial data and referral credits. Here's what NXTL, Yesim, TooSim, Nomad, and Airalo currently offer new users, and how to stack the best deal.
+
+## New User Offers at a Glance
+
+| | **Best new-user deal** | **Free trial** | **Referral bonus (for the new user)** | **Loyalty / cashback** |
+|---|---|---|---|---|
+| **Airalo** | {A.promo_percent}% off first eSIM (e.g., code <code>{A.promo_code}</code>) | No | ${A.referral_amount} off first eSIM with a referral code | Airmoney credits |
+| **Nomad** | Up to {N.promo_percent_max}% off; codes widely available | **{N.trial_gb}GB free in {N.trial_destinations} destinations, no credit card** | ${N.referral_amount} off plans ≥ ${N.referral_amount} | ~25% student discount via Student Beans |
+| **Yesim** | Reported codes from {Y.promo_percent}% up to ~{Y.promo_percent_max}% off first purchase (e.g., <code>{Y.promo_code}</code>; check official list) | No | Yes, via Ycoins wallet credits | Ycoins on purchases |
+| **TooSim** | Occasional 15–20% off codes (via blog/newsletter; no permanent code) | No | Not publicized | — |
+| **NXTL** | Starter bundle: ${X.starter_price} eSIM includes **${X.starter_credit} usable balance** | Effectively — the included ${X.starter_credit} credit | Referrer gets ~${X.referral_amount} credit on friend's first eSIM order | {X.token_cashback_percent}% back in NXTL Tokens on every purchase |
+
+## Deal-by-Deal Breakdown
+
+### Nomad — best way to try before you buy
+
+Nomad is the only provider here with a true free trial: {N.trial_gb}GB of data, no credit card, usable across {N.trial_destinations} destinations. On top of that, 15–{N.promo_percent_max}% discount codes circulate constantly (Nomad has run an official {N.promo_percent_max}% code on most plans), referrals give new users ${N.referral_amount} off, and students get roughly 25% off through Student Beans. If you're testing eSIMs for the first time, start here — it costs nothing.
+
+### Airalo — reliable {A.promo_percent}% for new accounts
+
+Airalo's standing new-customer offer is {A.promo_percent}% off your first eSIM (codes like <code>{A.promo_code}</code> are official; partner codes offer the same rate). Alternatively, a friend's referral code gives ${A.referral_amount} off and earns them ${A.referral_amount} in Airmoney. Note the fine print: promo and referral codes can't be combined, new-user codes only work on accounts with zero purchases, and on orders over $20 a {A.promo_percent}% code beats the ${A.referral_amount} referral.
+
+### Yesim — biggest advertised percentages, verify before checkout
+
+Third-party sites report Yesim codes ranging from €3 off (`TRAVELFREE`) and {Y.promo_percent}% (<code>{Y.promo_code}</code>) up to {Y.promo_percent_max}% off (`WELCOMETOYESIM`) for first purchases. Yesim itself warns that coupon aggregators often list expired codes and maintains an official promo codes page — check [yesim.app/promocodes](https://yesim.app/promocodes/) for the currently guaranteed code before you pay.
+
+### NXTL — no coupon needed, the starter pack is the deal
+
+NXTL's model makes discount codes almost irrelevant: the ${X.starter_price} starter package includes ${X.starter_credit} of pay-as-you-go balance, so your real cost of entry is about ${(X.starter_price - X.starter_credit).toFixed(2)}. Balance never expires, every purchase earns {X.token_cashback_percent}% back in NXTL Tokens, and referrals credit the referrer roughly ${X.referral_amount} once the friend makes a qualifying first eSIM purchase. Aggregator sites list occasional extra codes, but average savings are small (~7%).
+
+### TooSim — thinnest promo game
+
+TooSim has no permanent new-user code. It occasionally publishes 15–20% offers through its blog and social channels, and its country pages advertise "promo codes available." Worth a quick check before buying, but don't expect a standing discount — and given TooSim's pricing in some markets, a 15% code may still leave it more expensive than rivals' list prices.
+
+## How to Get the Lowest First-Order Price
+
+1. **Testing the waters?** Claim Nomad's free {N.trial_gb}GB first — zero risk.
+2. **Buying a bundle?** Apply the best percentage code: Nomad up to {N.promo_percent_max}%, Airalo {A.promo_percent}%, Yesim {Y.promo_percent}–{Y.promo_percent_max}% (verify on the official page).
+3. **Light or frequent traveler?** NXTL's ${X.starter_price}-with-${X.starter_credit}-credit starter is effectively the deepest discount here, with no code required.
+4. **Never stack blindly.** Airalo (and most providers) allow only one code per order — a percentage code usually beats a flat referral credit on orders above ~$20.
+5. **Check expiry.** eSIM promo codes rotate monthly; a code from a months-old blog post has likely died.
+
+## FAQ
+
+**Do eSIM promo codes work in the app and on the website?**
+Usually both — Airalo, Nomad, and Yesim all accept codes at checkout in-app and on the web. Enter the code before payment; discounts apply instantly.
+
+**Can I use a new-user code on a second account?**
+Against the terms of service for all five providers, and payment/device fingerprinting means it often fails. NXTL explicitly reviews suspicious referral patterns.
+
+**Are referral and promo codes stackable?**
+No. Airalo applies whichever single discount you enter; the others behave the same way.
+
+**Which provider is cheapest after discounts?**
+Depends on destination. Pair this guide with our [full pricing comparison](/travel-esim-comparison/) — a {A.promo_percent}% code on an overpriced plan can still cost more than a rival's list price.
+
+---
+
+*Sources: [Airalo discounts & deals](https://www.airalo.com/m/features/airalo-discounts-deals/), [Nomad free trial page](https://www.nomadesim.com/documents/landing-trial-plan), [Tom's Guide Nomad codes](https://www.tomsguide.com/coupons/nomad-esim), [Yesim official promo codes](https://yesim.app/promocodes/), [NXTL referrals](https://nxtlsim.com/referrals/), [NXTL Tokens](https://nxtlsim.com/nxtl-rewards/). Verified {data.meta.last_verified}.*
