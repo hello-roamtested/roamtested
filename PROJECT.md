@@ -8,7 +8,7 @@
 
 ## 1. 项目是什么
 
-**RoamTested（roamtested.com）**：面向去中国旅行的外国游客的英文评测站。核心定位是"人在中国实地测试 eSIM"（真金购买、实测速度、逐 App 防火墙直连检查、透明评分）——差异化在"tested on the ground"，对抗纯攒稿的竞品站。
+**RoamTested（roamtested.com）**：面向全球数字游民的科技工具类测评网站，英文内容，比如vpn e-sim ai工具等。目前专注于去中国旅行的外国游客的英文评测站，核心定位是"人在中国实地测试 eSIM vpn"（真金购买、实测速度、逐 App 防火墙直连检查、透明评分）——差异化在"tested on the ground"，对抗纯攒稿的竞品站。
 
 **商业模式**：联盟营销（affiliate）。读者通过站内链接购买 eSIM/VPN，站长赚佣金。
 
@@ -28,7 +28,12 @@
 | 域名 | roamtested.com（Cloudflare 管理）|
 | 收录 | Google Search Console 已验证；sitemap 位于 `/sitemap-index.xml` 已提交 |
 | robots | `public/robots.txt`（allow all + sitemap 声明）。Cloudflare 层：AI 爬虫**放行**（Do not block），robots 策略用 **Content Signals Policy**（search=yes, ai-train=no）|
-| 分析 | ⚠️ 尚未安装任何统计（GA4/Plausible 待装）|
+| 分析 | ⚠️ 尚未安装任何统计（GA4/Plausible 待装）| 
+<!-- 是网站访客统计工具——记录"每天多少人来、看了哪些页面、从哪里来的（谷歌？Reddit？AI 推荐？）、停留多久"。对联盟站来说，"哪篇文章带来了联盟点击"是最核心的运营数据，没有统计工具就是盲飞。
+两个主流选择：
+GA4（Google Analytics 4）：谷歌官方，免费，功能最全，但界面复杂、学习成本高
+Plausible：第三方极简统计，一眼能看懂，无 Cookie 弹窗烦恼，缺点是付费（约 $9/月） 
+开始有内容发布节奏之后，正式引流之后再安装 -->
 | 注意 | 仓库里**没有** package-lock.json（曾因 lock 不同步导致构建失败而删除；以后本地有 Node 环境时可重新生成提交）|
 
 ---
@@ -37,7 +42,7 @@
 
 ```
 ├── .github/workflows/price-watch.yml   # 价格监控定时任务（见第5节）
-├── README.zh.md                        # 日常操作手册（发评测、改数据、改指标）★必读
+├── README.zh.md                        # 日常操作手册 中文（发评测、改数据、改指标）★必读
 ├── astro.config.mjs                    # 站点配置：域名、mdx+sitemap 插件、i18n(en，zh预留)
 ├── package.json                        # 依赖清单
 ├── public/robots.txt
