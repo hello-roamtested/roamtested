@@ -16,7 +16,7 @@
       "label": "China Unlimited 3天",
       "url": "https://www.airalo.com/china-esim",
       "type": "text",
-      "pattern": "3 days\\s+UnlimitedGB\\s+\\$(?<price>[0-9]+(?:\\.[0-9]+)?)\\s*USD",
+      "pattern": "3 days[\\s\\S]{0,150}?Unlimited\\s*GB[\\s\\S]{0,150}?\\$(?<price>[0-9]+(?:\\.[0-9]+)?)\\s*USD",
       "currency": "USD"
     },
     {
@@ -25,7 +25,7 @@
       "label": "China Unlimited 30天",
       "url": "https://www.airalo.com/china-esim",
       "type": "text",
-      "pattern": "30 days\\s+UnlimitedGB\\s+\\$(?<price>[0-9]+(?:\\.[0-9]+)?)\\s*USD",
+      "pattern": "30 days[\\s\\S]{0,150}?Unlimited\\s*GB[\\s\\S]{0,150}?\\$(?<price>[0-9]+(?:\\.[0-9]+)?)\\s*USD",
       "currency": "USD"
     },
     {
