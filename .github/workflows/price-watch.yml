@@ -1,1 +1,60 @@
+# 此文件放到仓库的 .github/workflows/price-watch.yml
+name: Price Watch
 
+on:
+  schedule:
+    # 每周一北京时间上午 9 点（UTC 1 点）
+    - cron: "0 1 * * 1"
+  workflow_dispatch: {} # 允许在 Actions 页面手动点击运行
+
+permissions:
+  contents: write # 允许提交更新后的 baseline.json
+  issues: write # 允许自动开 Issue
+
+jobs:
+  check-prices:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Run price check
+        id: check
+        run: |
+          set +e
+          node scripts/price-watch/check-prices.mjs
+          code=$?
+          set -e
+          if [ "$code" = "78" ]; then
+            echo "attention=true" >> "$GITHUB_OUTPUT"
+          elif [ "$code" = "0" ]; then
+            echo "attention=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "脚本异常退出，退出码 $code"
+            exit "$code"
+          fi
+
+      - name: Commit updated baseline
+        run: |
+          git config user.name "price-watch-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add scripts/price-watch/baseline.json
+          if ! git diff --cached --quiet; then
+            git commit -m "chore(price-watch): update baseline $(date -u +%F)"
+            git push
+          fi
+
+      - name: Open issue if prices changed or checks failed
+        if: steps.check.outputs.attention == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh issue create \
+            --title "🔔 价格监控：发现变化或异常 $(date -u +%F)" \
+            --body-file scripts/price-watch/report.md \
+            --label "price-watch"
