@@ -76,6 +76,8 @@ const posts = defineCollection({
     date: z.string(), // YYYY-MM-DD,发布日期
     updated: z.string().optional(),
     kind: z.enum(['review', 'roundup', 'guide']).default('guide'),
+    // 主题标记：文章属于哪个测评品类。暂无页面使用，为将来开品类栏目留的坑。
+    topic: z.enum(['esim', 'vpn', 'travel-tech']).default('esim'),
     // review 类型文章填对应 provider 的文件名(不带 .json)
     provider: z.string().optional(),
     draft: z.boolean().default(false),
