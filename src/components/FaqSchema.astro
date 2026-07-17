@@ -1,0 +1,27 @@
+---
+// 放到 src/components/FaqSchema.astro
+// FAQ 结构化数据：让 Google 有资格在搜索结果里直接展开你的问答。
+// 用法（在 .mdx 文章里）：
+//   import FaqSchema from '../components/FaqSchema.astro';
+//   <FaqSchema items={[
+//     { q: 'Do these eSIMs bypass the Great Firewall?', a: 'Yes. Travel eSIMs route data through overseas gateways...' },
+//     { q: 'Can I get a Chinese phone number?', a: 'No — all five providers sell data-only eSIMs for China.' },
+//   ]} />
+// 注意：items 里的问答要和文章正文的 FAQ 内容一致（Google 会校验，不一致可能被判操纵）。
+interface Props {
+  items: { q: string; a: string }[];
+}
+const { items } = Astro.props;
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: items.map((item) => ({
+    '@type': 'Question',
+    name: item.q,
+    acceptedAnswer: { '@type': 'Answer', text: item.a },
+  })),
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />
