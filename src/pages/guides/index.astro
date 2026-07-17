@@ -34,7 +34,7 @@ const MANUAL_GUIDES = [
 
 // posts 集合里的 guide 类文章（自动收录）
 const collectionGuides = (await getCollection('posts'))
-  .filter((p) => !p.data.draft && p.data.kind === 'guide' && p.data.lang === 'en')
+  .filter((p) => !p.data.draft && ['guide', 'roundup'].includes(p.data.kind) && p.data.lang === 'en')
   .map((p) => ({
     href: `/${p.id.replace(/^en\//, '')}/`,
     title: p.data.title,
