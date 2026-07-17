@@ -1,0 +1,79 @@
+---
+// 放到 src/pages/guides/index.astro
+// Guides 列表页：攻略、对比、优惠类内容的目录。
+// 两个数据来源：
+//   1. MANUAL_GUIDES —— src/pages/ 下的独立 MDX 页面（不在 content 集合里），手动登记
+//   2. posts 集合中 kind === 'guide' 的文章 —— 以后按 README 流程发的攻略会自动出现
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+
+// ↓ 以后新发独立 MDX 攻略页，在这里照格式加一行即可
+const MANUAL_GUIDES = [
+  {
+    href: '/travel-esim-comparison/',
+    title: 'NXTL vs Yesim vs TooSim vs Nomad vs Airalo: Travel eSIM Comparison (2026)',
+    description:
+      'Five travel eSIM providers compared on plans, per-GB cost, coverage, and activation — fixed bundles vs pay-as-you-go.',
+    date: '2026-07-17',
+  },
+  {
+    href: '/vpn-for-china/',
+    title: 'VPN Pricing & New User Deals Compared (2026)',
+    description:
+      'What five major VPNs actually cost new users — intro deals, free trials, renewal traps, and which ones really work in mainland China.',
+    date: '2026-07-17',
+  },
+  {
+    href: '/esim-promo-codes/',
+    title: 'eSIM New User Deals & Promo Codes (July 2026)',
+    description:
+      "Every verified new-user eSIM discount in one place — Airalo's code, Nomad's free trial, and which codes are already dead.",
+    date: '2026-07-17',
+  },
+];
+
+// posts 集合里的 guide 类文章（自动收录）
+const collectionGuides = (await getCollection('posts'))
+  .filter((p) => !p.data.draft && p.data.kind === 'guide' && p.data.lang === 'en')
+  .map((p) => ({
+    href: `/${p.id.replace(/^en\//, '')}/`,
+    title: p.data.title,
+    description: p.data.description,
+    date: p.data.updated ?? p.data.date,
+  }));
+
+// 合并两个来源，按日期从新到旧
+const guides = [...MANUAL_GUIDES, ...collectionGuides].sort((a, b) =>
+  b.date.localeCompare(a.date)
+);
+---
+
+<Base
+  title="Guides"
+  description="Comparisons, how-tos and money-saving guides for staying connected in China — researched and tested by RoamTested."
+>
+  <section class="wrap">
+    <h1 class="page-title">Guides</h1>
+    <p class="muted">
+      Comparisons, deals and how-tos for staying connected in China. For hands-on single-provider
+      tests, see <a href="/reviews/">Reviews</a>.
+    </p>
+    {guides.length === 0 && <p class="muted">No guides published yet.</p>}
+    <ul class="post-list">
+      {guides.map((g) => (
+        <li>
+          <a href={g.href}>{g.title}</a>
+          <span class="chip">{g.date}</span>
+          <p class="small muted">{g.description}</p>
+        </li>
+      ))}
+    </ul>
+  </section>
+</Base>
+
+<style>
+  .page-title { padding-top: 2rem; }
+  .post-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 1.1rem; }
+  .post-list a { font-weight: 600; margin-right: 0.6rem; }
+  .post-list p { margin: 0.25rem 0 0; max-width: 40rem; }
+</style>
