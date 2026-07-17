@@ -1,1 +1,11 @@
-
+---
+// 放到 src/layouts/ArticleLayout.astro
+// 文章专用布局：套用站点 Base 布局 + prose 样式，供 MDX 文章通过 frontmatter 使用
+import Base from './Base.astro';
+const { frontmatter } = Astro.props;
+---
+<Base title={frontmatter.title} description={frontmatter.description}>
+  <section class="wrap prose">
+    <slot />
+  </section>
+</Base>
