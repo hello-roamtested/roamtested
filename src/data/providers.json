@@ -1,5 +1,5 @@
 {
-  "$comment": "全站唯一数据源。价格监控 Issue 提醒变价时，只改这里，全站文章自动更新。",
+  "$comment": "全站唯一数据源。官网抓来的市场数据。价格监控 Issue 提醒变价时，只改这里，全站文章自动更新。",
   "meta": {
     "last_verified": "July 2026",
     "last_verified_date": "2026-07-17"
