@@ -1,1 +1,249 @@
+---
+/**
+ * Speed Test Database — 存档展示页。
+ * 数据来源:各 provider JSON 里的 speedTests 数组。
+ * 新增一条测速:在对应的 provider JSON 里 speedTests 数组追加一个对象,
+ * 把截图传到 public/images/speedtests/,填上文件名,这里自动显示。
+ */
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
 
+// 汇总所有 provider 的 speedTests,打上服务商标签,按日期倒序排列
+const providers = await getCollection('providers');
+
+interface TestEntry {
+  provider: string;
+  city: string;
+  spot: string;
+  network: string;
+  downMbps: number;
+  upMbps: number;
+  pingMs: number;
+  date: string;
+  screenshot?: string;
+  sampleData: boolean;
+}
+
+const allTests: TestEntry[] = providers
+  .flatMap((p) =>
+    (p.data.speedTests ?? []).map((t) => ({
+      provider: p.data.name,
+      city: t.city,
+      spot: t.spot,
+      network: t.network,
+      downMbps: t.downMbps,
+      upMbps: t.upMbps,
+      pingMs: t.pingMs,
+      date: t.date,
+      screenshot: t.screenshot,
+      sampleData: p.data.sampleData ?? false,
+    }))
+  )
+  .sort((a, b) => b.date.localeCompare(a.date)); // 最新在前
+
+const hasSampleData = allTests.some((t) => t.sampleData);
+const total = allTests.length;
+---
+
+<Base
+  title="Speed Test Database"
+  description={`${total} speed tests from real locations in mainland China — every result timestamped, photographed, and logged.`}
+>
+  <section class="wrap">
+    <div class="page-head">
+      <h1>Speed Test Database</h1>
+      <p class="lede">
+        Every speed test we've run in mainland China, in one place.
+        Same protocol every time: Ookla Speedtest, three runs per spot,
+        median recorded. VPN off, background downloads paused.
+      </p>
+      <p class="small muted">
+        <span class="chip">{total} entries</span>
+        <span class="chip">Mainland China only</span>
+        <span class="chip">Ookla Speedtest</span>
+      </p>
+    </div>
+
+    {hasSampleData && (
+      <div class="sample-banner" role="note">
+        <strong>Demo data.</strong> Numbers on this page are placeholders —
+        not real test results. They disappear once real data is added.
+      </div>
+    )}
+
+    <div class="log">
+      {allTests.map((t) => (
+        <article class="entry card" data-sample={t.sampleData}>
+          <div class="entry-meta">
+            <span class="provider-tag">{t.provider}</span>
+            <span class="chip">{t.date}</span>
+            <span class="chip">{t.city} · {t.spot}</span>
+            <span class="chip">{t.network}</span>
+          </div>
+
+          <div class="entry-body">
+            {t.screenshot ? (
+              <a
+                href={`/images/speedtests/${t.screenshot}`}
+                class="thumb-wrap"
+                target="_blank"
+                rel="noopener"
+                aria-label={`Full-size screenshot: ${t.provider} in ${t.city}`}
+              >
+                <img
+                  src={`/images/speedtests/${t.screenshot}`}
+                  alt={`${t.provider} Speedtest — ${t.city}, ${t.date}`}
+                  class="thumb"
+                  loading="lazy"
+                  width="240"
+                  height="160"
+                />
+                <span class="zoom-hint" aria-hidden="true">↗ full size</span>
+              </a>
+            ) : (
+              <div class="no-shot">screenshot pending</div>
+            )}
+
+            <div class="numbers">
+              <div class="num-row">
+                <span class="num-label">Download</span>
+                <span class="num-val mono down">{t.downMbps} <span class="unit">Mbps</span></span>
+              </div>
+              <div class="num-row">
+                <span class="num-label">Upload</span>
+                <span class="num-val mono">{t.upMbps} <span class="unit">Mbps</span></span>
+              </div>
+              <div class="num-row">
+                <span class="num-label">Ping</span>
+                <span class="num-val mono">{t.pingMs} <span class="unit">ms</span></span>
+              </div>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    {total === 0 && (
+      <p class="muted">No speed tests recorded yet — first field tests are underway.</p>
+    )}
+
+    <p class="small muted methodology">
+      <strong>Methodology:</strong> Ookla Speedtest app (iOS), three consecutive runs per location,
+      median values reported here. Tested on cellular data only — no Wi-Fi.
+      VPN disabled, background app refresh off, screen brightness irrelevant.
+      Each row corresponds to one median reading at one spot at one time.
+    </p>
+  </section>
+</Base>
+
+<style>
+  .page-head { padding-top: 2rem; max-width: 44rem; margin-bottom: 2rem; }
+  .lede { font-size: 1.05rem; color: var(--ink-soft); margin-bottom: 0.8rem; }
+  .page-head .chip { margin-right: 0.4rem; }
+
+  .sample-banner {
+    background: var(--amber-tint);
+    color: var(--amber-ink);
+    border: 1px solid #e8d9ae;
+    border-radius: var(--radius);
+    padding: 0.7rem 1rem;
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+  }
+
+  /* log grid */
+  .log {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.1rem;
+    margin-bottom: 2rem;
+  }
+
+  .entry { padding: 1rem; }
+  .entry[data-sample="true"] { border-color: #e8d9ae; background: var(--amber-tint); }
+
+  /* meta row */
+  .entry-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.35rem;
+    margin-bottom: 0.8rem;
+  }
+  .provider-tag {
+    font-weight: 650;
+    font-size: 0.9rem;
+    margin-right: 0.15rem;
+  }
+
+  /* body: screenshot + numbers side by side */
+  .entry-body {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+
+  /* screenshot thumbnail */
+  .thumb-wrap {
+    position: relative;
+    flex-shrink: 0;
+    display: block;
+    border-radius: 4px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    text-decoration: none;
+  }
+  .thumb {
+    display: block;
+    width: 120px;
+    height: 80px;
+    object-fit: cover;
+  }
+  .zoom-hint {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    background: rgba(0,0,0,0.55);
+    color: #fff;
+    font-size: 0.65rem;
+    text-align: center;
+    padding: 0.15rem 0;
+    opacity: 0;
+    transition: opacity 120ms;
+  }
+  .thumb-wrap:hover .zoom-hint { opacity: 1; }
+
+  .no-shot {
+    flex-shrink: 0;
+    width: 120px;
+    height: 80px;
+    border: 1px dashed var(--line);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.72rem;
+    color: var(--ink-soft);
+    font-family: var(--font-mono);
+  }
+
+  /* numbers */
+  .numbers { flex: 1; display: grid; gap: 0.35rem; }
+  .num-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 0.25rem;
+  }
+  .num-row:last-child { border-bottom: none; padding-bottom: 0; }
+  .num-label { font-size: 0.8rem; color: var(--ink-soft); }
+  .num-val { font-size: 1rem; font-weight: 600; }
+  .num-val.down { color: var(--jade-deep); }
+  .unit { font-size: 0.72rem; font-weight: 400; color: var(--ink-soft); }
+
+  .methodology { max-width: 44rem; margin-top: 1rem; }
+
+  @media (max-width: 480px) {
+    .log { grid-template-columns: 1fr; }
+  }
+</style>
