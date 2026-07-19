@@ -2,7 +2,7 @@
   "name": "Saily",
   "lang": "en",
   "sampleData": true,
-  "listed": true,
+  "listed": false,
   "verdict": "Sample verdict — e.g. best budget starter plan",
   "affiliateUrl": "https://example.com/REPLACE-WITH-SAILY-AFFILIATE-LINK",
   "price": {
