@@ -37,7 +37,7 @@ export const METRICS: Metric[] = [
     id: 'activation',
     label: 'Activation & setup',
     short: 'Setup',
-    weight: 15,
+    weight: 10,
     blurb: 'How painless is install and activation — QR delivery, clear steps, time until first byte.',
   },
   {
@@ -58,7 +58,7 @@ export const METRICS: Metric[] = [
     id: 'price',
     label: 'Price & value',
     short: 'Price',
-    weight: 15,
+    weight: 20,
     blurb: 'Cost per GB, top-up flexibility, and whether the price matches what you actually get.',
   },
 ];
