@@ -5,7 +5,10 @@
   "listed": true,
   "verdict": "Sample verdict — e.g. best budget starter plan",
   "affiliateUrl": "https://example.com/REPLACE-WITH-SAILY-AFFILIATE-LINK",
-  "price": { "headline": "$4.49 · 1GB · 7d", "perGB": 4.5 },
+  "price": {
+    "headline": "$4.49 · 1GB · 7d",
+    "perGB": 4.5
+  },
   "scores": {
     "appAccess": 8.8,
     "activation": 9.0,
@@ -20,16 +23,48 @@
     "published": true
   },
   "appAccess": [
-    { "app": "Google Search", "works": true },
-    { "app": "Google Maps", "works": true },
-    { "app": "Gmail", "works": true },
-    { "app": "WhatsApp (messages)", "works": true },
-    { "app": "Instagram", "works": true },
-    { "app": "YouTube", "works": true }
+    {
+      "app": "Google Search",
+      "works": true
+    },
+    {
+      "app": "Google Maps",
+      "works": true
+    },
+    {
+      "app": "Gmail",
+      "works": true
+    },
+    {
+      "app": "WhatsApp (messages)",
+      "works": true
+    },
+    {
+      "app": "Instagram",
+      "works": true
+    },
+    {
+      "app": "YouTube",
+      "works": true
+    }
   ],
   "speedTests": [
-    { "city": "Chengdu", "spot": "Airport arrivals, indoors", "network": "China Unicom 5G", "downMbps": 96, "upMbps": 31, "pingMs": 160, "date": "2026-07-19" }
+    {
+      "city": "Chengdu",
+      "spot": "Airport arrivals, indoors",
+      "network": "China Unicom 5G",
+      "downMbps": 96,
+      "upMbps": 31,
+      "pingMs": 160,
+      "date": "2026-07-19",
+      "screenshot": "saily-chengdu-airport-2026-07-19.jpg"
+    }
   ],
-  "pros": ["Demo pro", "Demo pro"],
-  "cons": ["Demo con"]
+  "pros": [
+    "Demo pro",
+    "Demo pro"
+  ],
+  "cons": [
+    "Demo con"
+  ]
 }

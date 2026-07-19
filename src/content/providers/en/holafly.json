@@ -5,7 +5,10 @@
   "listed": true,
   "verdict": "Sample verdict — e.g. unlimited plans for heavy users",
   "affiliateUrl": "https://example.com/REPLACE-WITH-HOLAFLY-AFFILIATE-LINK",
-  "price": { "headline": "$19 · unlimited · 5d", "perGB": 0 },
+  "price": {
+    "headline": "$19 · unlimited · 5d",
+    "perGB": 0
+  },
   "scores": {
     "appAccess": 8.5,
     "activation": 8.0,
@@ -21,16 +24,49 @@
     "notes": "Demo note: this is the kind of transparency gap your review can document."
   },
   "appAccess": [
-    { "app": "Google Search", "works": true },
-    { "app": "Google Maps", "works": true },
-    { "app": "Gmail", "works": true },
-    { "app": "WhatsApp (messages)", "works": true },
-    { "app": "Instagram", "works": true },
-    { "app": "YouTube", "works": true }
+    {
+      "app": "Google Search",
+      "works": true
+    },
+    {
+      "app": "Google Maps",
+      "works": true
+    },
+    {
+      "app": "Gmail",
+      "works": true
+    },
+    {
+      "app": "WhatsApp (messages)",
+      "works": true
+    },
+    {
+      "app": "Instagram",
+      "works": true
+    },
+    {
+      "app": "YouTube",
+      "works": true
+    }
   ],
   "speedTests": [
-    { "city": "Chengdu", "spot": "Tianfu Square, outdoors", "network": "China Mobile 5G", "downMbps": 46, "upMbps": 12, "pingMs": 210, "date": "2026-07-21" }
+    {
+      "city": "Chengdu",
+      "spot": "Tianfu Square, outdoors",
+      "network": "China Mobile 5G",
+      "downMbps": 46,
+      "upMbps": 12,
+      "pingMs": 210,
+      "date": "2026-07-21",
+      "screenshot": "holafly-chengdu-tianfu-2026-07-21.jpg"
+    }
   ],
-  "pros": ["Demo pro", "Demo pro"],
-  "cons": ["Demo con", "Demo con"]
+  "pros": [
+    "Demo pro",
+    "Demo pro"
+  ],
+  "cons": [
+    "Demo con",
+    "Demo con"
+  ]
 }
