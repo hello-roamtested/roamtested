@@ -1,0 +1,50 @@
+{
+  "name": "Yesim",
+  "lang": "en",
+  "sampleData": true,
+  "listed": true,
+  "verdict": "Best for longer stays and hotspot-heavy use — unlimited plans, solid support",
+  "affiliateUrl": "https://yesim.app/affiliate-program/REPLACE-WITH-YOUR-AFFILIATE-LINK",
+  "price": {
+    "headline": "$4.66 · unlimited · 1d",
+    "perGB": null
+  },
+  "scores": {
+    "appAccess": 8.0,
+    "activation": 8.5,
+    "throttling": 5.5,
+    "speed": 7.5,
+    "price": 7.0
+  },
+  "exitCountry": "Unverified by field test (international routing confirmed)",
+  "throttlePolicy": {
+    "dailyCap": "Not published (daily limit exists per FUP)",
+    "afterCap": "Speed reduced — amount not specified",
+    "published": false,
+    "notes": "Yesim confirms a Fair Use Policy applies to unlimited China plans and that 'speed may be throttled after heavy usage,' but does not publish the specific daily GB cap or the throttled speed. Plans: $4.66/day up to $65.20/30 days. Hotspot included at no extra charge by default."
+  },
+  "appAccess": [
+    { "app": "Google Search", "works": true, "notes": "Confirmed via international routing" },
+    { "app": "Google Maps", "works": true, "notes": "Confirmed" },
+    { "app": "Gmail", "works": true, "notes": "Confirmed" },
+    { "app": "WhatsApp (messages)", "works": true, "notes": "Confirmed" },
+    { "app": "WhatsApp (voice call)", "works": true, "notes": "Confirmed" },
+    { "app": "Instagram", "works": true, "notes": "Confirmed" },
+    { "app": "YouTube", "works": true, "notes": "Confirmed" }
+  ],
+  "speedTests": [],
+  "pros": [
+    "Unlimited plans well-suited for 10+ day stays",
+    "Hotspot included by default at no extra cost",
+    "5G available on China plans",
+    "24/7 live support with ~5 min average response time",
+    "30-day refund policy",
+    "4M+ users — extensive community testing data",
+    "1-click installation process"
+  ],
+  "cons": [
+    "Daily throttling cap not published — can't plan around it",
+    "Relatively expensive per-day ($4.66+) vs fixed-data plans for short trips",
+    "Throttling speed after cap not specified"
+  ]
+}

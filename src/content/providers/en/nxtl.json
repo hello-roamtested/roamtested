@@ -1,0 +1,46 @@
+{
+  "name": "NXTL",
+  "lang": "en",
+  "sampleData": true,
+  "listed": true,
+  "verdict": "Pay-as-you-go pioneer — no bundles, no expiry, but China pricing needs field verification",
+  "affiliateUrl": "https://partners.nxtlsim.com/REPLACE-WITH-YOUR-AFFILIATE-LINK",
+  "price": {
+    "headline": "$11.99 eSIM + pay/GB",
+    "perGB": null
+  },
+  "scores": {
+    "appAccess": 7.0,
+    "activation": 7.5,
+    "throttling": 5.0,
+    "speed": 6.5,
+    "price": 6.5
+  },
+  "exitCountry": "Unverified (claims VPN-style routing via own infra)",
+  "throttlePolicy": {
+    "dailyCap": "Not published",
+    "afterCap": "Not published",
+    "published": false,
+    "notes": "NXTL advertises 'VPN-style routing through NXTL infrastructure' which may bypass the GFW, but no independent China field test found as of July 2026. Pay-as-you-go model: $11.99 buys the eSIM + $10 usable balance; China per-GB rate requires their online calculator to find — not published on a simple pricing page. No throttling policy published."
+  },
+  "appAccess": [
+    { "app": "Google Search", "works": true, "notes": "Claimed via VPN-style routing — unverified by field test" },
+    { "app": "Google Maps", "works": true, "notes": "Claimed — unverified" },
+    { "app": "WhatsApp (messages)", "works": true, "notes": "Claimed — unverified" },
+    { "app": "Instagram", "works": true, "notes": "Claimed — unverified" },
+    { "app": "YouTube", "works": true, "notes": "Claimed — unverified" }
+  ],
+  "speedTests": [],
+  "pros": [
+    "No expiry — balance rolls over indefinitely across trips",
+    "Pay only for what you use — no wasted data on short trips",
+    "One eSIM covers 190+ countries, no rebuy needed",
+    "No ID required to purchase"
+  ],
+  "cons": [
+    "China per-GB price hidden behind calculator — not transparent at a glance",
+    "GFW bypass unconfirmed by independent China field test",
+    "Throttling policy not published",
+    "Smaller brand — less community testing data available"
+  ]
+}

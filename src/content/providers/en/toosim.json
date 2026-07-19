@@ -1,0 +1,47 @@
+{
+  "name": "TooSim",
+  "lang": "en",
+  "sampleData": true,
+  "listed": true,
+  "verdict": "Coverage is broad but China pricing is steep — $13.99/GB is 3× the market average",
+  "affiliateUrl": "https://toosim.com/affiliates/REPLACE-WITH-YOUR-AFFILIATE-LINK",
+  "price": {
+    "headline": "$13.99 · 1GB",
+    "perGB": 13.99
+  },
+  "scores": {
+    "appAccess": 7.0,
+    "activation": 7.5,
+    "throttling": 5.5,
+    "speed": 6.5,
+    "price": 3.0
+  },
+  "exitCountry": "Unverified by field test",
+  "throttlePolicy": {
+    "dailyCap": "Not published",
+    "afterCap": "Not published",
+    "published": false,
+    "notes": "No throttling policy found for China plans. Fixed-data plans (not unlimited) so throttling less of a concern, but the per-GB cost makes this a poor value for data-heavy use."
+  },
+  "appAccess": [
+    { "app": "Google Search", "works": true, "notes": "Expected via international roaming — unverified by field test" },
+    { "app": "Google Maps", "works": true, "notes": "Expected — unverified" },
+    { "app": "WhatsApp (messages)", "works": true, "notes": "Expected — unverified" },
+    { "app": "Instagram", "works": true, "notes": "Expected — unverified" },
+    { "app": "YouTube", "works": true, "notes": "Expected — unverified" }
+  ],
+  "speedTests": [],
+  "pros": [
+    "Plans valid up to 180 days — flexibility for long trips",
+    "Countdown starts only when first used at destination",
+    "Refund offered if eSIM doesn't work and can't be fixed",
+    "Coverage in 180+ countries"
+  ],
+  "cons": [
+    "$13.99/GB for China is roughly 3× Nomad's price for the same data",
+    "GFW bypass not independently verified for China",
+    "No published throttling or FUP policy",
+    "Relatively newer brand — less community testing data",
+    "China not prominently featured on homepage — specialist coverage depth unclear"
+  ]
+}
