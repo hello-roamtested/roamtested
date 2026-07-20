@@ -60,7 +60,6 @@
       "token_cashback_percent": 5
     },
     "tripcom": {
-      "$note": "Trip.com 旅行平台旗下 eSIM。走中国三大官方运营商，但流量经境外出口，故免翻墙。affiliate_url 必须从 Trip.com 联盟后台生成，不要用点击广告后地址栏里的链接（那里的 allianceid 是 Trip.com 自己的投放渠道号）。",
       "affiliate_url": "https://www.trip.com/t/uLJS77W0bV2",
       "china_from_price": 2.94,
       "china_2d_500mb": 2.94,
