@@ -1,0 +1,47 @@
+{
+  "name": "Trip.com eSIM",
+  "lang": "en",
+  "sampleData": true,
+  "listed": true,
+  "verdict": "The travel-agency option — official Chinese carriers, refundable, priced by the day from $2.94",
+  "affiliateUrl": "https://www.trip.com/sale/w/10229/esim.html?locale=en-XX&REPLACE-WITH-YOUR-AFFILIATE-PARAMS",
+  "price": {
+    "headline": "$2.94 · 500MB · 2d"
+  },
+  "scores": {
+    "appAccess": 8.5,
+    "activation": 9.0,
+    "throttling": 5.0,
+    "speed": 7.0,
+    "price": 7.5
+  },
+  "exitCountry": "Unverified by field test (sold on domestic carriers but routed internationally — needs IP check on the ground)",
+  "throttlePolicy": {
+    "dailyCap": "Not published (per-day tiers sold as 0.5GB/1GB/2GB/3GB per day or 'unlimited')",
+    "afterCap": "Not specified",
+    "published": false,
+    "notes": "Trip.com sells both per-day allowances and fixed total-data packages (1GB–100GB). For the tiers marketed as unlimited, no daily high-speed cap or post-cap speed is published before purchase. Plan length is fully flexible from 1 to 365 days."
+  },
+  "appAccess": [
+    { "app": "Google Search", "works": true, "notes": "Vendor claim + user reports; not yet verified on the ground by us" },
+    { "app": "Google Maps", "works": true, "notes": "Vendor claim + user reports; unverified by us" },
+    { "app": "WhatsApp (messages)", "works": true, "notes": "Multiple user reports; unverified by us" },
+    { "app": "Instagram", "works": true, "notes": "Multiple user reports; unverified by us" },
+    { "app": "Facebook", "works": true, "notes": "User reports; unverified by us" },
+    { "app": "ChatGPT", "works": false, "notes": "Marketed as 'ChatGPT available', but at least one buyer reports ChatGPT still required a VPN while other apps worked. Flagged as the key thing to verify in our field test." }
+  ],
+  "speedTests": [],
+  "pros": [
+    "Runs on the three official Chinese carriers (China Mobile / Unicom / Telecom) — a fully legal, non-grey-market product with near-universal domestic coverage",
+    "Most flexible plan ladder of any provider here: 1 to 365 days, 0.5GB/day up to unlimited, plus fixed packages from 1GB to 100GB",
+    "Fully refundable at any time before the eSIM is installed — rare in this category",
+    "In-app installation without QR-code scanning; no Chinese ID or local number required",
+    "24/7 English-language support from a large OTA, plus the buyer protection that comes with booking through a major travel platform"
+  ],
+  "cons": [
+    "No published fair-use policy: neither the daily high-speed cap nor the throttled speed is disclosed before you buy",
+    "Firewall behaviour needs verification — it is sold on domestic carriers with international routing, and at least one buyer reports ChatGPT still being blocked",
+    "Small short-trip plans are not cheap per GB ($2.94 for 500MB works out to ~$5.88/GB)",
+    "eSIM is a side product for a travel platform, not a specialist network operator — less transparency about the underlying routing than dedicated eSIM brands"
+  ]
+}
