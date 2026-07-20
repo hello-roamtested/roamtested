@@ -1,11 +1,12 @@
 {
-  "$comment": "全站唯一数据源。官网抓来的市场数据。价格监控 Issue 提醒变价时，只改这里，全站文章自动更新。",
+  "$comment": "全站唯一数据源。官网抓来的市场数据。价格监控 Issue 提醒变价时，只改这里，全站文章自动更新。affiliate_url 是各家联盟推广地址的唯一存放处——以后文章里的购买按钮一律引用它，绝不手写链接进正文，这样换联盟ID时永远只改这一个文件。",
   "meta": {
     "last_verified": "July 2026",
     "last_verified_date": "2026-07-17"
   },
   "esim": {
     "airalo": {
+      "affiliate_url": "https://www.airalo.com/REPLACE-WITH-YOUR-AFFILIATE-LINK",
       "china_from_price": 4.00,
       "china_unlimited_3d": 11.50,
       "china_unlimited_30d": 69.00,
@@ -14,6 +15,7 @@
       "referral_amount": 3
     },
     "nomad": {
+      "affiliate_url": "https://www.nomadesim.com/REPLACE-WITH-YOUR-AFFILIATE-LINK",
       "china_from_price": 4.00,
       "china_1gb_7d": 4.00,
       "china_10gb_30d": 12.00,
@@ -26,6 +28,7 @@
       "europe_50gb_eur": 28.15
     },
     "yesim": {
+      "affiliate_url": "https://yesim.app/affiliate-program/REPLACE-WITH-YOUR-AFFILIATE-LINK",
       "china_from_price": 0.54,
       "china_20gb_30d": 20.00,
       "china_unlimited_7d": 28.80,
@@ -40,6 +43,7 @@
       "global_unlimited_7d": 40.09
     },
     "toosim": {
+      "affiliate_url": "https://toosim.com/affiliates/REPLACE-WITH-YOUR-AFFILIATE-LINK",
       "starting_price": 3.99,
       "china_1gb_7d": 13.99,
       "china_20gb_30d": 117.99,
@@ -47,37 +51,55 @@
       "global_from": 20.99
     },
     "nxtl": {
+      "affiliate_url": "https://partners.nxtlsim.com/REPLACE-WITH-YOUR-AFFILIATE-LINK",
       "starter_price": 11.99,
       "starter_credit": 10,
       "usa_per_gb": 1.21,
       "uk_per_gb": 1.49,
       "referral_amount": 5,
       "token_cashback_percent": 5
+    },
+    "tripcom": {
+      "$note": "Trip.com 旅行平台旗下 eSIM。走中国三大官方运营商，但流量经境外出口，故免翻墙。affiliate_url 必须从 Trip.com 联盟后台生成，不要用点击广告后地址栏里的链接（那里的 allianceid 是 Trip.com 自己的投放渠道号）。",
+      "affiliate_url": "https://www.trip.com/sale/w/10229/esim.html?locale=en-XX&REPLACE-WITH-YOUR-AFFILIATE-PARAMS",
+      "china_from_price": 2.94,
+      "china_2d_500mb": 2.94,
+      "china_2d_unlimited": 8.47,
+      "china_2d_max": 12.00,
+      "validity_min_days": 1,
+      "validity_max_days": 365,
+      "data_min_gb": 1,
+      "data_max_gb": 100
     }
   },
   "vpn": {
     "expressvpn": {
+      "affiliate_url": "https://www.expressvpn.com/REPLACE-WITH-YOUR-AFFILIATE-LINK",
       "monthly": 12.99,
       "best_deal_monthly": 2.49,
       "annual_monthly": 3.99,
       "renewal_annual": 99.95
     },
     "nordvpn": {
+      "affiliate_url": "https://nordvpn.com/REPLACE-WITH-YOUR-AFFILIATE-LINK",
       "monthly": 12.99,
       "best_deal_monthly": 3.49,
       "annual_monthly": 4.59
     },
     "surfshark": {
+      "affiliate_url": "https://surfshark.com/REPLACE-WITH-YOUR-AFFILIATE-LINK",
       "monthly": 16.45,
       "best_deal_monthly": 1.78,
       "starter_2yr_monthly": 2.49
     },
     "astrill": {
+      "affiliate_url": "https://www.astrill.com/REPLACE-WITH-YOUR-AFFILIATE-LINK",
       "monthly": 30.00,
       "annual_monthly": 15.00,
       "two_year_monthly": 12.50
     },
     "purevpn": {
+      "affiliate_url": "https://www.purevpn.com/REPLACE-WITH-YOUR-AFFILIATE-LINK",
       "monthly": 12.95,
       "trial_price": 0.99,
       "trial_days": 7,
