@@ -1,7 +1,7 @@
 ---
 layout: ../layouts/ArticleLayout.astro
-title: "NXTL vs Yesim vs TooSim vs Nomad vs Airalo: Travel eSIM Comparison (2026)"
-description: "Five travel eSIM providers compared on plans, per-GB cost, coverage, and activation — fixed bundles vs pay-as-you-go, with prices verified July 2026."
+title: "NXTL vs Yesim vs TooSim vs Nomad vs Airalo vs Trip.com: Travel eSIM Comparison (2026)"
+description: "Six travel eSIM providers compared on plans, per-GB cost, coverage, and activation — fixed bundles, pay-as-you-go wallets, and the travel-platform option. Prices verified July 2026."
 ---
 
 import data from '../data/providers.json';
@@ -11,12 +11,13 @@ export const N = data.esim.nomad;
 export const Y = data.esim.yesim;
 export const T = data.esim.toosim;
 export const X = data.esim.nxtl;
+export const TC = data.esim.tripcom;
 
-# NXTL vs Yesim vs TooSim vs Nomad vs Airalo: Travel eSIM Comparison (2026)
+# NXTL vs Yesim vs TooSim vs Nomad vs Airalo vs Trip.com: Travel eSIM Comparison (2026)
 
 *Last updated: {data.meta.last_verified} · Prices in USD unless noted, verified at time of writing.*
 
-Five travel eSIM providers, two very different pricing philosophies: fixed data bundles (Airalo, Nomad, TooSim, and mostly Yesim) versus pay-as-you-go wallets (NXTL, and Yesim's Pay & Fly). Here's how they compare on plans, coverage, and activation.
+Six travel eSIM providers, three different business models: fixed data bundles (Airalo, Nomad, TooSim, and mostly Yesim), pay-as-you-go wallets (NXTL, and Yesim's Pay & Fly), and the travel-platform bundle (Trip.com). Here's how they compare on plans, coverage, and activation.
 
 ## At a Glance
 
@@ -32,6 +33,8 @@ Five travel eSIM providers, two very different pricing philosophies: fixed data 
 | **Phone number** | Select plans (US/UK voice) | Data only | Virtual numbers as add-on | Data only | Data only (free incoming calls/SMS) |
 | **Free trial** | No | {N.trial_gb}GB in {N.trial_destinations} destinations | No | No | No |
 
+*Trip.com is covered in its own section below — our verified figures for it are China-specific, so putting global numbers in this table would overstate what we've checked.*
+
 ## Plans & Per-GB Cost (sample destinations)
 
 | Destination | Airalo | Nomad | Yesim | TooSim | NXTL (PAYG) |
@@ -42,9 +45,28 @@ Five travel eSIM providers, two very different pricing philosophies: fixed data 
 
 **Cheapest per GB overall:** NXTL and Yesim Pay & Fly for light users; Nomad's Europe 50GB for heavy users. **Watch out:** "unlimited" plans always carry fair-use caps — Yesim throttles after ~50GB/30 days; Nomad's unlimited gives 2GB/day at full speed.
 
+## Trip.com eSIM — the travel-platform option
+
+Trip.com sells eSIMs alongside flights and hotels, which makes it structurally different from every dedicated brand above — and for China specifically, it's the only one here sold through the **three official domestic carriers** (China Mobile, Unicom, Telecom) rather than as foreign roaming. Traffic still routes internationally, which is why blocked apps are reported to work without a VPN.
+
+| | **Trip.com eSIM (China plans)** |
+|---|---|
+| **Starting price** | ${TC.china_from_price} · 500MB · 2 days |
+| **Unlimited** | ${TC.china_2d_unlimited} for 2 days unlimited; per-day tiers from 0.5GB/day |
+| **Plan length** | {TC.validity_min_days}–{TC.validity_max_days} days — the widest range here |
+| **Fixed packages** | {TC.data_min_gb}GB up to {TC.data_max_gb}GB |
+| **Network** | China Mobile / Unicom / Telecom (official carriers) |
+| **Activation** | In-app, no QR scanning; no Chinese ID or local number required |
+| **Refunds** | Full refund any time before the eSIM is installed |
+| **Support** | 24/7 English support via the Trip.com platform |
+
+**Where it wins:** flexibility and risk. The 1-to-365-day ladder means you're not forced into a 7/15/30-day box, and being able to cancel right up until installation is something no dedicated eSIM brand here offers.
+
+**Where to be careful:** no fair-use policy is published before purchase — neither the daily high-speed cap nor the throttled speed. And while it's marketed as "ChatGPT available," at least one buyer reports ChatGPT still requiring a VPN even though Google, Instagram, Facebook and WhatsApp worked. We're verifying both points in field testing.
+
 ## Coverage & Networks
 
-**Airalo** partners with named local carriers per plan (shown before purchase), e.g., China Unicom in China; 5G on many plans. **Nomad** lists named carriers too, often dual-network (e.g., China Unicom + Telecom). **Yesim** connects to multiple networks per country — in the US it uses T-Mobile and AT&T simultaneously, auto-selecting the stronger signal. **TooSim** rides AT&T/T-Mobile/Verizon in the US and Deutsche Telekom/Vodafone/Orange in Europe, but doesn't always disclose the carrier pre-purchase. **NXTL** is unique: you can manually pick among networks in a country to get a cheaper per-GB rate.
+**Airalo** partners with named local carriers per plan (shown before purchase), e.g., China Unicom in China; 5G on many plans. **Nomad** lists named carriers too, often dual-network (e.g., China Unicom + Telecom). **Yesim** connects to multiple networks per country — in the US it uses T-Mobile and AT&T simultaneously, auto-selecting the stronger signal. **TooSim** rides AT&T/T-Mobile/Verizon in the US and Deutsche Telekom/Vodafone/Orange in Europe, but doesn't always disclose the carrier pre-purchase. **NXTL** is unique: you can manually pick among networks in a country to get a cheaper per-GB rate. **Trip.com** discloses its carriers upfront for China — all three state operators.
 
 ## Purchase & Activation
 
@@ -55,6 +77,7 @@ Five travel eSIM providers, two very different pricing philosophies: fixed data 
 | **Yesim** | App / website | QR emailed instantly; ~5–10 min | Varies by destination | Rarely |
 | **TooSim** | App / website | QR via email or app; needs internet | On first connection at destination | Not required |
 | **NXTL** | Website / app | Install once, top up wallet | No expiry — balance carries across trips | Not required |
+| **Trip.com** | Trip.com app / website | In-app install, no QR scan | On first connection at destination | Not required |
 
 **Universal advice:** install your eSIM on Wi-Fi before departure, and check that your phone is carrier-unlocked and eSIM-capable.
 
@@ -64,10 +87,11 @@ Five travel eSIM providers, two very different pricing philosophies: fixed data 
 - **Best all-rounder on price + features:** Nomad — free hotspot everywhere, named carriers, free {N.trial_gb}GB trial to test before paying.
 - **Light user or unpredictable itinerary:** NXTL or Yesim Pay & Fly — pay only for what you use, no expiring bundles.
 - **Heavy data user:** Nomad's 50GB Europe plan or Yesim's unlimited passes (mind the FUP).
+- **Trip transiting China, or an itinerary that might change:** Trip.com — the 1-to-365-day ladder and refund-before-install policy give you the most room to change your mind, and it's the only option here running on official Chinese carriers.
 - **TooSim:** competitive in the US and Europe (from ${T.usa_per_gb_from}/GB), long-validity plans up to 180 days — but compare per-destination, as some markets (e.g., China) are priced far above rivals, and there's no plan top-up.
 
 Looking for new-user discounts? See our [eSIM promo codes guide](/esim-promo-codes/). Traveling to China specifically? Start with our [on-the-ground China eSIM rankings](/best-esim-for-china/).
 
 ---
 
-*Sources: [Airalo](https://www.airalo.com/all-esim), [Nomad](https://www.nomadesim.com/), [Yesim](https://yesim.app/), [TooSim](https://toosim.com/), [NXTL](https://nxtlsim.com/pricing/); independent reviews by [Traveltomtom](https://www.traveltomtom.net/tech-tips/yesim-review), [esimdb](https://esimdb.com/), [BetterSIM](https://www.bettersim.com/esim-providers/nomad), and [AvailSim](https://www.availsim.com/provider/toosim). Prices checked {data.meta.last_verified}.*
+*Sources: [Airalo](https://www.airalo.com/all-esim), [Nomad](https://www.nomadesim.com/), [Yesim](https://yesim.app/), [TooSim](https://toosim.com/), [NXTL](https://nxtlsim.com/pricing/), [Trip.com eSIM](https://www.trip.com/sale/w/10229/esim.html); independent reviews by [Traveltomtom](https://www.traveltomtom.net/tech-tips/yesim-review), [esimdb](https://esimdb.com/), [BetterSIM](https://www.bettersim.com/esim-providers/nomad), and [AvailSim](https://www.availsim.com/provider/toosim). Prices checked {data.meta.last_verified}.*
