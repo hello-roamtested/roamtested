@@ -2,7 +2,7 @@
   "name": "Holafly",
   "lang": "en",
   "sampleData": true,
-  "listed": true,
+  "listed": false,
   "verdict": "Sample verdict — e.g. unlimited plans for heavy users",
   "affiliateUrl": "https://example.com/REPLACE-WITH-HOLAFLY-AFFILIATE-LINK",
   "price": {
