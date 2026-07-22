@@ -156,3 +156,25 @@ th {
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; animation: none !important; }
 }
+
+/* 防止任何元素撑破屏幕宽度 */
+html, body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+/* 手机端:导航换行 + 长文本强制折行 */
+@media (max-width: 640px) {
+  .header-row {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .nav-link {
+    margin-left: 0;
+    margin-right: 0.8rem;
+  }
+  .mono, .chip {
+    word-break: break-word;
+    white-space: normal;
+  }
+}
