@@ -3,6 +3,7 @@
   "lang": "en",
   "sampleData": true,
   "listed": false,
+  "listedSpeedTests": false,
   "verdict": "Sample verdict — e.g. best budget starter plan",
   "affiliateUrl": "https://example.com/REPLACE-WITH-SAILY-AFFILIATE-LINK",
   "price": {
