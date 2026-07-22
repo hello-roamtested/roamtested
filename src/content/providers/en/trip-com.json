@@ -18,18 +18,18 @@
   },
   "exitCountry": "Runs on China Mobile locally, data exits through Hong Kong. Verified on the ground in Chengdu, July 2026.",
   "throttlePolicy": {
-    "dailyCap": "Not published (per-day tiers sold as 0.5GB/1GB/2GB/3GB per day or 'unlimited')",
-    "afterCap": "Not specified",
-    "published": false,
-    "notes": "Trip.com sells both per-day allowances and fixed total-data packages (1GB–100GB). For the tiers marketed as unlimited, no daily high-speed cap or post-cap speed is published before purchase. Plan length is fully flexible from 1 to 365 days."
+    "dailyCap": "Varies by plan.",
+    "afterCap": "Drops to 384kbps once the limit is reached, applies to most plans",
+    "published": true,
+    "notes": ""
   },
   "appAccess": [
-    { "app": "Google Search", "works": true, "notes": "Vendor claim + user reports; not yet verified on the ground by us" },
-    { "app": "Google Maps", "works": true, "notes": "Vendor claim + user reports; unverified by us" },
-    { "app": "WhatsApp (messages)", "works": true, "notes": "Multiple user reports; unverified by us" },
-    { "app": "Instagram", "works": true, "notes": "Multiple user reports; unverified by us" },
-    { "app": "Facebook", "works": true, "notes": "User reports; unverified by us" },
-    { "app": "ChatGPT", "works": false, "notes": "Marketed as 'ChatGPT available', but at least one buyer reports ChatGPT still required a VPN while other apps worked. Flagged as the key thing to verify in our field test." }
+    { "app": "Google Search", "works": true, "notes": "Verified on the ground by us" },
+    { "app": "WhatsApp", "works": true, "notes": "Verified on the ground by us" },
+    { "app": "Instagram", "works": true, "notes": "Verified on the ground by us" },
+    { "app": "TikTok", "works": true, "notes": "Verified on the ground by us" },
+    { "app": "Facebook", "works": true, "notes": "Verified on the ground by us" },
+    { "app": "ChatGPT", "works": false, "notes": "Verified on the ground by us" }
   ],
   "speedTests": [],
   "pros": [
