@@ -16,17 +16,7 @@
     "speed": 7.0,
     "price": 10
   },
-  "exitCountry": {
-      "network": {
-        "operator": "China Mobile",
-        "country": "CN"
-      },
-      "ipExit": {
-        "country": "HK",
-        "verified": true,
-        "method": "field_test"
-      }
-  },
+  "exitCountry": {"Runs on China Mobile's local network, data exits through Hong Kong. Verified on the ground in Chengdu, July 2026."},
   "throttlePolicy": {
     "dailyCap": "Not published (per-day tiers sold as 0.5GB/1GB/2GB/3GB per day or 'unlimited')",
     "afterCap": "Not specified",
