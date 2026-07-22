@@ -3,6 +3,7 @@
   "lang": "en",
   "sampleData": true,
   "listed": false,
+  "listedSpeedTests": false,
   "verdict": "Sample verdict — e.g. strong pick for city-focused trips",
   "affiliateUrl": "https://example.com/REPLACE-WITH-AIRALO-AFFILIATE-LINK",
   "reviewSlug": "airalo-china-esim-review",
