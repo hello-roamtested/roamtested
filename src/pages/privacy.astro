@@ -3,43 +3,85 @@ import Base from '../layouts/Base.astro';
 import { SITE } from '../config/site';
 ---
 
-<Base title="Privacy policy" description="What data this site collects, and what it doesn't.">
+<Base title="Privacy policy" description="What data this site collects, what it doesn't, and your rights.">
   <section class="wrap prose">
     <h1 class="page-title">Privacy policy</h1>
     <p class="small muted">Last updated: July 2026</p>
 
     <p>
-      {SITE.name} ({SITE.domain}) is a static website. We keep data collection to the minimum
-      needed to run the site.
+      {SITE.name} ({SITE.domain}) is a static website run by an independent publisher. I keep
+      data collection to the minimum needed to run the site, and I don't sell or share your
+      data. This page explains what is processed, why, and what rights you have.
     </p>
 
-    <h2>What we collect</h2>
+    <h2>Who is responsible</h2>
+    <p>
+      This site is operated by an independent publisher who acts as the data controller for
+      the limited processing described below. For any privacy question or request, contact
+      <a href={`mailto:${SITE.contactEmail}`}>{SITE.contactEmail}</a>.
+    </p>
+
+    <h2>What I collect</h2>
     <ul>
       <li>
         <strong>Nothing you type.</strong> This site has no accounts, no comments, and no
-        forms. We never ask for or store your personal information through the site.
+        forms. I never ask for or store your personal information through the site.
       </li>
       <li>
-        <strong>Basic, anonymous traffic data.</strong> Our hosting provider (Cloudflare)
-        processes standard server logs, such as IP address and browser type, to serve the
-        site and protect it from abuse.
-        <!-- 如果以后加了分析工具(如 Cloudflare Web Analytics / Plausible),在这里补一条说明。 -->
+        <strong>Basic, anonymous server data.</strong> The site is served through Cloudflare,
+        which processes standard server logs — such as IP address, browser type, and the pages
+        requested — to deliver the site and protect it from abuse and attacks. Cloudflare acts
+        as a data processor on my behalf, and as a global network it may process this data on
+        servers outside your country. See
+        <a href="https://www.cloudflare.com/privacypolicy/" rel="nofollow noopener" target="_blank">Cloudflare's privacy policy</a>.
+        <!-- 如果以后加了分析工具(如 Cloudflare Web Analytics / Plausible / GA4),在这里补一节说明:
+             收集什么、是否用 cookie、是否需要 cookie 同意横幅。GA4 会设 cookie,面向欧盟访客需要同意横幅;
+             Plausible / Cloudflare Web Analytics 无 cookie,通常无需横幅。-->
       </li>
     </ul>
 
+    <h2>Legal basis (for EU/UK visitors)</h2>
+    <p>
+      Under the GDPR and UK GDPR, the limited server-log processing above relies on my
+      <strong>legitimate interest</strong> in operating a secure, functioning website. It is not
+      used to build profiles of you or to track you across other sites. Because this site sets no
+      analytics or advertising cookies of its own, no cookie-consent banner is required at this time.
+    </p>
+
+    <h2>How long data is kept</h2>
+    <p>
+      I do not maintain my own server logs. Cloudflare retains standard logs for a limited period
+      under its own retention schedule (see its privacy policy above). Emails you send me are kept
+      only as long as needed to handle your message.
+    </p>
+
     <h2>Affiliate links</h2>
     <p>
-      Some outbound links are affiliate links. When you click one, the destination site may
-      set its own cookies to attribute the referral. Those cookies belong to the provider's
-      site and are governed by their privacy policy, not ours. See our
-      <a href="/affiliate-disclosure/">affiliate disclosure</a>.
+      Some outbound links are affiliate links. When you click one, the destination site may set
+      its own cookies to attribute the referral. Those cookies belong to the provider's site and
+      are governed by their privacy policy, not mine. See my
+      <a href="/affiliate-disclosure/">affiliate disclosure</a> for how this works and how I make money.
     </p>
 
     <h2>Email</h2>
     <p>
-      If you email us at <a href={`mailto:${SITE.contactEmail}`}>{SITE.contactEmail}</a>,
-      we use your address only to reply. We do not add you to any list or share your
-      address with anyone.
+      If you email me at <a href={`mailto:${SITE.contactEmail}`}>{SITE.contactEmail}</a>, I use
+      your address only to reply.I will never add you to a mailing list unless you deliberately sign up for one, and I never share or sell your address to anyone.
+    </p>
+
+    <h2>Your rights</h2>
+    <p>
+      Depending on where you live (for example under the GDPR in the EU/UK, or the CCPA in
+      California), you may have the right to access, correct, or delete personal data relating to
+      you, and to object to certain processing. Since this site stores no personal data of its own
+      beyond any email you choose to send, most requests can be handled quickly — just contact
+      <a href={`mailto:${SITE.contactEmail}`}>{SITE.contactEmail}</a>.
+    </p>
+
+    <h2>Children</h2>
+    <p>
+      This site is intended for a general adult audience and is not directed at children under 13.
+      I do not knowingly collect data from children.
     </p>
 
     <h2>Changes</h2>
