@@ -18,6 +18,8 @@ const providers = defineCollection({
     sampleData: z.boolean().default(false),
     // 是否进入首页对比表
     listed: z.boolean().default(true),
+    // 是否进入 Speed Tests 页面(默认显示;设 false 可隐藏某家)
+    listedSpeedTests: z.boolean().default(true),
     verdict: z.string(), // 一句话结论,如 "Best overall for multi-city trips"
     affiliateUrl: z.string().url(),
     // 对应完整测评文章的 slug(posts 里的文件名),没有就留空
