@@ -4,6 +4,10 @@
  * 数据来源:各 provider JSON 里的 speedTests 数组。
  * 新增一条测速:在对应的 provider JSON 里 speedTests 数组追加一个对象,
  * 把截图传到 public/images/speedtests/,填上文件名,这里自动显示。
+ *
+ * 显示开关:每个 provider 默认都会显示(listedSpeedTests 默认 true)。
+ * 想隐藏某家,在它的 JSON 里加 "listedSpeedTests": false 即可。
+ * (前提是这家 speedTests 里有数据 —— 开关不会凭空造出卡片。)
  */
 import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
@@ -25,6 +29,8 @@ interface TestEntry {
 }
 
 const allTests: TestEntry[] = providers
+  // 只保留开关未设为 false 的 provider(默认全部显示,和首页对比表的 listed 用法一致)
+  .filter((p) => p.data.listedSpeedTests !== false)
   .flatMap((p) =>
     (p.data.speedTests ?? []).map((t) => ({
       provider: p.data.name,
