@@ -1,74 +1,125 @@
 ---
 layout: ../layouts/ArticleLayout.astro
 title: "eSIM New User Deals & Promo Codes (July 2026): Yesim, TooSim & NXTL"
-description: "Every verified new-user eSIM discount in one place — Airalo 15% code, Nomad free 1GB trial, Yesim codes, and NXTL's $10-credit starter. Updated July 2026."
+description: "Verified new-user eSIM discounts in one place — Yesim's codes, NXTL's $10-credit starter, and TooSim's occasional offers. Updated July 2026."
 ---
 
 import data from '../data/providers.json';
+import AffiliateButton from '../components/AffiliateButton.astro';
 
 export const A = data.esim.airalo;
 export const N = data.esim.nomad;
 export const Y = data.esim.yesim;
+export const T = data.esim.toosim;
 export const X = data.esim.nxtl;
 
-# eSIM New User Deals & Promo Codes ({data.meta.last_verified}): Airalo, Nomad, Yesim, TooSim & NXTL
+{/* ▼▼▼ 显示开关：想显示某家就改 true，想隐藏就改 false（用法和首页排名表一样）。
+       Airalo / Nomad 目前还没有真实联盟链接，先设 false 隐藏；拿到链接后改 true 即可。 */}
+export const show = {
+  airalo: false,
+  nomad: false,
+  yesim: true,
+  toosim: true,
+  nxtl: true,
+};
+
+# eSIM New User Deals & Promo Codes ({data.meta.last_verified}): Yesim, TooSim & NXTL
 
 *Last updated: {data.meta.last_verified} · Promo codes change frequently — codes below were reported as working at time of writing. Always confirm at checkout before paying.*
 
-Every major travel eSIM provider offers something for first-time customers — from flat percentage discounts to free trial data and referral credits. Here's what NXTL, Yesim, TooSim, Nomad currently offer new users, and how to stack the best deal.
+Every major travel eSIM provider offers something for first-time customers — from flat percentage discounts to free trial data and referral credits. Here's what NXTL, Yesim and TooSim currently offer new users, and how to stack the best deal.
 
 ## New User Offers at a Glance
 
-| | **Best new-user deal** | **Free trial** | **Referral bonus (for the new user)** | **Loyalty / cashback** |
-|---|---|---|---|---|
-<!--
-| **Airalo** | {A.promo_percent}% off first eSIM (e.g., code <code>{A.promo_code}</code>) | No | ${A.referral_amount} off first eSIM with a referral code | Airmoney credits |
-| **Nomad** | {N.promo_percent_max}% off; codes widely available | {N.trial_gb}GB free in {N.trial_destinations} destinations, no credit card | ${N.referral_amount} off plans ≥ ${N.referral_amount} | ~25% student discount via Student Beans |
--->
-| **Yesim** | {Y.promo_percent}% off e.g., <code>{Y.promo_code}</code>;| No | ${Y.referral_amount} off first eSIM with a referral code; Every {Y.number_friends} friends -- extra ${Y.bonus_amount} | Ycoins on purchases |
-| **TooSim** | Occasional 15–20% off codes (via blog/newsletter; no permanent code) | No | Not publicized | — |
-| **NXTL** | Starter bundle: ${X.starter_price} eSIM includes **${X.starter_credit} usable balance** | Effectively — the included ${X.starter_credit} credit | Referrer gets ~${X.referral_amount} credit on friend's first eSIM order | {X.token_cashback_percent}% back in NXTL Tokens on every purchase |
+<table>
+  <thead>
+    <tr>
+      <th>Provider</th>
+      <th>Best new-user deal</th>
+      <th>Free trial</th>
+      <th>Referral bonus</th>
+      <th>Loyalty / cashback</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    {show.airalo && (
+      <tr>
+        <td><a href={A.affiliate_url} rel="sponsored nofollow noopener" target="_blank"><strong>Airalo</strong></a></td>
+        <td>{A.promo_percent}% off first eSIM (e.g. <code>{A.promo_code}</code>)</td>
+        <td>No</td>
+        <td>${A.referral_amount} off first eSIM with a referral code</td>
+        <td>Airmoney credits</td>
+        <td><AffiliateButton href={A.affiliate_url} label="Get deal" small={true} /></td>
+      </tr>
+    )}
+    {show.nomad && (
+      <tr>
+        <td><a href={N.affiliate_url} rel="sponsored nofollow noopener" target="_blank"><strong>Nomad</strong></a></td>
+        <td>Up to {N.promo_percent_max}% off; codes widely available</td>
+        <td>{N.trial_gb}GB free in {N.trial_destinations} destinations</td>
+        <td>${N.referral_amount} off plans ≥ ${N.referral_amount}</td>
+        <td>~25% student discount via Student Beans</td>
+        <td><AffiliateButton href={N.affiliate_url} label="Get deal" small={true} /></td>
+      </tr>
+    )}
+    {show.yesim && (
+      <tr>
+        <td><a href={Y.affiliate_url} rel="sponsored nofollow noopener" target="_blank"><strong>Yesim</strong></a></td>
+        <td>{Y.promo_percent}% off (e.g. <code>{Y.promo_code}</code>)</td>
+        <td>No</td>
+        <td>${Y.referral_amount} off with a referral code; every {Y.number_friends} friends — an extra ${Y.bonus_amount}</td>
+        <td>Ycoins on purchases</td>
+        <td><AffiliateButton href={Y.affiliate_url} label="Get deal" small={true} /></td>
+      </tr>
+    )}
+    {show.toosim && (
+      <tr>
+        <td><a href={T.affiliate_url} rel="sponsored nofollow noopener" target="_blank"><strong>TooSim</strong></a></td>
+        <td>Occasional 15–20% off codes (via blog / newsletter; no permanent code)</td>
+        <td>No</td>
+        <td>Not publicized</td>
+        <td>—</td>
+        <td><AffiliateButton href={T.affiliate_url} label="Get deal" small={true} /></td>
+      </tr>
+    )}
+    {show.nxtl && (
+      <tr>
+        <td><a href={X.affiliate_url} rel="sponsored nofollow noopener" target="_blank"><strong>NXTL</strong></a></td>
+        <td>Starter bundle: ${X.starter_price} eSIM includes <strong>${X.starter_credit} usable balance</strong></td>
+        <td>Effectively — the included ${X.starter_credit} credit</td>
+        <td>Referrer gets ~${X.referral_amount} credit on a friend's first eSIM order</td>
+        <td>{X.token_cashback_percent}% back in NXTL Tokens on every purchase</td>
+        <td><AffiliateButton href={X.affiliate_url} label="Get deal" small={true} /></td>
+      </tr>
+    )}
+  </tbody>
+</table>
 
 ## Deal-by-Deal Breakdown
 
-<!--
-### Nomad — best way to try before you buy
-
-Nomad is the only provider here with a true free trial: {N.trial_gb}GB of data, no credit card, usable across {N.trial_destinations} destinations. On top of that, 15–{N.promo_percent_max}% discount codes circulate constantly (Nomad has run an official {N.promo_percent_max}% code on most plans), referrals give new users ${N.referral_amount} off, and students get roughly 25% off through Student Beans. If you're testing eSIMs for the first time, start here — it costs nothing.
-
-### Airalo — reliable {A.promo_percent}% for new accounts
-
-Airalo's standing new-customer offer is {A.promo_percent}% off your first eSIM (codes like <code>{A.promo_code}</code> are official; partner codes offer the same rate). Alternatively, a friend's referral code gives ${A.referral_amount} off and earns them ${A.referral_amount} in Airmoney. Note the fine print: promo and referral codes can't be combined, new-user codes only work on accounts with zero purchases, and on orders over $20 a {A.promo_percent}% code beats the ${A.referral_amount} referral.
--->
-
 ### Yesim — biggest advertised percentages, verify before checkout
 
-Third-party sites report Yesim codes ranging from €3 off (`TRAVELFREE`) and {Y.promo_percent}% (<code>{Y.promo_code}</code>) up to {Y.promo_percent_max}% off (`WELCOMETOYESIM`) for first purchases. Yesim itself warns that coupon aggregators often list expired codes and maintains an official promo codes page — check [yesim.app/promocodes](https://yesim.app/promocodes/) for the currently guaranteed code before you pay.
+Third-party sites report <a href={Y.affiliate_url} rel="sponsored nofollow noopener" target="_blank">Yesim</a> codes ranging from €3 off (`TRAVELFREE`) and {Y.promo_percent}% (<code>{Y.promo_code}</code>) up to {Y.promo_percent_max}% off (`WELCOMETOYESIM`) for first purchases. Yesim itself warns that coupon aggregators often list expired codes and maintains an official promo codes page — check [yesim.app/promocodes](https://yesim.app/promocodes/) for the currently guaranteed code before you pay.
+
+<AffiliateButton href={Y.affiliate_url} label="Get the Yesim deal" />
 
 ### NXTL — no coupon needed, the starter pack is the deal
 
-NXTL's model makes discount codes almost irrelevant: the ${X.starter_price} starter package includes ${X.starter_credit} of pay-as-you-go balance, so your real cost of entry is about ${(X.starter_price - X.starter_credit).toFixed(2)}. Balance never expires, every purchase earns {X.token_cashback_percent}% back in NXTL Tokens, and referrals credit the referrer roughly ${X.referral_amount} once the friend makes a qualifying first eSIM purchase. Aggregator sites list occasional extra codes, but average savings are small (~7%).
+<a href={X.affiliate_url} rel="sponsored nofollow noopener" target="_blank">NXTL</a>'s model makes discount codes almost irrelevant: the ${X.starter_price} starter package includes ${X.starter_credit} of pay-as-you-go balance, so your real cost of entry is about ${(X.starter_price - X.starter_credit).toFixed(2)}. Balance never expires, every purchase earns {X.token_cashback_percent}% back in NXTL Tokens, and referrals credit the referrer roughly ${X.referral_amount} once the friend makes a qualifying first eSIM purchase. Aggregator sites list occasional extra codes, but average savings are small (~7%).
+
+<AffiliateButton href={X.affiliate_url} label="Get the NXTL deal" />
 
 ### TooSim — thinnest promo game
 
-TooSim has no permanent new-user code. It occasionally publishes 15–20% offers through its blog and social channels, and its country pages advertise "promo codes available." Worth a quick check before buying, but don't expect a standing discount — and given TooSim's pricing in some markets, a 15% code may still leave it more expensive than rivals' list prices.
+<a href={T.affiliate_url} rel="sponsored nofollow noopener" target="_blank">TooSim</a> has no permanent new-user code. It occasionally publishes 15–20% offers through its blog and social channels, and its country pages advertise "promo codes available." Worth a quick check before buying, but don't expect a standing discount — and given TooSim's pricing in some markets, a 15% code may still leave it more expensive than rivals' list prices.
 
-<!--
-## How to Get the Lowest First-Order Price
-
-1. **Testing the waters?** Claim Nomad's free {N.trial_gb}GB first — zero risk.
-2. **Buying a bundle?** Apply the best percentage code: Nomad up to {N.promo_percent_max}%, Airalo {A.promo_percent}%, Yesim {Y.promo_percent}–{Y.promo_percent_max}% (verify on the official page).
-3. **Light or frequent traveler?** NXTL's ${X.starter_price}-with-${X.starter_credit}-credit starter is effectively the deepest discount here, with no code required.
-4. **Never stack blindly.** Airalo (and most providers) allow only one code per order — a percentage code usually beats a flat referral credit on orders above ~$20.
-5. **Check expiry.** eSIM promo codes rotate monthly; a code from a months-old blog post has likely died.
--->
+<AffiliateButton href={T.affiliate_url} label="Check TooSim offers" />
 
 ## FAQ
 
 **Which provider is cheapest after discounts?**
-Depends on destination. Pair this guide with our [full pricing comparison](/travel-esim-comparison/) — a {A.promo_percent}% code on an overpriced plan can still cost more than a rival's list price.
+Depends on destination. Pair this guide with our [full pricing comparison](/travel-esim-comparison/) — a promo code on an overpriced plan can still cost more than a rival's list price.
 
----
-<!--
-*Sources: [Airalo discounts & deals](https://www.airalo.com/m/features/airalo-discounts-deals/), [Nomad free trial page](https://www.nomadesim.com/documents/landing-trial-plan), [Tom's Guide Nomad codes](https://www.tomsguide.com/coupons/nomad-esim), [Yesim official promo codes](https://yesim.app/promocodes/), [NXTL referrals](https://nxtlsim.com/referrals/), [NXTL Tokens](https://nxtlsim.com/nxtl-rewards/). Verified {data.meta.last_verified}.*
--->
+**Do these codes work in the app and on the website?**
+Usually both. Enter the code at checkout before payment; the discount applies instantly. Codes are for new accounts only and can't be stacked.
