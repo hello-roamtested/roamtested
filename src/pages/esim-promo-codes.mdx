@@ -1,7 +1,7 @@
 ---
 layout: ../layouts/ArticleLayout.astro
-title: "eSIM New User Deals & Promo Codes (July 2026): Yesim, TooSim & NXTL"
-description: "Verified new-user eSIM discounts in one place — Yesim's codes, NXTL's $10-credit starter, and TooSim's occasional offers. Updated July 2026."
+title: "eSIM New User Deals & Promo Codes (July 2026): TooSim, NXTL & Trip.com"
+description: "Verified new-user eSIM deals in one place — Yesim's codes, NXTL's $10-credit starter, TooSim's offers, and Trip.com's refundable plans. Updated July 2026."
 ---
 
 import data from '../data/providers.json';
@@ -12,6 +12,7 @@ export const N = data.esim.nomad;
 export const Y = data.esim.yesim;
 export const T = data.esim.toosim;
 export const X = data.esim.nxtl;
+export const TC = data.esim.tripcom;
 
 {/* ▼▼▼ 显示开关：想显示某家就改 true，想隐藏就改 false（用法和首页排名表一样）。
        Airalo / Nomad 目前还没有真实联盟链接，先设 false 隐藏；拿到链接后改 true 即可。 */}
@@ -19,15 +20,16 @@ export const show = {
   airalo: false,
   nomad: false,
   yesim: true,
-  toosim: true,
+  toosim: false,
   nxtl: true,
+  tripcom: false,
 };
 
-# eSIM New User Deals & Promo Codes ({data.meta.last_verified}): Yesim, TooSim & NXTL
+# eSIM New User Deals & Promo Codes ({data.meta.last_verified}): Yesim, TooSim, NXTL & Trip.com
 
 *Last updated: {data.meta.last_verified} · Promo codes change frequently — codes below were reported as working at time of writing. Always confirm at checkout before paying.*
 
-Every major travel eSIM provider offers something for first-time customers — from flat percentage discounts to free trial data and referral credits. Here's what NXTL, Yesim and TooSim currently offer new users, and how to stack the best deal.
+Every major travel eSIM provider offers something for first-time customers — from flat percentage discounts to free trial data, referral credits, and refundable plans. Here's what NXTL, Yesim, TooSim and Trip.com currently offer new users, and how to stack the best deal.
 
 ## New User Offers at a Glance
 
@@ -35,10 +37,10 @@ Every major travel eSIM provider offers something for first-time customers — f
   <thead>
     <tr>
       <th>Provider</th>
-      <th>Best new-user deal</th>
+      <th>New-user deal</th>
       <th>Free trial</th>
       <th>Referral bonus</th>
-      <th>Loyalty / cashback</th>
+      <th>Loyalty</th>
       <th></th>
     </tr>
   </thead>
@@ -93,6 +95,16 @@ Every major travel eSIM provider offers something for first-time customers — f
         <td><AffiliateButton href={X.affiliate_url} label="Get deal" small={true} /></td>
       </tr>
     )}
+    {show.tripcom && (
+      <tr>
+        <td><a href={TC.affiliate_url} rel="sponsored nofollow noopener" target="_blank"><strong>Trip.com</strong></a></td>
+        <td>No code — from ${TC.china_from_price} · 500MB · 2d, on official Chinese carriers</td>
+        <td>No, but fully refundable any time before install</td>
+        <td>Not publicized</td>
+        <td>Trip Coins (Trip.com Rewards) on bookings</td>
+        <td><AffiliateButton href={TC.affiliate_url} label="Get deal" small={true} /></td>
+      </tr>
+    )}
   </tbody>
 </table>
 
@@ -115,6 +127,12 @@ Third-party sites report <a href={Y.affiliate_url} rel="sponsored nofollow noope
 <a href={T.affiliate_url} rel="sponsored nofollow noopener" target="_blank">TooSim</a> has no permanent new-user code. It occasionally publishes 15–20% offers through its blog and social channels, and its country pages advertise "promo codes available." Worth a quick check before buying, but don't expect a standing discount — and given TooSim's pricing in some markets, a 15% code may still leave it more expensive than rivals' list prices.
 
 <AffiliateButton href={T.affiliate_url} label="Check TooSim offers" />
+
+### Trip.com — no code, but the refund policy is the deal
+
+<a href={TC.affiliate_url} rel="sponsored nofollow noopener" target="_blank">Trip.com</a> doesn't run promo codes the way dedicated eSIM brands do — instead, its new-user appeal is flexibility. Plans start at ${TC.china_from_price} (500MB, 2 days) on the three official Chinese carriers, run anywhere from {TC.validity_min_days} to {TC.validity_max_days} days, and are <strong>fully refundable any time before you install the eSIM</strong> — rare in this category. You also earn Trip Coins on the booking, redeemable across Trip.com's flights and hotels. No coupon to hunt for; the safety net is built in.
+
+<AffiliateButton href={TC.affiliate_url} label="Get the Trip.com deal" />
 
 ## FAQ
 
