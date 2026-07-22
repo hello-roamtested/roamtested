@@ -52,24 +52,7 @@ const total = allTests.length;
   <section class="wrap">
     <div class="page-head">
       <h1>Speed Test Database</h1>
-      <p class="lede">
-        Every speed test we've run in China, in one place.
-        Same protocol every time: Ookla Speedtest, three runs per spot,
-        median recorded. VPN off, background downloads paused.
-      </p>
-      <p class="small muted">
-        <span class="chip">{total} entries</span>
-        <span class="chip">Mainland China only</span>
-        <span class="chip">Ookla Speedtest</span>
-      </p>
     </div>
-
-    {hasSampleData && (
-      <div class="sample-banner" role="note">
-        <strong>Demo data.</strong> Numbers on this page are placeholders —
-        not real test results. They disappear once real data is added.
-      </div>
-    )}
 
     <div class="log">
       {allTests.map((t) => (
