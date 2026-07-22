@@ -1,16 +1,16 @@
 ---
-title: "Airalo China eSIM review (2026): tested in Chengdu"
-description: "Hands-on Airalo China eSIM test: real speed tests, app-by-app firewall checks, activation walkthrough, and what its unlimited plan really gives you."
+title: "Trip.com China eSIM review (2026): tested in Chengdu"
+description: "Hands-on Trip.com China eSIM test: real speed tests, app-by-app firewall checks, activation walkthrough, and what its unlimited plan really gives you."
 lang: en
-date: "2026-07-15"
+date: "2026-07-22"
 kind: review
-provider: "en/airalo"
+provider: "en/trip-com"
 draft: false
 ---
 
 <!-- ═══════════════════════════════════════════════════════
   单品测评正文。评分卡、App 直连矩阵、测速表、限速卡、优缺点
-  都由模板自动从 providers/en/airalo.json 渲染,你只写叙述。
+  都由模板自动从 providers/en/trip-com.json 渲染,你只写叙述。
   建议叙述结构如下(占位内容,发布前替换):
   ═══════════════════════════════════════════════════════ -->
 
@@ -27,3 +27,7 @@ draft: false
 ## Who should buy it — and who shouldn't
 
 *(占位:结论与适用人群。)*
+
+## FAQ
+
+*(占位:Google 精选摘要 / People Also Ask))*
