@@ -1,22 +1,32 @@
 {
   "name": "Trip.com eSIM",
   "lang": "en",
-  "sampleData": true,
+  "sampleData": false,
   "listed": true,
   "listedSpeedTests": true,
-  "verdict": "The travel-agency option — official Chinese carriers, refundable, priced by the day from $2.94",
+  "verdict": "!modifier The travel-agency option — official Chinese carriers, refundable, priced by the day from $2.94",
   "affiliateUrl": "https://www.trip.com/t/uLJS77W0bV2",
   "price": {
-    "headline": "$2.94 · 500MB · 2d"
+    "headline": "$0.11 · 500MB · 1d"
   },
   "scores": {
     "appAccess": 8.5,
     "activation": 9.0,
     "throttling": 5.0,
     "speed": 7.0,
-    "price": 7.5
+    "price": 10
   },
-  "exitCountry": "Unverified by field test (sold on domestic carriers but routed internationally — needs IP check on the ground)",
+  "exitCountry": {
+      "network": {
+        "operator": "China Mobile",
+        "country": "CN"
+      },
+      "ipExit": {
+        "country": "HK",
+        "verified": true,
+        "method": "field_test"
+      }
+  },
   "throttlePolicy": {
     "dailyCap": "Not published (per-day tiers sold as 0.5GB/1GB/2GB/3GB per day or 'unlimited')",
     "afterCap": "Not specified",
