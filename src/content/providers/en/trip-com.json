@@ -1,28 +1,23 @@
 {
   "name": "Trip.com eSIM",
   "lang": "en",
-  "sampleData": false,
+  "sampleData": true,
   "listed": true,
   "listedSpeedTests": true,
   "verdict": "!modifier The travel-agency option — official Chinese carriers, refundable, priced by the day from $2.94",
   "affiliateUrl": "https://www.trip.com/t/uLJS77W0bV2",
   "price": {
-    "headline": "$0.11 · 500MB · 1d"
+    "headline": "$0.11 · 500MB · 1d",
+    "perGB": 0.1
   },
   "scores": {
-    "appAccess": 8.5,
-    "activation": 9.0,
-    "throttling": 5.0,
-    "speed": 7.0,
-    "price": 10
+    "appAccess": 0,
+    "speed": 0,
+    "price": 0,
+    "activation": 0,
+    "usability": 0
   },
   "exitCountry": "Runs on China Mobile locally, data exits through Hong Kong. Verified on the ground in Chengdu, July 2026.",
-  "throttlePolicy": {
-    "dailyCap": "Varies by plan.",
-    "afterCap": "Drops to 384kbps once the limit is reached, applies to most plans",
-    "published": true,
-    "notes": ""
-  },
   "appAccess": [
     { "app": "Google Search", "works": true, "notes": "Verified on the ground by us" },
     { "app": "WhatsApp", "works": true, "notes": "Verified on the ground by us" },
@@ -31,7 +26,24 @@
     { "app": "Facebook", "works": true, "notes": "Verified on the ground by us" },
     { "app": "ChatGPT", "works": false, "notes": "Verified on the ground by us" }
   ],
-  "speedTests": [],
+  "speedTests": [
+    {
+      "city": "Chengdu",
+      "spot": "Chunxi Road, outdoors",
+      "network": "China Unicom 5G",
+      "downMbps": 0,
+      "upMbps": 0,
+      "pingMs": 0,
+      "date": "2026-XX-XX",
+      "screenshot": "PROVIDER-city-spot-YYYY-MM-DD.jpg"
+    }
+  ],
+    "throttlePolicy": {
+    "dailyCap": "X GB/day high-speed",
+    "afterCap": "throttled to X Mbps",
+    "published": true,
+    "notes": "链接到官方政策页面或截图说明"
+  },
   "pros": [
     "Runs on the three official Chinese carriers (China Mobile / Unicom / Telecom) — a fully legal, non-grey-market product with near-universal domestic coverage",
     "Most flexible plan ladder of any provider here: 1 to 365 days, 0.5GB/day up to unlimited, plus fixed packages from 1GB to 100GB",
