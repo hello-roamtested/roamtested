@@ -34,20 +34,6 @@ export const METRICS: Metric[] = [
     blurb: 'Does Google, WhatsApp, Instagram, tiktok and co. load out of the box? Tested app by app, on the ground.',
   },
   {
-    id: 'activation',
-    label: 'Activation & setup',
-    short: 'Setup',
-    weight: 10,
-    blurb: 'How painless is install and activation — QR delivery, clear steps, time until first byte.',
-  },
-  {
-    id: 'usability',
-    label: 'Usability',
-    short: 'Usability',
-    weight: 10,
-    blurb: 'Device compatibility, customer support quality, and how well the provider app works day-to-day.',
-  },
-  {
     id: 'speed',
     label: 'Real-world speed & data policy',
     short: 'Speed',
@@ -60,6 +46,20 @@ export const METRICS: Metric[] = [
     short: 'Price',
     weight: 25,
     blurb: 'Cost per GB, plan and top-up flexibility, and refund policy.',
+  },
+  {
+    id: 'activation',
+    label: 'Activation & setup',
+    short: 'Setup',
+    weight: 10,
+    blurb: 'How painless is install and activation — QR delivery, clear steps, time until first byte.',
+  },
+  {
+    id: 'usability',
+    label: 'Usability',
+    short: 'Usability',
+    weight: 10,
+    blurb: 'Device compatibility, customer support quality, and how well the provider app works day-to-day.',
   },
 ];
 
