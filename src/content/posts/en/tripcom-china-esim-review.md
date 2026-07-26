@@ -2,7 +2,7 @@
 title: "Trip.com China eSIM review (2026): tested in Chengdu"
 description: ""
 lang: en
-date: "2026-07-22"
+date: "2026-07-26"
 kind: review
 provider: "en/trip-com"
 draft: false
