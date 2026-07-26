@@ -37,11 +37,6 @@
       "screenshot": "trip.com - speed test - 2607.png"
     }
   ],
-    "throttlePolicy": {
-    "dailyCap": "Varies by plan",
-    "afterCap": "throttled to 384 kbps",
-    "published": true
-  },
   "pros": [
     "Runs on the three official Chinese carriers (China Mobile / Unicom / Telecom) — a fully legal, non-grey-market product with near-universal domestic coverage",
     "Most flexible plan ladder of any provider here: 1 to 365 days, 0.5GB/day up to unlimited, plus fixed packages from 1GB to 100GB",
