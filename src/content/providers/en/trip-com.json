@@ -18,6 +18,7 @@
     
   },
   "exitCountry": "Runs on China Mobile locally, data exits through Hong Kong. Verified on the ground in Chengdu, July 2026.",
+  "throttleAfterCap": "throttled to 384 kbps",
   "appAccess": [
     { "app": "Google Search", "works": true, "notes": "Verified on the ground by us" },
     { "app": "WhatsApp", "works": true, "notes": "Verified on the ground by us" },
