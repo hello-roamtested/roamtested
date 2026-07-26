@@ -76,7 +76,7 @@ function evidenceChip(p: any): string | undefined {
         {provider.data.speedTests && (
           <SpeedTable
             tests={provider.data.speedTests}
-            afterCap={provider.data.throttlePolicy?.afterCap}
+            afterCap={provider.data.throttleAfterCap}
             exitCountry={provider.data.exitCountry}
           />
         )}
