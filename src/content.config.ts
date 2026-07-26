@@ -48,6 +48,8 @@ const providers = defineCollection({
       .optional(),
     // 数据出口国家(IP 检测结果),影响延迟与直连
     exitCountry: z.string().optional(),
+    // 套餐高速流量用完后的限速
+    throttleAfterCap: z.string().optional(),
     // 实测速度记录,可无限追加
     speedTests: z
       .array(
