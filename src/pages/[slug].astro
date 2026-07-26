@@ -62,7 +62,7 @@ function evidenceChip(p: any): string | undefined {
     )}
 
     {provider && <ReviewSchema provider={provider} post={post} />}
-    {provider && <ScoreCard provider={provider} />} 
+    {provider && <ScoreCard provider={provider} />}
 
     <div class="prose">
       <Content />
@@ -73,7 +73,13 @@ function evidenceChip(p: any): string | undefined {
         {provider.data.appAccess && (
           <AppAccessMatrix items={provider.data.appAccess} chip={evidenceChip(provider)} />
         )}
-        {provider.data.speedTests && <SpeedTable tests={provider.data.speedTests} />}
+        {provider.data.speedTests && (
+          <SpeedTable
+            tests={provider.data.speedTests}
+            afterCap={provider.data.throttlePolicy?.afterCap}
+            exitCountry={provider.data.exitCountry}
+          />
+        )}
         <ProsCons pros={provider.data.pros} cons={provider.data.cons} />
         <p>
           <AffiliateButton
