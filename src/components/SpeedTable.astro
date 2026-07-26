@@ -22,7 +22,6 @@ const { tests } = Astro.props;
         <th scope="col">Network</th>
         <th scope="col">Down</th>
         <th scope="col">Up</th>
-        <th scope="col">Ping</th>
         <th scope="col">Date</th>
       </tr>
     </thead>
@@ -36,7 +35,6 @@ const { tests } = Astro.props;
           <td class="mono">{t.network}</td>
           <td class="mono strong-num">{t.downMbps} Mbps</td>
           <td class="mono">{t.upMbps} Mbps</td>
-          <td class="mono">{t.pingMs} ms</td>
           <td class="mono">{t.date}</td>
         </tr>
       ))}
