@@ -34,13 +34,13 @@
       "downMbps": 82.9,
       "upMbps": 51.3,
       "date": "2026-07-26",
-      "screenshot": "trip.com - speed test - 2607.jpg"
+      "screenshot": "trip.com - speed test - 2607.png"
     }
   ],
     "throttlePolicy": {
     "dailyCap": "Varies by plan",
     "afterCap": "throttled to 384 kbps",
-    "published": true,
+    "published": true
   },
   "pros": [
     "Runs on the three official Chinese carriers (China Mobile / Unicom / Telecom) — a fully legal, non-grey-market product with near-universal domestic coverage",
