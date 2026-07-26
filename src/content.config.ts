@@ -26,7 +26,6 @@ const providers = defineCollection({
     reviewSlug: z.string().optional(),
     price: z.object({
       headline: z.string(), // 表格里显示的价格,如 "$9.50 · 5GB · 30 days"
-      perGB: z.number().optional(), // 每 GB 美元成本,用于排序比较
     }),
     // 分数 0–10,键名对应 src/config/metrics.ts 里的指标 id
     scores: z.record(z.string(), z.number()),
@@ -35,7 +34,6 @@ const providers = defineCollection({
         dailyCap: z.string(), // e.g. "3 GB/day high-speed"
         afterCap: z.string(), // e.g. "throttled to 1 Mbps"
         published: z.boolean(), // 官方是否公开政策
-        notes: z.string().optional(),
       })
       .optional(),
     // App 直连实测矩阵
@@ -59,7 +57,6 @@ const providers = defineCollection({
           network: z.string(), // e.g. "China Unicom 5G"
           downMbps: z.number(),
           upMbps: z.number(),
-          pingMs: z.number(),
           date: z.string(), // YYYY-MM-DD
           // 截图文件名,放在 public/images/speedtests/ 下
           screenshot: z.string().optional(),
