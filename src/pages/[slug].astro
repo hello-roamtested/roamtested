@@ -74,7 +74,6 @@ function evidenceChip(p: any): string | undefined {
           <AppAccessMatrix items={provider.data.appAccess} chip={evidenceChip(provider)} />
         )}
         {provider.data.speedTests && <SpeedTable tests={provider.data.speedTests} />}
-        {provider.data.throttlePolicy && <ThrottleCard policy={provider.data.throttlePolicy} />}
         <ProsCons pros={provider.data.pros} cons={provider.data.cons} />
         <p>
           <AffiliateButton
