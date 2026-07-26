@@ -7,15 +7,15 @@
   "verdict": "!modifier The travel-agency option — official Chinese carriers, refundable, priced by the day from $2.94",
   "affiliateUrl": "https://www.trip.com/t/uLJS77W0bV2",
   "price": {
-    "headline": "$0.11 · 500MB · 1d",
-    "perGB": 0.1
+    "headline": "$0.10 · 500MB · 1d",
   },
   "scores": {
-    "appAccess": 0,
-    "speed": 0,
-    "price": 0,
-    "activation": 0,
-    "usability": 0
+    "appAccess": 8,
+    "speed": 8,
+    "price": 10,
+    "activation": 10,
+    "usability": 10
+    
   },
   "exitCountry": "Runs on China Mobile locally, data exits through Hong Kong. Verified on the ground in Chengdu, July 2026.",
   "appAccess": [
@@ -24,25 +24,23 @@
     { "app": "Instagram", "works": true, "notes": "Verified on the ground by us" },
     { "app": "TikTok", "works": true, "notes": "Verified on the ground by us" },
     { "app": "Facebook", "works": true, "notes": "Verified on the ground by us" },
-    { "app": "ChatGPT", "works": false, "notes": "Verified on the ground by us" }
+    { "app": "AI assistants", "works": true, "notes": "All major AI assistants works (ChatGPT, Claude, Gemini etc.) — except Microsoft Copilot blocked. Verified on the ground by us" }
   ],
   "speedTests": [
     {
       "city": "Chengdu",
       "spot": "Chunxi Road, outdoors",
-      "network": "China Unicom 5G",
-      "downMbps": 0,
-      "upMbps": 0,
-      "pingMs": 0,
-      "date": "2026-XX-XX",
-      "screenshot": "PROVIDER-city-spot-YYYY-MM-DD.jpg"
+      "network": "China Mobile",
+      "downMbps": 82.9,
+      "upMbps": 51.3,
+      "date": "2026-07-26",
+      "screenshot": "trip.com - speed test - 2607.jpg"
     }
   ],
     "throttlePolicy": {
-    "dailyCap": "X GB/day high-speed",
-    "afterCap": "throttled to X Mbps",
+    "dailyCap": "Varies by plan",
+    "afterCap": "throttled to 384 kbps",
     "published": true,
-    "notes": "链接到官方政策页面或截图说明"
   },
   "pros": [
     "Runs on the three official Chinese carriers (China Mobile / Unicom / Telecom) — a fully legal, non-grey-market product with near-universal domestic coverage",
