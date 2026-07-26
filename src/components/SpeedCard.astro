@@ -6,24 +6,15 @@ interface Props {
 const { policy } = Astro.props;
 ---
 
-<h3>What “unlimited” actually means here</h3>
 <div class="card throttle">
   <dl>
     <div class="row">
-      <dt>High-speed allowance</dt>
+      <dt>Daily cap</dt>
       <dd class="mono">{policy.dailyCap}</dd>
     </div>
     <div class="row">
       <dt>After the cap</dt>
       <dd class="mono">{policy.afterCap}</dd>
-    </div>
-    <div class="row">
-      <dt>Policy published by provider?</dt>
-      <dd>
-        {policy.published
-          ? <span class="mark-pass">YES</span>
-          : <span class="mark-fail">NO</span>}
-      </dd>
     </div>
   </dl>
   {policy.notes && <p class="small muted notes">{policy.notes}</p>}
