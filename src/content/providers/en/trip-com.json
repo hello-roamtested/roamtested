@@ -1,7 +1,7 @@
 {
   "name": "Trip.com eSIM",
   "lang": "en",
-  "sampleData": true,
+  "sampleData": false,
   "listed": true,
   "listedSpeedTests": true,
   "verdict": "The travel-agency option — official Chinese carriers, refundable, priced by the day from $0.10",
