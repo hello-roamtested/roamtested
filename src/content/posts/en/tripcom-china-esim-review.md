@@ -1,6 +1,6 @@
 ---
 title: "Trip.com China eSIM review (2026): tested in Chengdu"
-description: "Hands-on Trip.com China eSIM test: real speed tests, app-by-app firewall checks, activation walkthrough, and what its unlimited plan really gives you."
+description: ""
 lang: en
 date: "2026-07-22"
 kind: review
