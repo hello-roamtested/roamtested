@@ -9,8 +9,12 @@ interface Props {
     upMbps: number;
     date: string;
   }[];
+  /** 超过每日高速额度后的限速,如 "throttled to 1 Mbps"。来自 provider 的 throttlePolicy.afterCap */
+  afterCap?: string;
+  /** 数据出口/落地路由说明。来自 provider 的 exitCountry */
+  exitCountry?: string;
 }
-const { tests } = Astro.props;
+const { tests, afterCap, exitCountry } = Astro.props;
 ---
 
 <h3>Speed tests on location</h3>
@@ -41,6 +45,16 @@ const { tests } = Astro.props;
     </tbody>
   </table>
 </div>
+{afterCap && (
+  <p class="small cap-note">
+    <strong>After the daily high-speed cap:</strong> {afterCap}
+  </p>
+)}
+{exitCountry && (
+  <p class="small muted exit">
+    Data exit: <span class="mono">{exitCountry}</span>
+  </p>
+)}
 <p class="small muted">
   Method: Ookla Speedtest, three runs per spot, median reported. VPN off, no background downloads.
   <a href="/speed-tests/">View all speed tests →</a>
@@ -48,4 +62,7 @@ const { tests } = Astro.props;
 
 <style>
   .strong-num { font-weight: 600; color: var(--jade-deep); }
+  .cap-note { margin: 0.6rem 0 0; color: var(--ink-soft); }
+  .cap-note strong { color: var(--ink); }
+  .exit { margin: 0.6rem 0 0; }
 </style>
