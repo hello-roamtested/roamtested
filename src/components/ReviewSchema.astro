@@ -13,26 +13,29 @@ const { provider, post } = Astro.props;
 
 const score = overallScore(provider.data.scores);
 
+// 顶层用 Product,评分挂进 Product 内部的 review。
+// 这样 Google 读 Product 时就能找到评分来源,满足
+// "Either offers, review, or aggregateRating should be specified" 的要求。
 const schema = {
   '@context': 'https://schema.org',
-  '@type': 'Review',
-  itemReviewed: {
-    '@type': 'Product',
-    name: `${provider.data.name} China eSIM`,
-    brand: { '@type': 'Brand', name: provider.data.name },
-    description: post.data.description,
+  '@type': 'Product',
+  name: `${provider.data.name} for China`,
+  brand: { '@type': 'Brand', name: provider.data.name },
+  // description 兜底:文章没填 description 就用 provider 的 verdict,避免出现空字符串
+  description: post.data.description || provider.data.verdict,
+  image: `https://${SITE.domain}/og-default.png`,
+  review: {
+    '@type': 'Review',
+    reviewRating: {
+      '@type': 'Rating',
+      ratingValue: score,
+      bestRating: 10,
+      worstRating: 0,
+    },
+    author: { '@type': 'Organization', name: SITE.name, url: `https://${SITE.domain}/about/` },
+    datePublished: post.data.date,
+    ...(post.data.updated ? { dateModified: post.data.updated } : {}),
   },
-  reviewRating: {
-    '@type': 'Rating',
-    ratingValue: score,
-    bestRating: 10,
-    worstRating: 0,
-  },
-  author: { '@type': 'Organization', name: SITE.name, url: `https://${SITE.domain}/about/` },
-  publisher: { '@type': 'Organization', name: SITE.name },
-  datePublished: post.data.date,
-  ...(post.data.updated ? { dateModified: post.data.updated } : {}),
-  url: new URL(Astro.url.pathname, Astro.site).href,
 };
 ---
 
