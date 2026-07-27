@@ -23,13 +23,41 @@
     "notes": "Yesim confirms a Fair Use Policy applies to unlimited China plans and that 'speed may be throttled after heavy usage,' but does not publish the specific daily GB cap or the throttled speed. Plans: $4.66/day up to $65.20/30 days. Hotspot included at no extra charge by default."
   },
   "appAccess": [
-    { "app": "Google Search", "works": true, "notes": "Confirmed via international routing" },
-    { "app": "Google Maps", "works": true, "notes": "Confirmed" },
-    { "app": "Gmail", "works": true, "notes": "Confirmed" },
-    { "app": "WhatsApp (messages)", "works": true, "notes": "Confirmed" },
-    { "app": "WhatsApp (voice call)", "works": true, "notes": "Confirmed" },
-    { "app": "Instagram", "works": true, "notes": "Confirmed" },
-    { "app": "YouTube", "works": true, "notes": "Confirmed" }
+    {
+      "app": "Google Search",
+      "works": true,
+      "notes": "Confirmed via international routing"
+    },
+    {
+      "app": "Google Maps",
+      "works": true,
+      "notes": "Confirmed"
+    },
+    {
+      "app": "Gmail",
+      "works": true,
+      "notes": "Confirmed"
+    },
+    {
+      "app": "WhatsApp (messages)",
+      "works": true,
+      "notes": "Confirmed"
+    },
+    {
+      "app": "WhatsApp (voice call)",
+      "works": true,
+      "notes": "Confirmed"
+    },
+    {
+      "app": "Instagram",
+      "works": true,
+      "notes": "Confirmed"
+    },
+    {
+      "app": "YouTube",
+      "works": true,
+      "notes": "Confirmed"
+    }
   ],
   "speedTests": [],
   "pros": [
@@ -45,5 +73,20 @@
     "Daily throttling cap not published — can't plan around it",
     "Relatively expensive per-day ($4.66+) vs fixed-data plans for short trips",
     "Throttling speed after cap not specified"
-  ]
+  ],
+  "commercial": {
+    "affiliate_url": "https://yesim.app/?partner_id=5005&sid=593",
+    "china_from_price": 0.54,
+    "china_20gb_30d": 20.0,
+    "china_unlimited_7d": 28.8,
+    "china_unlimited_30d": 65.0,
+    "usa_unlimited_per_day": 3.6,
+    "promo_code": "YESIMSPECIAL10",
+    "promo_percent": 10,
+    "referral_amount": 5,
+    "number_friends": 5,
+    "bonus_amount": 50,
+    "promo_percent_max": 35,
+    "global_unlimited_7d": 40.09
+  }
 }
