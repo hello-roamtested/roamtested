@@ -15,17 +15,40 @@
     "price": 10,
     "activation": 10,
     "usability": 10
-    
   },
   "exitCountry": "Data exits through Hong Kong.",
   "throttleAfterCap": "Throttled to 384 kbps.",
   "appAccess": [
-    { "app": "Google Search", "works": true, "notes": "Verified on the ground by us" },
-    { "app": "WhatsApp", "works": true, "notes": "Verified on the ground by us" },
-    { "app": "Instagram", "works": true, "notes": "Verified on the ground by us" },
-    { "app": "TikTok", "works": true, "notes": "Verified on the ground by us" },
-    { "app": "Facebook", "works": true, "notes": "Verified on the ground by us" },
-    { "app": "AI assistants", "works": true, "notes": "All major AI assistants works (ChatGPT, Claude, Gemini etc.) — except Microsoft Copilot blocked. Verified on the ground by us" }
+    {
+      "app": "Google Search",
+      "works": true,
+      "notes": "Verified on the ground by us"
+    },
+    {
+      "app": "WhatsApp",
+      "works": true,
+      "notes": "Verified on the ground by us"
+    },
+    {
+      "app": "Instagram",
+      "works": true,
+      "notes": "Verified on the ground by us"
+    },
+    {
+      "app": "TikTok",
+      "works": true,
+      "notes": "Verified on the ground by us"
+    },
+    {
+      "app": "Facebook",
+      "works": true,
+      "notes": "Verified on the ground by us"
+    },
+    {
+      "app": "AI assistants",
+      "works": true,
+      "notes": "All major AI assistants works (ChatGPT, Claude, Gemini etc.) — except Microsoft Copilot blocked. Verified on the ground by us"
+    }
   ],
   "speedTests": [
     {
@@ -50,5 +73,16 @@
     "Firewall behaviour needs verification — it is sold on domestic carriers with international routing, and at least one buyer reports ChatGPT still being blocked",
     "Small short-trip plans are not cheap per GB ($2.94 for 500MB works out to ~$5.88/GB)",
     "eSIM is a side product for a travel platform, not a specialist network operator — less transparency about the underlying routing than dedicated eSIM brands"
-  ]
+  ],
+  "commercial": {
+    "affiliate_url": "https://www.trip.com/t/uLJS77W0bV2",
+    "china_from_price": 2.94,
+    "china_2d_500mb": 2.94,
+    "china_2d_unlimited": 8.47,
+    "china_2d_max": 12.0,
+    "validity_min_days": 1,
+    "validity_max_days": 365,
+    "data_min_gb": 1,
+    "data_max_gb": 100
+  }
 }
