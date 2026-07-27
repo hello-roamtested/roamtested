@@ -4,6 +4,7 @@
  * 指标列自动读取 src/config/metrics.ts,增删指标无需改这里。
  */
 import { METRICS, overallScore } from '../config/metrics';
+import { affiliateUrlFor } from '../config/affiliates';
 import AffiliateButton from './AffiliateButton.astro';
 
 interface Props {
@@ -49,7 +50,7 @@ const ranked = [...providers].sort(
             <td class="mono">{typeof p.data.scores[m.id] === 'number' ? p.data.scores[m.id].toFixed(1) : '—'}</td>
           ))}
           <td class="mono price-cell">{p.data.price.headline}</td>
-          <td><AffiliateButton href={p.data.affiliateUrl} label="See plans" small /></td>
+          <td><AffiliateButton href={affiliateUrlFor(p)} label="See plans" small /></td>
         </tr>
       ))}
     </tbody>
