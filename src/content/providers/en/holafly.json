@@ -68,5 +68,8 @@
   "cons": [
     "Demo con",
     "Demo con"
-  ]
+  ],
+  "commercial": {
+    "affiliate_url": "https://example.com/REPLACE-WITH-HOLAFLY-AFFILIATE-LINK"
+  }
 }
