@@ -1,6 +1,7 @@
 ---
 /** 单品测评页顶部的评分卡:总分 + 各指标分条 + 结论 + 联盟按钮。 */
 import { METRICS, overallScore } from '../config/metrics';
+import { affiliateUrlFor } from '../config/affiliates';
 import AffiliateButton from './AffiliateButton.astro';
 
 interface Props {
@@ -17,7 +18,7 @@ const overall = overallScore(d.scores);
       <div class="overall mono">{overall.toFixed(1)}<span class="of">/10</span></div>
       <div class="verdict">{d.verdict}</div>
     </div>
-    <AffiliateButton href={d.affiliateUrl} />
+    <AffiliateButton href={affiliateUrlFor(provider)} />
   </div>
 
   <ul class="bars">
