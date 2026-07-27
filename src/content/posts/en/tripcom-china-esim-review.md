@@ -13,7 +13,8 @@ draft: false
   都由模板自动从 providers/en/trip-com.json 渲染,你只写叙述。
   建议叙述结构如下(占位内容,发布前替换):
   ═══════════════════════════════════════════════════════ -->
-##I Accidentally Bought a China eSIM on Trip.com##
+## I Accidentally Bought a China eSIM on Trip.com
+
 I wasn't trying to buy an eSIM for China. I was booking a flight to China on Trip.com when I noticed the site also sold eSIMs — 500MB a day for $0.10. I've bought enough flights here to trust the site, and at that price the downside was basically zero.
 
 So I bought it, flew to Chengdu, and tested it for real.
@@ -26,13 +27,11 @@ To active it, you can just search "eSIM" on Trip.com, choose the plan you need, 
 
 ## Using it day to day
 I tested on an iPhone 12 mini and used it the way an actual traveler does — walking through Airport, on the metro, in hotels, and in crowded malls at peak hours.
+
 **App access**
+
 **Speed**
 
 ## Who should buy it — and who shouldn't
 
 *(占位:结论与适用人群。)*
-
-## FAQ
-
-*(占位:Google 精选摘要 / People Also Ask))*
