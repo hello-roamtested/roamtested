@@ -1,6 +1,6 @@
 ---
 /** 单品测评页顶部的评分卡:总分 + 各指标分条 + 结论 + 联盟按钮。 */
-import { METRICS, overallScore } from '../config/metrics';
+import { metricsFor, overallScore } from '../config/metrics';
 import { affiliateUrlFor } from '../config/affiliates';
 import AffiliateButton from './AffiliateButton.astro';
 
@@ -9,7 +9,8 @@ interface Props {
 }
 const { provider } = Astro.props;
 const d = provider.data;
-const overall = overallScore(d.scores);
+const metrics = metricsFor(d.category);
+const overall = overallScore(d.scores, d.category);
 ---
 
 <aside class="card score-card">
@@ -22,7 +23,7 @@ const overall = overallScore(d.scores);
   </div>
 
   <ul class="bars">
-    {METRICS.map((m) => {
+    {metrics.map((m) => {
       const s = d.scores[m.id];
       return (
         <li>
