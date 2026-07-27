@@ -1,53 +1,89 @@
-{
-  "name": "Trip.com eSIM",
-  "lang": "en",
-  "sampleData": false,
-  "listed": true,
-  "listedSpeedTests": true,
-  "verdict": "The travel-agency option — official Chinese carriers, refundable, priced by the day from $0.10",
-  "price": {
-    "headline": "$0.10 · 500MB · 1d"
-  },
-  "scores": {
-    "appAccess": 8,
-    "speed": 8,
-    "price": 10,
-    "activation": 10,
-    "usability": 10
-    
-  },
-  "exitCountry": "Data exits through Hong Kong.",
-  "throttleAfterCap": "Throttled to 384 kbps.",
-  "appAccess": [
-    { "app": "Google Search", "works": true, "notes": "Verified on the ground by us" },
-    { "app": "WhatsApp", "works": true, "notes": "Verified on the ground by us" },
-    { "app": "Instagram", "works": true, "notes": "Verified on the ground by us" },
-    { "app": "TikTok", "works": true, "notes": "Verified on the ground by us" },
-    { "app": "Facebook", "works": true, "notes": "Verified on the ground by us" },
-    { "app": "AI assistants", "works": true, "notes": "All major AI assistants works (ChatGPT, Claude, Gemini etc.) — except Microsoft Copilot blocked. Verified on the ground by us" }
-  ],
-  "speedTests": [
-    {
-      "city": "Chengdu",
-      "spot": "Chunxi Road, outdoors",
-      "network": "China Mobile",
-      "downMbps": 82.9,
-      "upMbps": 51.3,
-      "date": "2026-07-26",
-      "screenshot": "trip.com - speed test - 2607.png"
-    }
-  ],
-  "pros": [
-    "Runs on the three official Chinese carriers (China Mobile / Unicom / Telecom) — a fully legal, non-grey-market product with near-universal domestic coverage",
-    "Most flexible plan ladder of any provider here: 1 to 365 days, 0.5GB/day up to unlimited, plus fixed packages from 1GB to 100GB",
-    "Fully refundable at any time before the eSIM is installed — rare in this category",
-    "In-app installation without QR-code scanning; no Chinese ID or local number required",
-    "24/7 English-language support from a large OTA, plus the buyer protection that comes with booking through a major travel platform"
-  ],
-  "cons": [
-    "No published fair-use policy: neither the daily high-speed cap nor the throttled speed is disclosed before you buy",
-    "Firewall behaviour needs verification — it is sold on domestic carriers with international routing, and at least one buyer reports ChatGPT still being blocked",
-    "Small short-trip plans are not cheap per GB ($2.94 for 500MB works out to ~$5.88/GB)",
-    "eSIM is a side product for a travel platform, not a specialist network operator — less transparency about the underlying routing than dedicated eSIM brands"
-  ]
-}
+import { defineCollection, z } from 'astro:content';
+import { glob } from 'astro/loaders';
+
+/**
+ * providers 集合:每个 eSIM 服务商一个 JSON 文件,存所有结构化数据
+ * (评分、价格、限速政策、App 直连矩阵、测速记录、联盟链接)。
+ * posts 集合:每篇文章一个 Markdown 文件,正文写叙述,
+ * 数据部分由页面模板从 providers 自动拉取渲染。
+ */
+
+const providers = defineCollection({
+  loader: glob({ pattern: '**/*.json', base: './src/content/providers' }),
+  schema: z.object({
+    name: z.string(),
+    lang: z.string().default('en'),
+    // ⚠ 样例数据开关:true 时页面上会显示黄色"演示数据"横幅。
+    // 换成你的实测数据后,把它改成 false 或删掉这一行。
+    sampleData: z.boolean().default(false),
+    // 是否进入首页对比表
+    listed: z.boolean().default(true),
+    // 是否进入 Speed Tests 页面(默认显示;设 false 可隐藏某家)
+    listedSpeedTests: z.boolean().default(true),
+    verdict: z.string(), // 一句话结论,如 "Best overall for multi-city trips"
+    // 联盟链接不再存这里,统一放 src/data/providers.json 的 esim.<家名>.affiliate_url,
+    // 由 src/config/affiliates.ts 的 affiliateUrlFor() 解析。
+    // 对应完整测评文章的 slug(posts 里的文件名),没有就留空
+    reviewSlug: z.string().optional(),
+    price: z.object({
+      headline: z.string(), // 表格里显示的价格,如 "$9.50 · 5GB · 30 days"
+    }),
+    // 分数 0–10,键名对应 src/config/metrics.ts 里的指标 id
+    scores: z.record(z.string(), z.number()),
+    throttlePolicy: z
+      .object({
+        dailyCap: z.string(), // e.g. "3 GB/day high-speed"
+        afterCap: z.string(), // e.g. "throttled to 1 Mbps"
+        published: z.boolean(), // 官方是否公开政策
+      })
+      .optional(),
+    // App 直连实测矩阵
+    appAccess: z
+      .array(
+        z.object({
+          app: z.string(),
+          works: z.boolean(),
+          notes: z.string().optional(),
+        })
+      )
+      .optional(),
+    // 数据出口国家(IP 检测结果),影响延迟与直连
+    exitCountry: z.string().optional(),
+    // 套餐高速流量用完后的限速
+    throttleAfterCap: z.string().optional(),
+    // 实测速度记录,可无限追加
+    speedTests: z
+      .array(
+        z.object({
+          city: z.string(),
+          spot: z.string(), // e.g. "Chunxi Road, outdoors"
+          network: z.string(), // e.g. "China Unicom 5G"
+          downMbps: z.number(),
+          upMbps: z.number(),
+          date: z.string(), // YYYY-MM-DD
+          // 截图文件名,放在 public/images/speedtests/ 下
+          screenshot: z.string().optional(),
+        })
+      )
+      .optional(),
+    pros: z.array(z.string()).default([]),
+    cons: z.array(z.string()).default([]),
+  }),
+});
+
+const posts = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/posts' }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    lang: z.string().default('en'),
+    date: z.string(), // YYYY-MM-DD,发布日期
+    updated: z.string().optional(),
+    kind: z.enum(['review', 'roundup', 'guide']).default('guide'),
+    // review 类型文章填对应 provider 的文件名(不带 .json)
+    provider: z.string().optional(),
+    draft: z.boolean().default(false),
+  }),
+});
+
+export const collections = { providers, posts };
