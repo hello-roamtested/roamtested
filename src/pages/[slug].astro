@@ -8,6 +8,7 @@ import SpeedTable from '../components/SpeedTable.astro';
 import ProsCons from '../components/ProsCons.astro';
 import SampleBanner from '../components/SampleBanner.astro';
 import AffiliateButton from '../components/AffiliateButton.astro';
+import { affiliateUrlFor } from '../config/affiliates';
 import ReviewSchema from '../components/ReviewSchema.astro';
 
 export async function getStaticPaths() {
@@ -83,7 +84,7 @@ function evidenceChip(p: any): string | undefined {
         <ProsCons pros={provider.data.pros} cons={provider.data.cons} />
         <p>
           <AffiliateButton
-            href={provider.data.affiliateUrl}
+            href={affiliateUrlFor(provider)}
             label={`Check ${provider.data.name} plans`}
           />
         </p>
