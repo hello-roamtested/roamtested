@@ -49,23 +49,14 @@ const providers = defineCollection({
       headline: z.string(), // 表格里显示的价格,如 "$9.50 · 5GB · 30 days"
     }),
     // ── 商业数据(Phase 2 合并账本用)────────────────────────────────
-    // 联盟链接、价格、优惠码的统一存放处,取代旧的 src/data/providers.json。
-    // 现在是可选空抽屉,数据分步搬进来;搬完后各消费方改读这里。
+    // 联盟链接、价格、优惠码等的统一存放处,取代旧的 src/data/providers.json。
+    // affiliate_url 单独命名(联盟链接是核心);其余商业字段各家不一,用 catchall
+    // 原样容纳(键名沿用现有,如 china_2d_500mb / promo_code / referral_amount)。
     commercial: z
       .object({
-        affiliate_url: z.string().url().optional(), // 唯一联盟链接
-        // 价格:各品类字段不同,用键值对容纳(键名沿用现有,如 china_2d_500mb / monthly)
-        prices: z.record(z.string(), z.number()).optional(),
-        // 优惠码/促销
-        promo: z
-          .object({
-            code: z.string().optional(),
-            percent: z.number().optional(),
-            percent_max: z.number().optional(),
-            note: z.string().optional(),
-          })
-          .optional(),
+        affiliate_url: z.string().url().optional(),
       })
+      .catchall(z.any())
       .optional(),
     // 分数 0–10,键名对应 src/config/metrics.ts 里的指标 id
     scores: z.record(z.string(), z.number()),
