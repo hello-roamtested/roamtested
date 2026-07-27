@@ -1,0 +1,6 @@
+# 作用：旧的 airalo 假数据评测已下线，将其 301 永久跳转到 Trip.com 评测，
+#       保留谷歌已收录的权重，避免访客撞到 404。
+# 格式：来源路径  目标路径  状态码（每行一条）
+
+/airalo-china-esim-review/  /tripcom-china-esim-review/  301
+/airalo-china-esim-review   /tripcom-china-esim-review/  301
