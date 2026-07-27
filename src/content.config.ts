@@ -1,5 +1,23 @@
 import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
+import fs from 'node:fs';
+import { METRICS } from './config/metrics';
+
+// 【构建时点名·自动扫描版】递归扫描整个目录树,不写死任何子文件夹。
+// 以后按品类重排(esim/、vpn/、pocket-wifi/ ...)后无需回来改这里,新板块自动纳入检查。
+function scanFiles(dir: string, extRe: RegExp): string[] {
+  return fs
+    .readdirSync(dir, { recursive: true })
+    .map((p) => String(p).split('\\').join('/')) // 归一化路径分隔符(兼容 Windows)
+    .filter((p) => extRe.test(p))
+    .map((p) => p.replace(extRe, ''));
+}
+// provider 的 id 含文件夹前缀,与文章里 provider: "en/xxx" 的写法保持一致
+const PROVIDER_IDS = new Set(scanFiles('src/content/providers', /\.json$/));
+// reviewSlug 存的是纯 slug(不含文件夹),所以只取 basename(最后一段)
+const POST_SLUGS = new Set(
+  scanFiles('src/content/posts', /\.mdx?$/).map((p) => p.split('/').pop()!)
+);
 
 /**
  * providers 集合:每个 eSIM 服务商一个 JSON 文件,存所有结构化数据
@@ -68,6 +86,40 @@ const providers = defineCollection({
       .optional(),
     pros: z.array(z.string()).default([]),
     cons: z.array(z.string()).default([]),
+  })
+  .superRefine((data, ctx) => {
+    // 【跨文件校验1】reviewSlug 必须指向真实存在的文章。
+    // 演示数据也查:悬空指针(指向已删文章)在任何时候都是 bug。
+    if (data.reviewSlug && !POST_SLUGS.has(data.reviewSlug)) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ['reviewSlug'],
+        message: `reviewSlug 指向的文章 "${data.reviewSlug}" 不存在(src/content/posts/en/ 下没有这个文件)`,
+      });
+    }
+    // 【跨文件校验2】评分键名:演示数据(sampleData=true)放行——反正实测后要整条重写,先放行。
+    // 只对真实数据强制:scores 的键必须正好等于当前指标集(src/config/metrics.ts),不多不少。
+    if (data.sampleData) return;
+    const ids = METRICS.map((m) => m.id);
+    const keys = Object.keys(data.scores ?? {});
+    for (const key of keys) {
+      if (!ids.includes(key)) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: ['scores', key],
+          message: `未知评分指标 "${key}"。当前指标集只允许:${ids.join(', ')}(见 src/config/metrics.ts)`,
+        });
+      }
+    }
+    for (const id of ids) {
+      if (!keys.includes(id)) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: ['scores'],
+          message: `缺少评分指标 "${id}"。真实数据必须包含全部指标:${ids.join(', ')}`,
+        });
+      }
+    }
   }),
 });
 
@@ -83,6 +135,17 @@ const posts = defineCollection({
     // review 类型文章填对应 provider 的文件名(不带 .json)
     provider: z.string().optional(),
     draft: z.boolean().default(false),
+  })
+  .superRefine((data, ctx) => {
+    // 【跨文件校验3】review 文章的 provider 必须指向真实存在的服务商。
+    // 防的正是 trip-com/tripcom 那种命名对不上、或指向已删服务商的情况。
+    if (data.provider && !PROVIDER_IDS.has(data.provider)) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ['provider'],
+        message: `provider 指向的服务商 "${data.provider}" 不存在(src/content/providers/ 下没有对应文件)`,
+      });
+    }
   }),
 });
 
