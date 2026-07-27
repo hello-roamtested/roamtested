@@ -4,13 +4,13 @@ description: ""
 lang: en
 date: "2026-07-26"
 kind: review
-provider: "en/trip-com"
+provider: "en/tripcom"
 draft: false
 ---
 
 <!-- ═══════════════════════════════════════════════════════
   单品测评正文。评分卡、App 直连矩阵、测速表、限速卡、优缺点
-  都由模板自动从 providers/en/trip-com.json 渲染,你只写叙述。
+  都由模板自动从 providers/en/tripcom.json 渲染,你只写叙述。
   建议叙述结构如下(占位内容,发布前替换):
   ═══════════════════════════════════════════════════════ -->
 ## I Accidentally Bought a China eSIM on Trip.com
