@@ -11,7 +11,7 @@ interface Props {
 }
 const { provider, post } = Astro.props;
 
-const score = overallScore(provider.data.scores);
+const score = overallScore(provider.data.scores, provider.data.category);
 
 // 顶层用 Product,评分挂进 Product 内部的 review。
 // 这样 Google 读 Product 时就能找到评分来源,满足
