@@ -66,5 +66,8 @@
   ],
   "cons": [
     "Demo con"
-  ]
+  ],
+  "commercial": {
+    "affiliate_url": "https://example.com/REPLACE-WITH-SAILY-AFFILIATE-LINK"
+  }
 }
