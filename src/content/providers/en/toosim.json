@@ -23,11 +23,31 @@
     "notes": "No throttling policy found for China plans. Fixed-data plans (not unlimited) so throttling less of a concern, but the per-GB cost makes this a poor value for data-heavy use."
   },
   "appAccess": [
-    { "app": "Google Search", "works": true, "notes": "Expected via international roaming — unverified by field test" },
-    { "app": "Google Maps", "works": true, "notes": "Expected — unverified" },
-    { "app": "WhatsApp (messages)", "works": true, "notes": "Expected — unverified" },
-    { "app": "Instagram", "works": true, "notes": "Expected — unverified" },
-    { "app": "YouTube", "works": true, "notes": "Expected — unverified" }
+    {
+      "app": "Google Search",
+      "works": true,
+      "notes": "Expected via international roaming — unverified by field test"
+    },
+    {
+      "app": "Google Maps",
+      "works": true,
+      "notes": "Expected — unverified"
+    },
+    {
+      "app": "WhatsApp (messages)",
+      "works": true,
+      "notes": "Expected — unverified"
+    },
+    {
+      "app": "Instagram",
+      "works": true,
+      "notes": "Expected — unverified"
+    },
+    {
+      "app": "YouTube",
+      "works": true,
+      "notes": "Expected — unverified"
+    }
   ],
   "speedTests": [],
   "pros": [
@@ -42,5 +62,13 @@
     "No published throttling or FUP policy",
     "Relatively newer brand — less community testing data",
     "China not prominently featured on homepage — specialist coverage depth unclear"
-  ]
+  ],
+  "commercial": {
+    "affiliate_url": "https://toosim.com/?linkId=lp_985999&sourceId=room-tested&tenantId=toosim&affS1=roamtested+-+web",
+    "starting_price": 3.99,
+    "china_1gb_7d": 13.99,
+    "china_20gb_30d": 117.99,
+    "usa_per_gb_from": 2.4,
+    "global_from": 20.99
+  }
 }
