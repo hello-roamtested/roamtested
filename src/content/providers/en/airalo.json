@@ -89,5 +89,16 @@
   "cons": [
     "Demo con — replace with your findings",
     "Demo con — e.g. speeds drop at rush hour"
-  ]
+  ],
+  "commercial": {
+    "affiliate_url": "https://www.airalo.com/REPLACE-WITH-YOUR-AFFILIATE-LINK",
+    "china_from_price": 4.0,
+    "china_unlimited_3d": 11.5,
+    "china_unlimited_30d": 69.0,
+    "promo_percent": 15,
+    "promo_code": [
+      "NEWTOAIRALO15"
+    ],
+    "referral_amount": 3
+  }
 }
