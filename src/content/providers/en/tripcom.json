@@ -5,8 +5,6 @@
   "listed": true,
   "listedSpeedTests": true,
   "verdict": "The travel-agency option — official Chinese carriers, refundable, priced by the day from $0.10",
-  "affiliateUrl": "https://www.trip.com/t/uLJS77W0bV2",
-  "reviewSlug": "tripcom-china-esim-review",
   "price": {
     "headline": "$0.10 · 500MB · 1d"
   },
@@ -35,7 +33,6 @@
       "network": "China Mobile",
       "downMbps": 82.9,
       "upMbps": 51.3,
-      "hotspot": "Works",
       "date": "2026-07-26",
       "screenshot": "trip.com - speed test - 2607.png"
     }
