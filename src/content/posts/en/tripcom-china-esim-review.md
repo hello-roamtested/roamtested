@@ -1,5 +1,5 @@
 ---
-title: "Trip.com China eSIM review (2026): tested in Chengdu"
+title: "Trip.com eSIM review: Is it the best eSIM for China? (Tested in Chengdu, 2026)"
 description: ""
 lang: en
 date: "2026-07-26"
@@ -13,16 +13,21 @@ draft: false
   都由模板自动从 providers/en/trip-com.json 渲染,你只写叙述。
   建议叙述结构如下(占位内容,发布前替换):
   ═══════════════════════════════════════════════════════ -->
+##I Accidentally Bought a China eSIM on Trip.com##
+I wasn't trying to buy an eSIM for China. I was booking a flight to China on Trip.com when I noticed the site also sold eSIMs — 500MB a day for $0.10. I've bought enough flights here to trust the site, and at that price the downside was basically zero.
 
-*(占位:开头两三段,你买它的过程、第一印象、一句话结论。)*
+So I bought it, flew to Chengdu, and tested it for real.
 
-## Buying and activation, step by step
+## Plans and pricing
+Trip.com sells esim for China as six different eSIM plans, split two ways: by region — mainland China, Hong Kong, Taiwan - and by which apps they're optimized for. On top of that, each plan is flexible: you choose the number of days (1 to 30) and either a daily data allowance or a total-data bucket. That flexibility is genuinely one of the best things here — you're not forced into a one-size 5GB brick. A weekend in Chengdu and a three-week trip across the country are priced completely differently, and you only pay for what you'll use. And the booking is renewable, it comes with free cancellation up to the day before it starts.
 
-*(占位:从下单到激活的完整过程,配截图。哪一步容易卡住、花了多久。这是用户投诉最多的环节,写细了就是价值。)*
+## Buying and activation
+To active it, you can just search "eSIM" on Trip.com, choose the plan you need, and once the purchase went through, the confirmation page showed a simple "One Tap" button. I tapped it, followed some prompts, and the eSIM installed and switched on by itself. Start to finish: about 60 seconds. (A QR code is available too if you prefer the manual route, but I never needed it.)
 
 ## Using it day to day
-
-*(占位:真实使用体验——地铁里、高峰期、开热点、支付场景。)*
+I tested on an iPhone 12 mini and used it the way an actual traveler does — walking through Airport, on the metro, in hotels, and in crowded malls at peak hours.
+**App access**
+**Speed**
 
 ## Who should buy it — and who shouldn't
 
