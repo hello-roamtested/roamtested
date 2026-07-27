@@ -3,7 +3,7 @@
  * 首页主对比表。列结构 = 排名 + 服务商 + 各指标分 + 价格 + 按钮。
  * 指标列自动读取 src/config/metrics.ts,增删指标无需改这里。
  */
-import { METRICS, overallScore } from '../config/metrics';
+import { metricsFor, overallScore } from '../config/metrics';
 import { affiliateUrlFor } from '../config/affiliates';
 import AffiliateButton from './AffiliateButton.astro';
 
@@ -12,8 +12,14 @@ interface Props {
 }
 const { providers } = Astro.props;
 
+// 本表所有行同属一个品类(如首页全是 eSIM);取第一家的品类决定表头指标集。
+const category = providers[0]?.data.category ?? 'esim';
+const metrics = metricsFor(category);
+
 const ranked = [...providers].sort(
-  (a, b) => overallScore(b.data.scores) - overallScore(a.data.scores)
+  (a, b) =>
+    overallScore(b.data.scores, b.data.category) -
+    overallScore(a.data.scores, a.data.category)
 );
 ---
 
@@ -24,7 +30,7 @@ const ranked = [...providers].sort(
         <th scope="col">#</th>
         <th scope="col">eSIM</th>
         <th scope="col">Overall</th>
-        {METRICS.map((m) => (
+        {metrics.map((m) => (
           <th scope="col" title={m.blurb}>{m.short}</th>
         ))}
         <th scope="col">From</th>
@@ -45,8 +51,8 @@ const ranked = [...providers].sort(
             </div>
             <div class="small muted">{p.data.verdict}</div>
           </td>
-          <td><span class="score-big mono">{overallScore(p.data.scores).toFixed(1)}</span></td>
-          {METRICS.map((m) => (
+          <td><span class="score-big mono">{overallScore(p.data.scores, p.data.category).toFixed(1)}</span></td>
+          {metrics.map((m) => (
             <td class="mono">{typeof p.data.scores[m.id] === 'number' ? p.data.scores[m.id].toFixed(1) : '—'}</td>
           ))}
           <td class="mono price-cell">{p.data.price.headline}</td>
@@ -57,7 +63,7 @@ const ranked = [...providers].sort(
   </table>
 </div>
 <p class="small muted">
-  Scores are 0–10, weighted: {METRICS.map((m, i) => `${m.label} ${m.weight}%`).join(' · ')}.
+  Scores are 0–10, weighted: {metrics.map((m, i) => `${m.label} ${m.weight}%`).join(' · ')}.
   <a href="/about/">How we test →</a>
 </p>
 
