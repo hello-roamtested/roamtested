@@ -1,108 +1,53 @@
 {
-  "$comment": "全站唯一数据源。官网抓来的市场数据。价格监控 Issue 提醒变价时，只改这里，全站文章自动更新。affiliate_url 是各家联盟推广地址的唯一存放处——以后文章里的购买按钮一律引用它，绝不手写链接进正文，这样换联盟ID时永远只改这一个文件。",
-  "meta": {
-    "last_verified": "July 2026",
-    "last_verified_date": "2026-07-17"
+  "name": "Trip.com eSIM",
+  "lang": "en",
+  "sampleData": false,
+  "listed": true,
+  "listedSpeedTests": true,
+  "verdict": "The travel-agency option — official Chinese carriers, refundable, priced by the day from $0.10",
+  "price": {
+    "headline": "$0.10 · 500MB · 1d"
   },
-  "esim": {
-    "airalo": {
-      "affiliate_url": "https://www.airalo.com/REPLACE-WITH-YOUR-AFFILIATE-LINK",
-      "china_from_price": 4.00,
-      "china_unlimited_3d": 11.50,
-      "china_unlimited_30d": 69.00,
-      "promo_percent": 15,
-      "promo_code": ["NEWTOAIRALO15"],
-      "referral_amount": 3
-    },
-    "nomad": {
-      "affiliate_url": "https://www.nomadesim.com/REPLACE-WITH-YOUR-AFFILIATE-LINK",
-      "china_from_price": 4.00,
-      "china_1gb_7d": 4.00,
-      "china_10gb_30d": 12.00,
-      "china_20gb_30d": 25.00,
-      "china_unlimited_3d_from": 11.00,
-      "trial_gb": 1,
-      "trial_destinations": 76,
-      "referral_amount": 5,
-      "promo_percent_max": 25,
-      "europe_50gb_eur": 28.15
-    },
-    "yesim": {
-      "affiliate_url": "https://yesim.app/?partner_id=5005&sid=593",
-      "china_from_price": 0.54,
-      "china_20gb_30d": 20.00,
-      "china_unlimited_7d": 28.80,
-      "china_unlimited_30d": 65.00,
-      "usa_unlimited_per_day": 3.60,
-      "promo_code": "YESIMSPECIAL10",
-      "promo_percent": 10,
-      "referral_amount": 5,
-      "number_friends": 5,
-      "bonus_amount": 50,
-      "promo_percent_max": 35,
-      "global_unlimited_7d": 40.09
-    },
-    "toosim": {
-      "affiliate_url": "https://toosim.com/?linkId=lp_985999&sourceId=room-tested&tenantId=toosim&affS1=roamtested+-+web",
-      "starting_price": 3.99,
-      "china_1gb_7d": 13.99,
-      "china_20gb_30d": 117.99,
-      "usa_per_gb_from": 2.40,
-      "global_from": 20.99
-    },
-    "nxtl": {
-      "affiliate_url": "https://nxtlsim.com/product/global-esim/?ref=roamtested",
-      "starter_price": 11.99,
-      "starter_credit": 10,
-      "usa_per_gb": 1.21,
-      "uk_per_gb": 1.49,
-      "referral_amount": 5,
-      "token_cashback_percent": 5
-    },
-    "tripcom": {
-      "affiliate_url": "https://www.trip.com/t/uLJS77W0bV2",
-      "china_from_price": 2.94,
-      "china_2d_500mb": 2.94,
-      "china_2d_unlimited": 8.47,
-      "china_2d_max": 12.00,
-      "validity_min_days": 1,
-      "validity_max_days": 365,
-      "data_min_gb": 1,
-      "data_max_gb": 100
-    }
+  "scores": {
+    "appAccess": 8,
+    "speed": 8,
+    "price": 10,
+    "activation": 10,
+    "usability": 10
+    
   },
-  "vpn": {
-    "expressvpn": {
-      "affiliate_url": "https://www.expressvpn.com/REPLACE-WITH-YOUR-AFFILIATE-LINK",
-      "monthly": 12.99,
-      "best_deal_monthly": 2.49,
-      "annual_monthly": 3.99,
-      "renewal_annual": 99.95
-    },
-    "nordvpn": {
-      "affiliate_url": "https://nordvpn.com/REPLACE-WITH-YOUR-AFFILIATE-LINK",
-      "monthly": 12.99,
-      "best_deal_monthly": 3.49,
-      "annual_monthly": 4.59
-    },
-    "surfshark": {
-      "affiliate_url": "https://surfshark.com/REPLACE-WITH-YOUR-AFFILIATE-LINK",
-      "monthly": 16.45,
-      "best_deal_monthly": 1.78,
-      "starter_2yr_monthly": 2.49
-    },
-    "astrill": {
-      "affiliate_url": "https://www.astrill.com/REPLACE-WITH-YOUR-AFFILIATE-LINK",
-      "monthly": 30.00,
-      "annual_monthly": 15.00,
-      "two_year_monthly": 12.50
-    },
-    "purevpn": {
-      "affiliate_url": "https://www.purevpn.com/REPLACE-WITH-YOUR-AFFILIATE-LINK",
-      "monthly": 12.95,
-      "trial_price": 0.99,
-      "trial_days": 7,
-      "max_discount_percent": 90
+  "exitCountry": "Data exits through Hong Kong.",
+  "throttleAfterCap": "Throttled to 384 kbps.",
+  "appAccess": [
+    { "app": "Google Search", "works": true, "notes": "Verified on the ground by us" },
+    { "app": "WhatsApp", "works": true, "notes": "Verified on the ground by us" },
+    { "app": "Instagram", "works": true, "notes": "Verified on the ground by us" },
+    { "app": "TikTok", "works": true, "notes": "Verified on the ground by us" },
+    { "app": "Facebook", "works": true, "notes": "Verified on the ground by us" },
+    { "app": "AI assistants", "works": true, "notes": "All major AI assistants works (ChatGPT, Claude, Gemini etc.) — except Microsoft Copilot blocked. Verified on the ground by us" }
+  ],
+  "speedTests": [
+    {
+      "city": "Chengdu",
+      "spot": "Chunxi Road, outdoors",
+      "network": "China Mobile",
+      "downMbps": 82.9,
+      "upMbps": 51.3,
+      "date": "2026-07-26",
+      "screenshot": "trip.com - speed test - 2607.png"
     }
-  }
+  ],
+  "pros": [
+    "Runs on the three official Chinese carriers (China Mobile / Unicom / Telecom) — a fully legal, non-grey-market product with near-universal domestic coverage",
+    "Most flexible plan ladder of any provider here: 1 to 365 days, 0.5GB/day up to unlimited, plus fixed packages from 1GB to 100GB",
+    "Fully refundable at any time before the eSIM is installed — rare in this category",
+    "In-app installation without QR-code scanning; no Chinese ID or local number required",
+    "24/7 English-language support from a large OTA, plus the buyer protection that comes with booking through a major travel platform"
+  ],
+  "cons": [
+    "No published fair-use policy: neither the daily high-speed cap nor the throttled speed is disclosed before you buy",
+    "Firewall behaviour needs verification — it is sold on domestic carriers with international routing, and at least one buyer reports ChatGPT still being blocked",
+    "Small short-trip plans are not cheap per GB ($2.94 for 500MB works out to ~$5.88/GB)",
+    "eSIM is a side product for a travel platform, not a specialist network operator — less transparency about the underlying routing than dedicated eSIM brands"
+  ]
 }
