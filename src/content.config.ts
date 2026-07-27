@@ -1,7 +1,7 @@
 import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
 import fs from 'node:fs';
-import { METRICS } from './config/metrics';
+import { metricsFor, CATEGORIES } from './config/metrics';
 
 // 【构建时点名·自动扫描版】递归扫描整个目录树,不写死任何子文件夹。
 // 以后按品类重排(esim/、vpn/、pocket-wifi/ ...)后无需回来改这里,新板块自动纳入检查。
@@ -31,6 +31,8 @@ const providers = defineCollection({
   schema: z.object({
     name: z.string(),
     lang: z.string().default('en'),
+    // 品类:决定用哪套评分指标(见 src/config/metrics.ts)。默认 esim,现有 eSIM 文件无需改。
+    category: z.string().default('esim'),
     // ⚠ 样例数据开关:true 时页面上会显示黄色"演示数据"横幅。
     // 换成你的实测数据后,把它改成 false 或删掉这一行。
     sampleData: z.boolean().default(false),
@@ -97,17 +99,28 @@ const providers = defineCollection({
         message: `reviewSlug 指向的文章 "${data.reviewSlug}" 不存在(src/content/posts/en/ 下没有这个文件)`,
       });
     }
+    // 【跨文件校验0】category 必须是 metrics.ts 里登记过的品类。
+    if (!CATEGORIES.includes(data.category)) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ['category'],
+        message: `未知品类 "${data.category}"。已登记的品类:${CATEGORIES.join(', ')}(在 src/config/metrics.ts 里登记新品类)`,
+      });
+      return; // 品类都不对,后面按品类取指标就没意义了
+    }
     // 【跨文件校验2】评分键名:演示数据(sampleData=true)放行——反正实测后要整条重写,先放行。
-    // 只对真实数据强制:scores 的键必须正好等于当前指标集(src/config/metrics.ts),不多不少。
+    // 只对真实数据强制:scores 的键必须正好等于【该品类】的指标集,不多不少。
     if (data.sampleData) return;
-    const ids = METRICS.map((m) => m.id);
+    const ids = metricsFor(data.category).map((m) => m.id);
+    // 该品类还没定义指标集(如 VPN 占位)→ 暂无评分标准可对,跳过校验。
+    if (ids.length === 0) return;
     const keys = Object.keys(data.scores ?? {});
     for (const key of keys) {
       if (!ids.includes(key)) {
         ctx.addIssue({
           code: z.ZodIssueCode.custom,
           path: ['scores', key],
-          message: `未知评分指标 "${key}"。当前指标集只允许:${ids.join(', ')}(见 src/config/metrics.ts)`,
+          message: `未知评分指标 "${key}"。品类 "${data.category}" 只允许:${ids.join(', ')}(见 src/config/metrics.ts)`,
         });
       }
     }
