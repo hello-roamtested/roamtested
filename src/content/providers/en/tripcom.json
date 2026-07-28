@@ -11,7 +11,7 @@
   },
   "scores": {
     "appAccess": 8,
-    "speed": 8,
+    "speed": 7,
     "price": 10,
     "activation": 10,
     "usability": 10
@@ -20,15 +20,15 @@
   "throttleAfterCap": "Throttled to 384 kbps.",
   "appAccess": [
     {
-      "app": "Google · Instagram · Facebook · TikTok",
+      "app": "Google · Instagram · TikTok",
       "works": true
     },
     {
-      "app": "WhatsApp",
+      "app": "WhatsApp · Facebook",
       "works": true
     },
     {
-      "app": "AI assistants (ChatGPT · Claude · Gemini)",
+      "app": "AI assistants (ChatGPT · Claude · Gemini · Grok)",
       "works": true,
       "notes": "Microsoft Copilot blocked"
     }
@@ -52,9 +52,8 @@
     "24/7 English-language support from a large OTA, plus the buyer protection that comes with booking through a major travel platform"
   ],
   "cons": [
-    "No published fair-use policy: neither the daily high-speed cap nor the throttled speed is disclosed before you buy",
-    "Firewall behaviour needs verification — it is sold on domestic carriers with international routing, and at least one buyer reports ChatGPT still being blocked",
-    "Small short-trip plans are not cheap per GB ($2.94 for 500MB works out to ~$5.88/GB)",
+    "Hotspot connected but passed no data to a second device in my test.",
+    "The "All AI" plan was stuck on slow LTE while other plans got 4G in the same spot — avoid it."
     "eSIM is a side product for a travel platform, not a specialist network operator — less transparency about the underlying routing than dedicated eSIM brands"
   ],
   "commercial": {
