@@ -1,0 +1,7 @@
+---
+const { provider } = Astro.props;
+const mods = import.meta.glob('../content/providers/**/*.json', { eager: true });
+const data = mods[`../content/providers/${provider}.json`];
+const url = data?.commercial?.affiliate_url ?? '#';
+---
+<a href={url} target="_blank" rel="sponsored nofollow noopener"><slot /></a>
