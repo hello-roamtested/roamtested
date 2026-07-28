@@ -4,15 +4,22 @@ title: "eSIM New User Deals & Promo Codes (July 2026): TooSim, NXTL & Trip.com"
 description: "Verified new-user eSIM deals in one place — Yesim's codes, NXTL's $10-credit starter, TooSim's offers, and Trip.com's refundable plans. Updated July 2026."
 ---
 
-import data from '../data/providers.json';
+import airalo from '../content/providers/en/airalo.json';
+import nomad from '../content/providers/en/nomad.json';
+import yesim from '../content/providers/en/yesim.json';
+import toosim from '../content/providers/en/toosim.json';
+import nxtl from '../content/providers/en/nxtl.json';
+import tripcom from '../content/providers/en/tripcom.json';
+import meta from '../data/prices-meta.json';
+export const data = { meta }; // 转接:让正文里的 data.meta.last_verified 原样可用
 import AffiliateButton from '../components/AffiliateButton.astro';
 
-export const A = data.esim.airalo;
-export const N = data.esim.nomad;
-export const Y = data.esim.yesim;
-export const T = data.esim.toosim;
-export const X = data.esim.nxtl;
-export const TC = data.esim.tripcom;
+export const A = airalo.commercial;
+export const N = nomad.commercial;
+export const Y = yesim.commercial;
+export const T = toosim.commercial;
+export const X = nxtl.commercial;
+export const TC = tripcom.commercial;
 
 {/* ▼▼▼ 显示开关：想显示某家就改 true，想隐藏就改 false（用法和首页排名表一样）。
        Airalo / Nomad 目前还没有真实联盟链接，先设 false 隐藏；拿到链接后改 true 即可。 */}
