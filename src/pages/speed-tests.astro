@@ -73,14 +73,14 @@ const total = allTests.length;
           <div class="entry-body">
             {t.screenshot ? (
               <a
-                href={`/images/speedtests/${t.screenshot}`}
+                href={`/speedtests/${t.screenshot}`}
                 class="thumb-wrap"
                 target="_blank"
                 rel="noopener"
                 aria-label={`Full-size screenshot: ${t.provider} in ${t.city}`}
               >
                 <img
-                  src={`/images/speedtests/${t.screenshot}`}
+                  src={`/speedtests/${t.screenshot}`}
                   alt={`${t.provider} Speedtest — ${t.city}, ${t.date}`}
                   class="thumb"
                   loading="lazy"
