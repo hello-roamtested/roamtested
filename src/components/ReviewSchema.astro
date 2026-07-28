@@ -36,6 +36,18 @@ const schema = {
     datePublished: post.data.date,
     ...(post.data.updated ? { dateModified: post.data.updated } : {}),
   },
+  // 价格信息:从 provider 的 commercial 里取最低价,给搜索结果显示 "From $X"
+  ...(provider.data.commercial?.china_from_price
+    ? {
+        offers: {
+          '@type': 'Offer',
+          price: provider.data.commercial.china_from_price,
+          priceCurrency: 'USD',
+          availability: 'https://schema.org/InStock',
+          url: provider.data.commercial.affiliate_url,
+        },
+      }
+    : {}),
 };
 ---
 
