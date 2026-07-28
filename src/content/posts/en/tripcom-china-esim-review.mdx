@@ -8,6 +8,8 @@ provider: "en/tripcom"
 draft: false
 ---
 
+import Aff from '../../components/Aff.astro'
+
 <!-- ═══════════════════════════════════════════════════════
   单品测评正文。评分卡、App 直连矩阵、测速表、限速卡、优缺点
   都由模板自动从 providers/en/tripcom.json 渲染,你只写叙述。
@@ -15,7 +17,7 @@ draft: false
   ═══════════════════════════════════════════════════════ -->
 ## I Accidentally Bought a China eSIM on Trip.com
 
-I wasn't trying to buy an eSIM for China. I was booking a flight to China on Trip.com when I noticed the site also sold eSIMs — 500MB a day for $0.10. I've bought enough flights here to trust the site, and at that price the downside was basically zero.
+I wasn't trying to buy an eSIM for China. I was booking a flight to China on <Aff provider="en/tripcom">Trip.com</Aff>, then I noticed the site also sold eSIMs — 500MB a day for $0.10. I've bought enough flights here to trust the site, and at that price the downside was basically zero.
 
 So I bought it, flew to Chengdu, and tested it for real.
 
