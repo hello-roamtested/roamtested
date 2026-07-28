@@ -4,14 +4,21 @@ title: "NXTL vs Yesim vs TooSim vs Nomad vs Airalo vs Trip.com: Travel eSIM Comp
 description: "Six travel eSIM providers compared on plans, per-GB cost, coverage, and activation — fixed bundles, pay-as-you-go wallets, and the travel-platform option. Prices verified July 2026."
 ---
 
-import data from '../data/providers.json';
+import airalo from '../content/providers/en/airalo.json';
+import nomad from '../content/providers/en/nomad.json';
+import yesim from '../content/providers/en/yesim.json';
+import toosim from '../content/providers/en/toosim.json';
+import nxtl from '../content/providers/en/nxtl.json';
+import tripcom from '../content/providers/en/tripcom.json';
+import meta from '../data/prices-meta.json';
+export const data = { meta }; // 转接:让正文里的 data.meta.last_verified 原样可用
 
-export const A = data.esim.airalo;
-export const N = data.esim.nomad;
-export const Y = data.esim.yesim;
-export const T = data.esim.toosim;
-export const X = data.esim.nxtl;
-export const TC = data.esim.tripcom;
+export const A = airalo.commercial;
+export const N = nomad.commercial;
+export const Y = yesim.commercial;
+export const T = toosim.commercial;
+export const X = nxtl.commercial;
+export const TC = tripcom.commercial;
 
 # NXTL vs Yesim vs TooSim vs Nomad vs Airalo vs Trip.com: Travel eSIM Comparison (2026)
 
@@ -91,7 +98,3 @@ Trip.com sells eSIMs alongside flights and hotels, which makes it structurally d
 - **TooSim:** competitive in the US and Europe (from ${T.usa_per_gb_from}/GB), long-validity plans up to 180 days — but compare per-destination, as some markets (e.g., China) are priced far above rivals, and there's no plan top-up.
 
 Looking for new-user discounts? See our [eSIM promo codes guide](/esim-promo-codes/). Traveling to China specifically? Start with our [on-the-ground China eSIM rankings](/best-esim-for-china/).
-
----
-
-*Sources: [Airalo](https://www.airalo.com/all-esim), [Nomad](https://www.nomadesim.com/), [Yesim](https://yesim.app/), [TooSim](https://toosim.com/), [NXTL](https://nxtlsim.com/pricing/), [Trip.com eSIM](https://www.trip.com/sale/w/10229/esim.html); independent reviews by [Traveltomtom](https://www.traveltomtom.net/tech-tips/yesim-review), [esimdb](https://esimdb.com/), [BetterSIM](https://www.bettersim.com/esim-providers/nomad), and [AvailSim](https://www.availsim.com/provider/toosim). Prices checked {data.meta.last_verified}.*
