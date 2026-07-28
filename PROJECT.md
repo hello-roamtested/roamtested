@@ -1,210 +1,185 @@
-# RoamTested 项目全档案（PROJECT.md）
+# PROJECT.md — RoamTested 项目交接文档
 
-> **本文件的用途**：这是 roamtested.com 的完整项目记忆。开新的 AI 对话时，把本文件内容发给 AI（或让它读这个文件），它就能立即接上全部上下文。每次完成大改动后，让 AI 顺手更新本文件。
->
-> 最后更新：2026-07-17（第二版：导航五分类、SEO基建四件套、Guides页上线）
-
----
-
-## 1. 项目是什么
-
-**RoamTested（roamtested.com）**：面向全球数字游民的科技工具类测评网站，英文内容，比如 vpn、e-sim、ai 工具等。目前专注于去中国旅行的外国游客的英文评测站，核心定位是"人在中国实地测试 eSIM vpn"（真金购买、实测速度、逐 App 防火墙直连检查、透明评分）——差异化在"tested on the ground"，对抗纯攒稿的竞品站。
-
-**商业模式**：联盟营销（affiliate）。读者通过站内链接购买 eSIM/VPN，站长赚佣金。
-
-**内容主线**：中国 eSIM 评测与排名（核心利基）→ 全球 eSIM 对比、优惠码、VPN 对比（流量外围）。
-
-**语言**：英文（面向国际游客）。中文版结构已预留未启用。
+> 这份文档是给**未来的你**和**未来的 AI 助手**看的项目地图。
+> 每次大改动后更新它。最近一次全面重写：Phase 0/1/2 结构改造完成后。 28/07/2026
 
 ---
 
-## 2. 技术栈与账号资产
+## 0. 一句话项目定位
 
-| 资产 | 详情 |
-|---|---|
-| 代码仓库 | GitHub `hello-roamtested/roamtested`（私有）|
-| 框架 | Astro ^5.2.0 + @astrojs/mdx ^4.2.0 + @astrojs/sitemap，纯静态输出 |
-| 托管 | Cloudflare Pages，连接 GitHub 仓库自动构建。Build command: `npm run build`，输出目录 `dist` |
-| 域名 | roamtested.com（Cloudflare 管理）|
-| 收录 | Google Search Console 已验证；sitemap 位于 `/sitemap-index.xml` 已提交 |
-| robots | `public/robots.txt`（allow all + sitemap 声明）。Cloudflare 层：AI 爬虫**放行**（Do not block），robots 策略用 **Content Signals Policy**（search=yes, ai-train=no）|
-| SEO增强 | Review/FAQ 结构化数据组件已就位（演示数据期间静默）；og:image 默认图已配；pages.dev 预览域名已 noindex |
-| 分析 | ⚠️ 尚未安装任何统计（GA4/Plausible 待装）|
-<!-- 访客统计是记录"每天多少人来、看了哪些页面、从哪里来的（谷歌？Reddit？AI 推荐？）、停留多久"的工具。GSC 只能看到谷歌搜索带来的点击。对联盟站来说，"哪篇文章带来了联盟点击"是最核心的运营数据，没有统计工具就是盲飞。
-两个主流选择：
-GA4（Google Analytics 4）：谷歌官方，免费，功能最全，但界面复杂、学习成本高
-Plausible：第三方极简统计，一眼能看懂，无 Cookie 弹窗烦恼，缺点是付费（约 $9/月）
-开始有内容发布节奏、正式引流之后再安装 -->
-| 注意 | 仓库里**没有** package-lock.json（曾因 lock 不同步导致构建失败而删除；以后本地有 Node 环境时可重新生成提交）|
+RoamTested（roamtested.com）是一个**靠联盟营销盈利的测评内容站**，面向经常旅行的人和数字游民，实测他们需要的数字产品（eSIM、VPN，未来可能扩展到随身 WiFi、AI 工具等）。核心模式：**在当地实测 → 发布带评分的测评 → 通过联盟链接赚佣金**。当前主力品类是**去中国的 eSIM**。
 
 ---
 
-## 3. 目录结构（带作用注释）
+## 1. 技术栈与部署
+
+- **框架**：Astro（静态站点生成）+ 内容集合（content collections）
+- **托管/部署**：Cloudflare Pages，从 GitHub 私有仓库 `hello-roamtested/roamtested` 自动构建部署
+- **域名/DNS/邮箱**：Cloudflare（roamtested.com；邮件路由 hello@、partners@）
+- **站点配置**：`astro.config.mjs` — `site: 'https://roamtested.com'`，`trailingSlash: 'always'`（所有网址结尾带斜杠）
+- **构建命令**：`npm run build`（= `astro build`）；本地开发 `npm run dev`
+- **SEO**：`@astrojs/sitemap` 自动生成 sitemap，已提交 Google Search Console
+
+**部署铁律**：
+- 每次向主分支提交 = 触发一次 Cloudflare 构建。免费版每月 500 次构建，对本项目远远够用，**构建次数不用省**。
+- **构建失败不影响线上**：Cloudflare 保留上一次成功的部署。最新提交旁的绿勾 = 当前线上状态的唯一可靠标志。
+- 唯一要注意：**互相依赖的改动必须放在同一次提交**（比如删了数据字段、就得同一次提交里改 schema），否则中间态会构建失败。
+
+---
+
+## 2. 目录结构导览（只列关键的）
 
 ```
-├── .github/workflows/price-watch.yml   # 价格监控定时任务（见第5节）
-├── README.zh.md                        # 日常操作手册 中文（发评测、改数据、改指标）★必读
-├── PROJECT.md                          # 本文件：项目全档案
-├── astro.config.mjs                    # 站点配置：域名、mdx+sitemap 插件、i18n(en，zh预留)
-├── package.json                        # 依赖清单
-├── public/
-│   ├── robots.txt                      # 全放行 + sitemap 声明
-│   ├── _headers                        # 让 *.pages.dev 预览域名 noindex，防重复收录
-│   ├── og-default.png                  # 社交分享默认图(og:image)，1200×630
-│   └── images/                         # （约定）文章图片统一放这里，见图片规范
-├── scripts/price-watch/                # 价格&优惠监控系统
-│   ├── check-prices.mjs                # 监控脚本（无依赖，Node 自带能力）
-│   ├── watchlist.json                  # 监控清单：16个目标（11价格+5优惠信号）
-│   └── baseline.json                   # 价格基线（脚本自动维护）
-└── src/
-    ├── config/
-    │   ├── site.ts                     # 品牌名、口号、邮箱、导航菜单(NAV，5项)
-    │   └── metrics.ts                  # ★评分体系唯一来源：5指标+权重（见第6节）
-    ├── content.config.ts               # content collections 的 schema 定义
-    ├── content/
-    │   ├── providers/en/*.json         # ★实测数据：每个eSIM一个JSON（评分/测速/App矩阵/联盟链接）
-    │   │                               #   现有: airalo, holafly, saily（均为演示数据 sampleData:true）
-    │   └── posts/en/*.md               # ★评测文章正文（叙述部分），数据由模板自动渲染
-    │       ├── airalo-china-esim-review.md   (kind: review, 关联 provider en/airalo)
-    │       └── best-esim-for-china.md        (kind: roundup, 自动插入全量对比表)
-    ├── data/
-    │   └── providers.json              # ★市场数据唯一来源：5家eSIM+5家VPN的价格/优惠码（见第4节）
-    ├── layouts/
-    │   ├── Base.astro                  # 全站布局：导航/页脚/联盟披露/og:image
-    │   └── ArticleLayout.astro         # MDX文章布局（包 Base + prose 样式）
-    ├── components/                     # 评测页组件：ComparisonTable, ScoreCard, AppAccessMatrix,
-    │                                   # SpeedTable, ThrottleCard, ProsCons, SampleBanner, AffiliateButton,
-    │                                   # ReviewSchema(评测结构化数据), FaqSchema(FAQ结构化数据)
-    ├── styles/global.css               # 配色字体变量在顶部
-    └── pages/
-        ├── index.astro                 # 首页：中国eSIM排名表（读 providers 集合）
-        ├── [slug].astro                # 动态路由：渲染 posts 集合的所有文章（含 ReviewSchema 注入）
-        ├── reviews/index.astro         # 评测列表页（自动收录 kind:review）
-        ├── guides/index.astro          # 攻略列表页：MANUAL_GUIDES 手动清单 + 自动收录 kind:guide/roundup
-        ├── about.astro                 # About+评测方法论（作者介绍是占位符待填）
-        ├── affiliate-disclosure.astro / privacy.astro / 404.astro
-        ├── travel-esim-comparison.mdx  # 全球eSIM对比（数据驱动，读 data/providers.json）
-        ├── esim-promo-codes.mdx        # eSIM新人优惠码（数据驱动）
-        └── vpn-for-china.mdx           # VPN价格对比（数据驱动）
+src/
+├─ content.config.ts        ← 【核心】数据结构定义(schema) + 构建质检网
+├─ config/
+│  ├─ metrics.ts            ← 【核心】评分体系:品类→指标集(插卡式)
+│  ├─ affiliates.ts         ← 联盟链接的唯一解析入口
+│  └─ site.ts               ← 站点全局配置(品牌、菜单、邮箱)
+├─ content/
+│  ├─ providers/en/*.json   ← 【核心】每家一个文件,装它的全部数据(唯一真相)
+│  └─ posts/en/*.md         ← 测评/文章正文
+├─ data/
+│  └─ prices-meta.json      ← 价格核对日期(全局一个值)
+├─ components/*.astro       ← 展示组件(评分卡、测速表、对比表…)
+├─ layouts/*.astro          ← 页面骨架
+├─ pages/                   ← 路由
+│  ├─ index.astro           ← 首页排行榜(从集合派生)
+│  ├─ [slug].astro          ← 测评页模板(从 posts + providers 生成)
+│  ├─ *.mdx                 ← 三篇对比/优惠码文章(从集合读 commercial)
+│  └─ 其它静态页
+└─ styles/global.css
+scripts/price-watch/         ← 价格监控脚本(独立运行,不碰网站数据)
 ```
 
 ---
 
-## 4. 两套数据系统（重要，勿混淆）
+## 3. 核心架构：单一数据源模型
 
-**系统A：实测数据（content collections）** —— 站的灵魂
-- 位置：`src/content/providers/en/*.json` + `src/content/posts/en/*.md`
-- 内容：自己实测的评分、测速记录、App直连矩阵、限速政策、优缺点、**联盟链接（affiliateUrl）**
-- 渲染：`[slug].astro` 自动把数据组件（评分卡/测速表/矩阵/Review结构化数据）插进文章
-- 发新评测的流程见 README.zh.md：复制 provider JSON + 复制文章 md，两步完成
+**最重要的一条原则，务必守住：一家 provider = 一条记录 = 一个文件。每个事实只存一个地方。**
 
-**系统B：市场数据（src/data/providers.json）** —— 对比类文章的数据源
-- 内容：5家eSIM（airalo/nomad/yesim/toosim/nxtl）+ 5家VPN（expressvpn/nordvpn/surfshark/astrill/purevpn）的官方价格、优惠码、折扣比例、试用信息 + `meta.last_verified` 日期
-- 被引用：三篇 MDX 文章（travel-esim-comparison / esim-promo-codes / vpn-for-china）通过 `import data from '../data/providers.json'` + `{data.xxx}` 引用；单GB成本等由表达式实时计算
-- **与监控系统闭环**：字段名与 `scripts/price-watch/watchlist.json` 的监控目标对应
+（历史背景：项目早期曾把同一家的数据分散在两个文件里——一个存评测、一个存商业数据 `data/providers.json`——导致"改一处忘另一处"的静默冲突。Phase 2 把它们合并了，`data/providers.json` 已删除。**不要再引入第二个存放同类数据的地方。**）
 
-**数据流转图**：
-```
-官方定价页 →(每周一自动抓取)→ price-watch 脚本 →(发现变化)→ GitHub Issue + 邮件
-    → 人工核实 → 改 src/data/providers.json 一处 → 全部对比文章自动更新
-实地测试 → 人工填 content/providers/en/*.json → 评测页/首页排名自动更新
-```
+### 一条 provider 记录的字段（`src/content/providers/en/<家名>.json`）
 
----
+顶层字段（完整定义见 `content.config.ts`）：
 
-## 5. 价格监控系统（price-watch）
+- **身份**：`name`、`lang`（默认 en）、`category`（默认 esim；决定用哪套评分指标）
+- **商业**：`commercial`（对象）—— **联盟链接、价格、优惠码等所有商业数据的唯一存放处**
+  - `commercial.affiliate_url` —— 联盟链接（唯一）
+  - 其余字段各家不一，原样存放（如 `china_2d_500mb`、`promo_code`、`monthly`、`referral_amount`…）
+- **测评**（可选，没有就代表"已收录但还没测"）：`verdict`、`price.headline`、`scores`、`appAccess`、`speedTests`、`throttleAfterCap`、`exitCountry`、`pros`、`cons`
+- **开关**：`sampleData`（true 时页面显示黄色"演示数据"横幅）、`listed`（是否上首页排行榜，默认 true）、`listedSpeedTests`（是否上测速库页面）
+- **关联**：`reviewSlug`（指向对应测评文章的 slug，没有就省略）
 
-- **触发**：每周一北京时间 09:00 自动跑（cron `0 1 * * 1`），也可在 Actions 页手动 Run workflow
-- **监控对象**（watchlist.json，16项）：Airalo 中国起步价/Unlimited 3天/30天、Nomad 中国起步价/1GB/20GB、TooSim 中国 1GB/20GB、Yesim 中国起步价、NXTL 美英每GB费率；优惠类：Airalo 首单折扣%/推荐奖励、Nomad 免费试用GB/目的地数、NXTL 推荐奖励、Yesim 折扣页
-- **机制**：抓官方页面 → 正则提取（标题优先，文本次之）→ 与 baseline 比对。无变化=静默更新核实日期；正常变价=更新基线+开Issue；波动>50%=疑似解析错误，不动基线只报警；提取失败=报警提示页面可能改版
-- **已知限制**：Yesim 页面 JS 渲染，标记 allowFailure 不报警，需每月人工看一次；NXTL 中国费率在JS计算器里抓不到
-- **收到 Issue 后**：真变价→改 `src/data/providers.json` 对应字段→关Issue；疑似错误→人工开页面核实；提取失败→把页面链接发给AI更新 watchlist 正则
+### 联盟链接怎么被取用
+
+全站所有"购买/查价"按钮的链接，都由 `src/config/affiliates.ts` 的 `affiliateUrlFor(provider)` 解析，它只读 `provider.data.commercial.affiliate_url`。**换联盟 ID / 子追踪标签，永远只改那一家记录的这一处。**
 
 ---
 
-## 6. 评分体系（metrics.ts）
+## 4. 评分体系：品类"插卡式"（`src/config/metrics.ts`）
 
-App access without VPN 30% · Real-world speed 25% · Activation & setup 15% · Fair-use/throttling transparency 15% · Price & value 15%。加权总分由 `overallScore()` 计算。改指标只动 metrics.ts，全站自动跟随（新增指标需给每个 provider JSON 补分）。
+评分不是写死的，而是**"品类 → 指标集"的映射**（`METRICS_BY_CATEGORY`）：
 
----
+- `esim`：appAccess 30 / speed 25 / price 25 / activation 10 / usability 10（合计 100）
+- `vpn`：**空占位** `[]` —— 等真正做 VPN 测评时再填（速度/隐私/流媒体解锁/服务器/价格之类，合计 100）
 
-## 7. 站点结构：导航与页面清单
+关键函数：`metricsFor(category)` 取某品类的指标集；`overallScore(scores, category)` 按品类加权算总分。评分卡、对比表、结构化数据、质检网全都按每家的 `category` 自动取对应指标集。
 
-**导航（site.ts 的 NAV，5项）**：Rankings(/) · Reviews(/reviews/) · Guides(/guides/) · Deals(/esim-promo-codes/) · About(/about/)
-
-**文章归栏规则**：不靠移动文件，靠标记——posts 集合文章由 frontmatter 的 `kind` 自动归位（review→Reviews 列表，guide/roundup→Guides 列表）；独立 MDX 页面在 `guides/index.astro` 顶部的 `MANUAL_GUIDES` 数组手动登记。内容分流口诀：**评一家产品→review；帮人选择/解决问题→guide；对决文(A vs B)→guide**（review 模板绑定单一 provider，放不下两家）。
-
-| URL | 类型 | 数据源 |
-|---|---|---|
-| `/` | 中国eSIM排名首页 | providers 集合 |
-| `/best-esim-for-china/` | roundup 文章 | posts + providers 集合 |
-| `/airalo-china-esim-review/` | review 文章 | posts + airalo.json |
-| `/reviews/` | 评测列表 | posts 集合(kind:review) |
-| `/guides/` | 攻略列表 | MANUAL_GUIDES + posts 集合(kind:guide/roundup) |
-| `/travel-esim-comparison/` | 全球对比（MDX） | data/providers.json |
-| `/esim-promo-codes/` | 优惠码指南（MDX），也是导航 Deals 入口 | data/providers.json |
-| `/vpn-for-china/` | VPN对比（MDX） | data/providers.json |
-| `/about/` `/affiliate-disclosure/` `/privacy/` | 静态页 | — |
-
-内链结构：三篇MDX互链 + 均链向 `/best-esim-for-china/`；优惠码⇄全球对比双向；优惠码页有双入口（导航Deals + Guides列表）。
+**加一个新品类（如随身 WiFi）** = 在 `METRICS_BY_CATEGORY` 里登记一行指标集 + 该品类的 provider 文件把 `category` 写成新名字。不改模板、不改结构。
 
 ---
 
-## 8. 已做决策及原因（Decision Log）
+## 5. 构建质检网（隐形保护，未来 AI 必读）
 
-1. **AI 爬虫全放行 + Content Signals 声明禁训练**（Cloudflare AI Crawl Control: Do not block；robots 用 Content Signals Policy）。原因：新站最缺曝光，AI 搜索（ChatGPT/Perplexity）引用是重要流量源；用 signals 保留版权立场。
-2. **市场数据单一数据源**：价格/优惠码只存 data/providers.json，文章用引用。原因：变价只改一处、与监控闭环、杜绝多处不一致。
-3. **中国对比内容不单独发页面**：与已有 `/best-esim-for-china/` 主题重复会互抢排名（keyword cannibalization），素材保留待合并进现有页。
-4. **删除 package-lock.json**：Cloudflare 构建因 lock 与 package.json 不同步失败；删除后用 npm install。属临时方案，后续本地重新生成。
-5. **监控不自动改网站数据，只开 Issue**：人工审核一道，防解析错误污染线上内容。Issue 带 `price-watch` 标签（标签需在仓库先创建，否则开Issue会失败——已创建）。
-6. **URL 不含年份**（如 /esim-promo-codes/），年份放标题。原因：逐年更新内容不用改地址、不丢外链。
-7. **优惠码文章引导读者去官方码页核实**：第三方码过期率高，保护站点信誉。
-8. **TooSim 中国定价异常贵**（$13.99/1GB，为 Nomad 3倍+），文章如实差评——诚实评测是站点定位的根基。
-9. **联盟策略**：对决文选题="热门大牌 vs 有联盟链接的品牌"；先内容占排名后补链接；冷门vs冷门不做。
-10. **文章正文只把"会变的值"做成JSON引用**（价格/码/比例/日期），一次性描述硬编码，避免过度工程化。
-11. **导航五分类**：Rankings · Reviews · Guides · Deals · About（详见第7节归栏规则）。Deals 单独占导航位，因为搜优惠码的用户离下单最近，是全站转化价值最高的流量。
-12. **结构化数据带演示保险**：ReviewSchema 组件在 sampleData:true 时不输出任何标记——假评分绝不进 Google（已用 Rich Results Test 验证：演示期间 No items detected 属预期）。填入真实数据、sampleData 改 false 后自动获得评分星星资格。
-13. **预览域名 noindex**：public/_headers 让 *.pages.dev 返回 X-Robots-Tag: noindex，防止与正式域名重复收录；正式域名不受影响。
-14. **图片规范**：全部放 public/images/；描述性英文文件名（如 airalo-china-speedtest-chengdu.webp）；WebP 格式（squoosh.app 压缩，≤200KB，宽1200px 够用）；必写 alt。趁未开始放图先立规矩。
+`content.config.ts` 里除了定义数据结构，还有一套**跨文件校验**：任何一条被破坏，**构建当场失败并报中文错误**，坏数据到不了线上。这是防"静默 bug"的核心，改动数据结构时不要削弱它。
+
+现有规则：
+
+1. **category 必须是 metrics.ts 里登记过的品类**（防拼错品类名）。
+2. **scores 键必须和该品类的指标集完全一致**（真实数据强制；演示数据 `sampleData:true` 放行；品类指标为空的如 VPN 占位放行）。
+3. **上榜的真实服务商（listed:true）必须有 scores**（否则排行榜没法显示分数；只有市场存根 listed:false 才豁免）。
+4. **reviewSlug 必须指向真实存在的文章**（防悬空指针）。
+5. **文章的 provider 必须指向真实存在的服务商**（防 trip-com/tripcom 那种命名对不上）。
+
+这套校验**自动递归扫描整个 providers/posts 目录树**，所以将来无论文件怎么分文件夹放，都不用回来改校验逻辑。
 
 ---
 
-## 9. 当前状态与待办（按优先级）
+## 6. 页面是怎么生成的
 
-**已完成**：技术基建全套（GSC/sitemap/robots/监控/结构化数据/og图/预览域名noindex）、导航五分类+Guides列表页、3篇MDX对比文上线且数据驱动、README手册、评分体系、构建管线正常。
-
-**待办**：
-1. ⚠️ **首页仍是演示数据**：airalo/holafly/saily 三个 JSON 均 `sampleData: true`，页面挂黄色 Demo 横幅，Review 结构化数据也在等它。需填入真实实测数据后改 false。这是对 SEO/信任伤害最大的一项，也是全站多个功能的解锁开关。
-2. ⚠️ **联盟链接全是占位符**：provider JSON 里 `affiliateUrl` 均为 REPLACE-WITH-xxx；三篇MDX里购买链接指向官方站。联盟批准后替换。
-3. About 页作者介绍是占位符；建议补作者署名+方法论展开（E-E-A-T）。
-4. 未装网站统计（GA4 或 Plausible，见第2节注释；开始正式引流后再装）。
-5. 中国对比素材合并进 `/best-esim-for-china/`。
-6. GSC 对新文章手动 Request Indexing（可选加速）。
-7. 内容队列建议：Nomad China 评测 → Airalo vs Nomad China 对决 → Yesim 评测 → "Do you need a VPN in China if you have an eSIM?"（eSIM+VPN 双联盟转化文）。
-8. 每月1号人工核对优惠码有效性 + Yesim 价格；每季度过一遍全部价格。
-9. 小瑕疵：JSON 数字尾零被吃（$12.50→$12.5），介意可用 `.toFixed(2)`。
-
-**已留坑、时机到了再做**：
-- **URL 永不裸删原则**：以后改地址/下架页面，必须在 `public/_redirects` 加 301 跳转（Cloudflare Pages 原生支持该文件），保护外链权重。
-- **中文版上线时**：加 hreflang 标签声明中英版本对应关系，防止互相竞争。
-- **内容超20篇后**：加面包屑导航（含 BreadcrumbList schema）。
-- **FAQ 文章发布时**：用 FaqSchema 组件（用法见组件文件头注释；问答必须与正文一致，Google 会校验）。
-- **低优先**：RSS feed（@astrojs/rss 插件）。
-
-**业务状态（待站长补充）**：
-- 联盟计划申请进度：Trip.com Affiliate 申请中；其余（Airalo/Nomad/Yesim/NXTL/Astrill…）状态待记录
-- 实测进度：Airalo 中国实测状态待确认；下一个实测对象待定
+- **首页排行榜**（`index.astro` → `ComparisonTable`）：从 provider 集合里**筛 `listed` + 按 `overallScore` 排序自动算出来**，不是手写的。表头指标按这批 provider 的品类自动取。
+- **单品测评页**（`[slug].astro`）：按文章的 `provider` 字段找到对应记录，自动渲染评分卡、App 直连矩阵、测速表、限速 note、优缺点。草稿（`draft:true`）不生成页面。
+- **三篇对比/优惠码文章**（`*.mdx`）：直接 import 对应几家的 provider JSON，读 `commercial` 里的价格/链接/优惠码；日期读 `src/data/prices-meta.json`。**表格里的数据从集合来，不再手写同步。**
 
 ---
 
-## 10. 日常操作速查
+## 7. 当前 provider 清单与状态（截至本文档）
 
-- **发布单品评测**：见 README.zh.md 第1节（复制 provider JSON + 复制文章 md，kind 填 review）
-- **发布攻略/对决文**：posts 集合发文 kind 填 guide（自动进 Guides 列表）；独立 MDX 页则在 guides/index.astro 的 MANUAL_GUIDES 数组加一条
-- **响应价格监控 Issue**：见本文第5节
-- **改市场价格/优惠码**：只改 `src/data/providers.json`，顺手更新 `meta.last_verified`
-- **改评分指标**：只改 `src/config/metrics.ts`；**改导航菜单**：只改 `src/config/site.ts` 的 NAV
-- **放图片**：public/images/ + 描述性文件名 + WebP(squoosh.app压缩) + 必写alt（第8节第14条）
-- **所有上传均可网页端完成**：GitHub → Add file / 铅笔编辑 → Commit → Cloudflare Pages 自动构建（1-3分钟）→ 构建失败看 Cloudflare Dashboard 的 Build log 最后20行
-- **构建失败不影响线上**：Pages 保留上一次成功版本
-- **注释语法**：.md 用 `<!-- -->`；.mdx 用 `{/* */}`；.json 不支持注释，用 `"$comment"` 假字段
+| 家 | 品类 | 上榜 | 状态 |
+|---|---|---|---|
+| **tripcom** | esim | ✅ | **唯一真实测评**（实测于成都） |
+| nxtl / toosim / yesim | esim | ✅ | 演示数据（待实测） |
+| airalo / holafly / saily | esim | ❌ | 演示数据，未上榜 |
+| nomad | esim | ❌ | 市场数据存根（只有商业数据，无测评） |
+| expressvpn / nordvpn / surfshark / astrill / purevpn | vpn | ❌ | 市场数据存根（供 VPN 对比文用，无测评） |
+
+**文章**：`tripcom-china-esim-review.md`（真实测评，正文未写完、description 待补）、`best-esim-for-china.md`（汇总）；三篇 MDX 对比文（eSIM 对比、优惠码、VPN 价格对比）。
+
+---
+
+## 8. 内容工作流
+
+- **文章草稿**：Notion（纯文本，无富格式）→ 复制为 Markdown 贴进 GitHub 网页编辑器 → AI 协助润色英文与 frontmatter。
+- **图片**：放 `public/` 下，测速截图命名 `providername-city-location-YYYY-MM-DD.jpg`；上传前用 squoosh.app 压到 300KB 以内。
+- **视频**：上传 YouTube（不公开），页面用嵌入，不放仓库。
+- **实测取证**：Timestamp Camera（带时间戳的照片）。
+
+---
+
+## 9. 常见构建失败原因（排错清单）
+
+- **JSON 语法**：数字字段填 null（应填 0 或省略）、删行后留下多余逗号、该填字符串的地方填了对象、URL 前缀重复——都会导致构建失败。改 JSON 后可以本地 `python3 -c "import json;json.load(open('文件'))"` 验一下。
+- **质检网报红**：按第 5 节的中文报错信息对症改（多半是评分键名、reviewSlug、provider 引用、category 之一）。
+- **半成品中间态**：互相依赖的改动没一起提交（如加了字段没改 schema）。
+
+---
+
+## 10. 已完成 / 待办 / 主动跳过
+
+### ✅ 已完成的结构改造（"会翻车、会赚钱出错"的硬骨头都啃完了）
+
+- **Phase 0｜构建质检网**：三条跨文件校验上线（见第 5 节）。
+- **Phase 1｜评分插卡式**：metrics.ts 改成品类→指标集；eSIM 行为零变化，VPN 留空占位。
+- **Phase 2｜合并账本**：商业数据搬进各家 `commercial`；`affiliates.ts`、三篇 MDX 全部改读集合；`data/providers.json` 已删除。**"两账本"病根根治。**
+- **单一数据源**：每家信息集中在一个文件（灵魂已达成）。
+- **首页派生**：排行榜一直是从集合算的（Phase 4-A 本就成立）。
+
+### ⬜ 待办（按优先级，都不是欠债，是"等时机的项"）
+
+1. **Trip.com 测评收尾**（内容，优先）：
+   - 文章正文写完（App access / Speed 两节、结尾"适用人群"目前是占位）。
+   - 补 `description`（文章 frontmatter 现在是空字符串 —— 影响 Google 搜索结果里的描述文字和结构化数据）。
+2. **实测更多 eSIM**（内容，趁在中国的窗口期）：把 nxtl/toosim/yesim 等演示数据换成真实实测数据。数据结构现在很干净，换一家 = 改它一个文件（填真实 scores、appAccess、speedTests、pros/cons，把 `sampleData` 设 false）。
+3. **Phase 3｜VPN 成为一等品类**（等你真去测 VPN 再启动）：
+   - 在 metrics.ts 填 `vpn` 指标集（空占位现成）。
+   - 把某家 VPN 存根补上实测数据、写文章、`listed` 打开。
+   - 存根记录已经建好，届时直接往里填即可。
+4. **评测/身份分区块**（低回报整洁活）：目前评测字段和身份字段平铺在记录顶层，可收进 `review:{}`、`identity:{}` 区块。**最自然的时机是做 Phase 3 时顺手规整**，别单独为整洁改一遍。
+5. **Phase 4-B｜文章表格结构也自动派生**（低回报整洁活）：三篇 MDX 里"列出哪几家、每家哪些规格"目前手写。数据已从集合来，但结构还手写。规格一年变不了几次，手写够用；等某天觉得来回改烦了，再把最常变的字段抽进数据。
+
+### 🚫 主动决定不做（不是遗漏）
+
+- **按品类分文件夹**（esim/、vpn/…）：Phase 1 加了 `category` 字段后，品类靠字段区分即可，不需要靠文件夹。而且 `en/` 是**语言**文件夹，配合未来双语规划；按品类分反而和双语路线冲突。所以所有 provider 都放在 `content/providers/en/`，靠 `category` 字段区分品类。
+
+---
+
+## 11. 给未来 AI 助手的提示
+
+- **改数据前先看这份文档 + `content.config.ts`**，别假设旧记忆还成立（这个项目结构改过好几轮）。
+- **单一数据源是底线**：不要为任何数据再造"第二个账本"。
+- **质检网是朋友**：它报红是在帮你拦 bug，不要为了让构建通过而绕过或削弱校验；应该去修数据。
+- **小步 + 每步验证**：改动尽量拆小，每步用 `npm run build` 确认，能逐字节比对页面输出就比对（这是这个项目一路没翻车的关键纪律）。
+- **互相依赖的改动放同一次提交。**
+- **内容 > 结构**：结构层面的硬骨头已经啃完，别再过度优化结构；优先推动内容（实测、收尾文章）。
