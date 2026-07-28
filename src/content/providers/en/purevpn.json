@@ -1,0 +1,12 @@
+{
+  "name": "PureVPN",
+  "category": "vpn",
+  "listed": false,
+  "commercial": {
+    "affiliate_url": "https://www.purevpn.com/REPLACE-WITH-YOUR-AFFILIATE-LINK",
+    "monthly": 12.95,
+    "trial_price": 0.99,
+    "trial_days": 7,
+    "max_discount_percent": 90
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "name": "ExpressVPN",
+  "category": "vpn",
+  "listed": false,
+  "commercial": {
+    "affiliate_url": "https://www.expressvpn.com/REPLACE-WITH-YOUR-AFFILIATE-LINK",
+    "monthly": 12.99,
+    "best_deal_monthly": 2.49,
+    "annual_monthly": 3.99,
+    "renewal_annual": 99.95
+  }
+}

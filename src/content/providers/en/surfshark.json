@@ -1,0 +1,11 @@
+{
+  "name": "Surfshark",
+  "category": "vpn",
+  "listed": false,
+  "commercial": {
+    "affiliate_url": "https://surfshark.com/REPLACE-WITH-YOUR-AFFILIATE-LINK",
+    "monthly": 16.45,
+    "best_deal_monthly": 1.78,
+    "starter_2yr_monthly": 2.49
+  }
+}

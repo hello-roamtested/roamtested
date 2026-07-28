@@ -1,0 +1,11 @@
+{
+  "name": "Astrill",
+  "category": "vpn",
+  "listed": false,
+  "commercial": {
+    "affiliate_url": "https://www.astrill.com/REPLACE-WITH-YOUR-AFFILIATE-LINK",
+    "monthly": 30.0,
+    "annual_monthly": 15.0,
+    "two_year_monthly": 12.5
+  }
+}

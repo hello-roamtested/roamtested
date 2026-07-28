@@ -1,0 +1,17 @@
+{
+  "name": "Nomad eSIM",
+  "listed": false,
+  "commercial": {
+    "affiliate_url": "https://www.nomadesim.com/REPLACE-WITH-YOUR-AFFILIATE-LINK",
+    "china_from_price": 4.0,
+    "china_1gb_7d": 4.0,
+    "china_10gb_30d": 12.0,
+    "china_20gb_30d": 25.0,
+    "china_unlimited_3d_from": 11.0,
+    "trial_gb": 1,
+    "trial_destinations": 76,
+    "referral_amount": 5,
+    "promo_percent_max": 25,
+    "europe_50gb_eur": 28.15
+  }
+}

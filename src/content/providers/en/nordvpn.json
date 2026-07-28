@@ -1,0 +1,11 @@
+{
+  "name": "NordVPN",
+  "category": "vpn",
+  "listed": false,
+  "commercial": {
+    "affiliate_url": "https://nordvpn.com/REPLACE-WITH-YOUR-AFFILIATE-LINK",
+    "monthly": 12.99,
+    "best_deal_monthly": 3.49,
+    "annual_monthly": 4.59
+  }
+}
