@@ -40,14 +40,16 @@ const providers = defineCollection({
     listed: z.boolean().default(true),
     // 是否进入 Speed Tests 页面(默认显示;设 false 可隐藏某家)
     listedSpeedTests: z.boolean().default(true),
-    verdict: z.string(), // 一句话结论,如 "Best overall for multi-city trips"
+    verdict: z.string().optional(), // 一句话结论(测评用);只有市场数据的存根可省略
     // 联盟链接不再存这里,统一放 src/data/providers.json 的 esim.<家名>.affiliate_url,
     // 由 src/config/affiliates.ts 的 affiliateUrlFor() 解析。
     // 对应完整测评文章的 slug(posts 里的文件名),没有就留空
     reviewSlug: z.string().optional(),
-    price: z.object({
-      headline: z.string(), // 表格里显示的价格,如 "$9.50 · 5GB · 30 days"
-    }),
+    price: z
+      .object({
+        headline: z.string(), // 表格里显示的价格,如 "$9.50 · 5GB · 30 days"
+      })
+      .optional(), // 只有市场数据的存根可省略
     // ── 商业数据(Phase 2 合并账本用)────────────────────────────────
     // 联盟链接、价格、优惠码等的统一存放处,取代旧的 src/data/providers.json。
     // affiliate_url 单独命名(联盟链接是核心);其余商业字段各家不一,用 catchall
@@ -58,8 +60,8 @@ const providers = defineCollection({
       })
       .catchall(z.any())
       .optional(),
-    // 分数 0–10,键名对应 src/config/metrics.ts 里的指标 id
-    scores: z.record(z.string(), z.number()),
+    // 分数 0–10,键名对应 src/config/metrics.ts 里的指标 id。只有市场数据的存根可省略。
+    scores: z.record(z.string(), z.number()).optional(),
     throttlePolicy: z
       .object({
         dailyCap: z.string(), // e.g. "3 GB/day high-speed"
@@ -125,6 +127,18 @@ const providers = defineCollection({
     // 该品类还没定义指标集(如 VPN 占位)→ 暂无评分标准可对,跳过校验。
     if (ids.length === 0) return;
     const keys = Object.keys(data.scores ?? {});
+    // 市场数据存根(完全没有 scores)→ 跳过评分校验;
+    // 但上榜的真实服务商(listed:true)必须有评分,否则排行榜没法显示分数。
+    if (keys.length === 0) {
+      if (data.listed) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          path: ['scores'],
+          message: `上榜服务商(listed:true)必须有 scores;若这是只有市场数据的存根,请设 listed:false`,
+        });
+      }
+      return;
+    }
     for (const key of keys) {
       if (!ids.includes(key)) {
         ctx.addIssue({
