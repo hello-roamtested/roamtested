@@ -20,34 +20,17 @@
   "throttleAfterCap": "Throttled to 384 kbps.",
   "appAccess": [
     {
-      "app": "Google Search",
-      "works": true,
-      "notes": "Verified on the ground by us"
+      "app": "Google · Instagram · Facebook · TikTok",
+      "works": true
     },
     {
       "app": "WhatsApp",
-      "works": true,
-      "notes": "Verified on the ground by us"
+      "works": true
     },
     {
-      "app": "Instagram",
+      "app": "AI assistants (ChatGPT · Claude · Gemini)",
       "works": true,
-      "notes": "Verified on the ground by us"
-    },
-    {
-      "app": "TikTok",
-      "works": true,
-      "notes": "Verified on the ground by us"
-    },
-    {
-      "app": "Facebook",
-      "works": true,
-      "notes": "Verified on the ground by us"
-    },
-    {
-      "app": "AI assistants",
-      "works": true,
-      "notes": "All major AI assistants works (ChatGPT, Claude, Gemini etc.) — except Microsoft Copilot blocked. Verified on the ground by us"
+      "notes": "Microsoft Copilot blocked"
     }
   ],
   "speedTests": [
