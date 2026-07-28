@@ -54,11 +54,11 @@ const { tests, afterCap, exitCountry } = Astro.props;
   </p>
 )}
 {exitCountry && (
-  <p class="small muted exit">
+  <p class="small muted exit foot">
     Data exit: <span class="mono">{exitCountry}</span>
   </p>
 )}
-<p class="small muted">
+<p class="small muted foot">
   Method: Ookla Speedtest, three runs per spot, median reported. VPN off, no background downloads.
   <a href="/speed-tests/">View all speed tests →</a>
 </p>
@@ -68,4 +68,6 @@ const { tests, afterCap, exitCountry } = Astro.props;
   .cap-note { margin: 0.6rem 0 0; color: var(--ink-soft); }
   .cap-note strong { color: var(--ink); }
   .exit { margin: 0.6rem 0 0; }
+  /* Data exit 和 Method 两行:比上面限速那句(0.85rem)更小的脚注,灰色由 .muted 提供 */
+  .foot { font-size: 0.78rem; }
 </style>
