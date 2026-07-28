@@ -41,7 +41,7 @@ const providers = defineCollection({
     // 是否进入 Speed Tests 页面(默认显示;设 false 可隐藏某家)
     listedSpeedTests: z.boolean().default(true),
     verdict: z.string().optional(), // 一句话结论(测评用);只有市场数据的存根可省略
-    // 联盟链接不再存这里,统一放 src/data/providers.json 的 esim.<家名>.affiliate_url,
+    // 联盟链接现在存在下面的 commercial.affiliate_url 里,
     // 由 src/config/affiliates.ts 的 affiliateUrlFor() 解析。
     // 对应完整测评文章的 slug(posts 里的文件名),没有就留空
     reviewSlug: z.string().optional(),
@@ -50,8 +50,8 @@ const providers = defineCollection({
         headline: z.string(), // 表格里显示的价格,如 "$9.50 · 5GB · 30 days"
       })
       .optional(), // 只有市场数据的存根可省略
-    // ── 商业数据(Phase 2 合并账本用)────────────────────────────────
-    // 联盟链接、价格、优惠码等的统一存放处,取代旧的 src/data/providers.json。
+    // ── 商业数据(联盟链接 / 价格 / 优惠码)────────────────────────────
+    // 每家 provider 的商业数据统一存这里,是全站唯一来源。
     // affiliate_url 单独命名(联盟链接是核心);其余商业字段各家不一,用 catchall
     // 原样容纳(键名沿用现有,如 china_2d_500mb / promo_code / referral_amount)。
     commercial: z
