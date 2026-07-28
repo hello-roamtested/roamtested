@@ -4,13 +4,19 @@ title: "VPN Pricing & New User Deals Compared (2026): ExpressVPN, NordVPN, Surfs
 description: "What five major VPNs actually cost new users in 2026 — intro deals, free trials, renewal traps, and which ones really work in mainland China."
 ---
 
-import data from '../data/providers.json';
+import expressvpn from '../content/providers/en/expressvpn.json';
+import nordvpn from '../content/providers/en/nordvpn.json';
+import surfshark from '../content/providers/en/surfshark.json';
+import astrill from '../content/providers/en/astrill.json';
+import purevpn from '../content/providers/en/purevpn.json';
+import meta from '../data/prices-meta.json';
+export const data = { meta }; // 转接:让正文里的 data.meta.last_verified 原样可用
 
-export const E = data.vpn.expressvpn;
-export const NO = data.vpn.nordvpn;
-export const S = data.vpn.surfshark;
-export const AS = data.vpn.astrill;
-export const P = data.vpn.purevpn;
+export const E = expressvpn.commercial;
+export const NO = nordvpn.commercial;
+export const S = surfshark.commercial;
+export const AS = astrill.commercial;
+export const P = purevpn.commercial;
 
 # VPN Pricing & New User Deals Compared (2026): ExpressVPN, NordVPN, Surfshark, Astrill & PureVPN
 
