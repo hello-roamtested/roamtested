@@ -1,84 +1,173 @@
-# RoamTested 网站使用手册(中文)
+# RoamTested 操作手册（中文）
 
-这是你的网站源码。**你日常只需要碰两个文件夹**,其他都不用动:
+面向日常维护的实操指南。**想了解项目架构和背景，看 [`PROJECT.md`](./PROJECT.md)；这份只讲"某件事具体怎么做"。**
 
-```
-src/content/providers/en/   ← 每个 eSIM 一个 JSON 文件(评分、价格、测速数据)
-src/content/posts/en/       ← 每篇文章一个 Markdown 文件(叙述正文)
-```
+大部分操作都能在 **GitHub 网页端**完成（点文件 → 铅笔编辑 / 新建 / 删除 → 提交），提交后 Cloudflare 自动构建部署。
 
-## 日常任务怎么做
+---
 
-### 1. 发布一篇新的单品测评
+## 目录
 
-分两步:
+- [跑起来 / 部署](#跑起来--部署)
+- [任务：改某家的联盟链接](#任务改某家的联盟链接)
+- [任务：改价格 / 优惠码](#任务改价格--优惠码)
+- [任务：把演示数据换成真实实测数据](#任务把演示数据换成真实实测数据)
+- [任务：新增一家 provider](#任务新增一家-provider)
+- [任务：新增一篇测评文章](#任务新增一篇测评文章)
+- [任务：让某家上榜 / 下榜](#任务让某家上榜--下榜)
+- [任务：加一个新品类（如随身 WiFi）](#任务加一个新品类如随身-wifi)
+- [任务：跑价格监控](#任务跑价格监控)
+- [质检网会拦你什么（报错怎么读）](#质检网会拦你什么报错怎么读)
+- [三条铁律](#三条铁律)
 
-**第一步:建数据文件。** 复制 `src/content/providers/en/airalo.json`,
-改名为新服务商(如 `nomad.json`),把里面的分数、价格、测速记录、
-优缺点换成你的实测数据。字段含义文件里都有注释说明。
+---
 
-**第二步:建文章文件。** 复制 `src/content/posts/en/airalo-china-esim-review.md`,
-改名(文件名就是网址,如 `nomad-china-esim-review.md` → roamtested.com/nomad-china-esim-review/),
-改头部的 title、description、date,并把 `provider:` 改成 `"en/nomad"`。
-正文用英文写叙述,评分卡和数据表格会自动出现,不用你排版。
+## 跑起来 / 部署
 
-保存后把文件传到 GitHub 仓库,一两分钟后网站自动更新。
-
-### 2. 更新已有测评的数据(比如回国复测)
-
-打开对应的 provider JSON,在 `speedTests` 数组里**追加**新记录(旧记录保留,
-这是你的存证资产),需要的话调整分数。在文章 md 文件头部加一行
-`updated: "2026-XX-XX"`,页面上会显示"Updated"标签。
-
-### 3. 修改评测指标(增删改权重)
-
-只改一个文件:`src/config/metrics.ts`。里面有详细注释。
-改完后首页表格、评分卡全站自动更新。
-新增指标后记得给每个 provider JSON 的 `scores` 补分数。
-
-### 4. 换掉演示数据
-
-现在三个 provider 文件都是 `"sampleData": true`,页面上会显示黄色
-"Demo data" 横幅。填入真实数据后把它改成 `false`,横幅消失。
-**在改成 false 之前,网站可以放心公开,读者会看到明确的演示声明。**
-
-### 5. 填 About 页面
-
-打开 `src/pages/about.astro`,找到 `(Author introduction coming soon.)`
-那一行,替换成你的介绍。
-
-### 6. 联盟链接
-
-每个 provider JSON 里的 `affiliateUrl` 现在是占位符
-(`https://example.com/REPLACE-...`)。拿到各家联盟计划的专属链接后替换。
-
-## 不常动但可能用到
-
-| 想改什么 | 改哪个文件 |
-|---|---|
-| 品牌口号、联系邮箱、菜单 | `src/config/site.ts` |
-| 配色、字体 | `src/styles/global.css` 顶部的变量 |
-| 页脚披露文字 | `src/layouts/Base.astro` |
-| 隐私政策、披露页 | `src/pages/privacy.astro`、`src/pages/affiliate-disclosure.astro` |
-
-## 以后加中文版(结构已预留)
-
-1. `astro.config.mjs` 里 locales 加 `'zh'`
-2. 建 `src/content/posts/zh/` 和 `src/content/providers/zh/` 放中文内容
-3. 到时候让 Claude 带你把路由部分补齐即可,内容结构完全不用动
-
-## 本地预览(可选,不装也不影响发布)
-
-装了 Node.js 的话,在项目文件夹运行:
-
-```
-npm install     # 第一次运行,装依赖
-npm run dev     # 启动本地预览,浏览器打开 http://localhost:4321
-npm run build   # 检查能否正常构建(Cloudflare 发布时会自动跑这个)
+**本地（有 Node 环境时）：**
+```bash
+npm install
+npm run dev      # 本地预览，改文件实时刷新
+npm run build    # 构建；报错就是哪里有问题，绿了才安全
 ```
 
-## Cloudflare Pages 部署设置(连接仓库时填)
+**部署：** 向主分支提交 = Cloudflare 自动构建。**最新提交旁的绿勾 = 已上线。** 构建失败不影响线上（保留上一版），所以不用怕。
 
-- Build command: `npm run build`
-- Build output directory: `dist`
-- 其他保持默认
+---
+
+## 任务：改某家的联盟链接
+
+改一个地方就够，全站自动跟上（评测页按钮、首页排行榜、对比文里的链接）。
+
+打开 `src/content/providers/en/<家名>.json`，改 `commercial.affiliate_url`：
+```json
+"commercial": {
+  "affiliate_url": "https://……你的新链接……",
+  ...
+}
+```
+> 换联盟 ID 只改一处；子追踪标签（affS、sid、trip_sub1 等）可随便加，不影响归因。
+
+---
+
+## 任务：改价格 / 优惠码
+
+同样在 `src/content/providers/en/<家名>.json` 的 `commercial` 里改（价格字段各家不一，键名沿用现有的，如 `china_2d_500mb`、`monthly`、`promo_code`）。三篇对比/优惠码文章会自动读到。
+
+---
+
+## 任务：把演示数据换成真实实测数据
+
+以某家现在是"演示数据"的 eSIM 为例，实测回来后打开它的 `src/content/providers/en/<家名>.json`：
+
+1. 把 `"sampleData": true` 改成 `false`（黄色"演示数据"横幅消失）。
+2. 填真实的 `scores`（键必须正好是这家品类的指标，见下方质检网说明）：eSIM 是 `appAccess / speed / price / activation / usability`，每项 0–10。
+3. 填 `appAccess`（App 直连矩阵）、`speedTests`（测速记录）、`pros` / `cons`、`verdict`、`price.headline`、`exitCountry`、`throttleAfterCap`。
+4. 如果配了测评文章，设 `reviewSlug` 指向文章 slug。
+
+> 只改这一个文件，评测页、评分卡、首页排名全自动更新。
+
+---
+
+## 任务：新增一家 provider
+
+在 `src/content/providers/en/` 新建 `<家名>.json`。
+
+**只想先占个位（有联盟链接/价格，还没测评）——"市场数据存根"：**
+```json
+{
+  "name": "显示名",
+  "category": "vpn",           // eSIM 可省略(默认 esim)
+  "listed": false,             // 存根必须 false,否则会跑上排行榜
+  "commercial": {
+    "affiliate_url": "https://……",
+    "monthly": 9.99
+  }
+}
+```
+
+**要带完整测评：** 在上面基础上补 `verdict`、`price.headline`、`scores`（键要对上该品类指标）、`appAccess`、`speedTests`、`pros`、`cons`，并把 `listed` 设为想要的值。
+
+> 加新家后，如果它属于某个还没定义指标的品类（如现在的 VPN），评分校验会自动跳过；一旦该品类填了指标，就要求 scores 对齐。
+
+---
+
+## 任务：新增一篇测评文章
+
+1. 在 `src/content/posts/en/` 新建 `<slug>.md`，frontmatter：
+```yaml
+---
+title: "文章标题"
+description: "一句话描述(会进 Google 搜索结果和结构化数据,别留空)"
+lang: en
+date: "2026-07-28"
+kind: review
+provider: "en/<对应的家名>"    # 必须指向真实存在的 provider 文件
+draft: false                   # true = 不生成页面
+---
+```
+2. 正文写叙述即可——评分卡、App 矩阵、测速表、优缺点由模板从对应 provider 记录自动渲染，**不用在正文里手写这些**。
+3. 回到那家的 provider JSON，把 `reviewSlug` 设成这篇文章的 slug（这样首页排行榜里它的名字能点进测评）。
+
+> `provider` 指错、或 `reviewSlug` 指向不存在的文章，构建会当场报红——放心大胆改。
+
+---
+
+## 任务：让某家上榜 / 下榜
+
+改那家 provider JSON 的 `"listed"`：`true` 上首页排行榜，`false` 下榜。
+（`listedSpeedTests` 同理控制是否上测速库页面。）
+
+> 注意：`listed: true` 的真实服务商**必须有 scores**，否则构建报红（排行榜没法显示没分数的家）。
+
+---
+
+## 任务：加一个新品类（如随身 WiFi）
+
+两步，不改模板、不改结构：
+
+1. 在 `src/config/metrics.ts` 的 `METRICS_BY_CATEGORY` 里登记一行，照 eSIM 的格式写这个品类的指标（权重合计 100）：
+```ts
+'pocket-wifi': [
+  { id: 'battery', label: '...', short: '...', weight: 25, blurb: '...' },
+  // ...合计 100
+],
+```
+2. 该品类的 provider 文件里 `"category": "pocket-wifi"`。
+
+评分卡、对比表、质检网会自动认这个新品类。
+
+---
+
+## 任务：跑价格监控
+
+脚本在 `scripts/price-watch/`，独立运行，**不碰网站数据**——它只抓价、和 `baseline.json` 比对，把变化写进 `report.md`（工作流据此开 GitHub Issue 提醒你）。看到提醒后，**由你手动**去对应 provider 的 `commercial` 里更新价格。
+
+```bash
+node scripts/price-watch/check-prices.mjs
+```
+要监控哪些页面/套餐，配置在 `scripts/price-watch/watchlist.json`。
+
+---
+
+## 质检网会拦你什么（报错怎么读）
+
+`content.config.ts` 里有一套构建时校验。改数据后如果构建报红，多半是撞到下面某条（报错是中文的，直接照着改）：
+
+| 报错关键词 | 意思 | 怎么修 |
+|---|---|---|
+| 未知品类 | category 拼错了 | 改成 metrics.ts 里登记过的品类名 |
+| 未知评分指标 / 缺少评分指标 | scores 的键和该品类指标对不上 | 键改成该品类的指标 id，不多不少 |
+| 上榜服务商必须有 scores | listed:true 但没填分 | 要么补 scores，要么设 listed:false |
+| reviewSlug 指向的文章不存在 | 指向了不存在/已删的文章 | 改对，或删掉这个字段 |
+| provider 指向的服务商不存在 | 文章的 provider 名不对 | 改成真实存在的 provider 文件名 |
+
+> 这些报红是**好事**——它在上线前替你拦住了 bug。别绕过校验，去修数据。
+
+---
+
+## 三条铁律
+
+1. **一个事实只存一个地方。** 联盟链接、价格只在那家的 `commercial` 里。不要为同类数据再造第二个文件。
+2. **互相依赖的改动放同一次提交。** 比如"删字段"和"改 schema"必须一起提交，否则中间态构建失败。
+3. **构建失败不用慌。** 线上还是上一版好的，绿勾了才算上线。改 JSON 拿不准，先本地 `python3 -c "import json;json.load(open('文件'))"` 验一下语法。
