@@ -92,6 +92,8 @@ const providers = defineCollection({
           network: z.string(), // e.g. "China Unicom 5G"
           downMbps: z.number(),
           upMbps: z.number(),
+          pingMs: z.number().optional(),
+          hotspot: z.string().optional(),
           date: z.string(), // YYYY-MM-DD
           // 截图文件名,放在 public/images/speedtests/ 下
           screenshot: z.string().optional(),
