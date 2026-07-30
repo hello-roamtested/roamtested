@@ -57,6 +57,11 @@ const providers = defineCollection({
     commercial: z
       .object({
         affiliate_url: z.string().url().optional(),
+        // 同品牌多产品:每个产品一条联盟链接(如 china / asia_pacific)。
+        // 用 <Aff product="asia_pacific"> 或 affiliateUrlFor(provider, 'asia_pacific') 取。
+        products: z
+          .record(z.string(), z.object({ affiliate_url: z.string().url() }))
+          .optional(),
       })
       .catchall(z.any())
       .optional(),
