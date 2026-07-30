@@ -1,7 +1,8 @@
 {
   "name": "Yesim",
+  "reviewSlug": "yesim-china-esim-review",
   "lang": "en",
-  "sampleData": true,
+  "sampleData": false,
   "listed": true,
   "listedSpeedTests": true,
   "verdict": "Best for longer stays and hotspot-heavy use — unlimited plans, solid support",
@@ -9,19 +10,14 @@
     "headline": "$4.66 · unlimited · 1d"
   },
   "scores": {
-    "appAccess": 10,
-    "activation": 8.5,
-    "throttling": 5.5,
-    "speed": 7.5,
-    "price": 7.0
+    "appAccess": 8,
+    "speed": 7,
+    "price": 9,
+    "activation": 10,
+    "usability": 10
   },
   "exitCountry": "Unverified by field test (international routing confirmed)",
-  "throttlePolicy": {
-    "dailyCap": "Not published (daily limit exists per FUP)",
-    "afterCap": "Speed reduced — amount not specified",
-    "published": false,
-    "notes": "Yesim confirms a Fair Use Policy applies to unlimited China plans and that 'speed may be throttled after heavy usage,' but does not publish the specific daily GB cap or the throttled speed. Plans: $4.66/day up to $65.20/30 days. Hotspot included at no extra charge by default."
-  },
+  "throttleAfterCap": "Throttled to 384 kbps.",
   "appAccess": [
     {
       "app": "Google Search",
@@ -38,28 +34,20 @@
       "works": true,
       "notes": "Confirmed"
     },
+  ],
+  "speedTests": [
     {
-      "app": "WhatsApp (messages)",
-      "works": true,
-      "notes": "Confirmed"
-    },
-    {
-      "app": "WhatsApp (voice call)",
-      "works": true,
-      "notes": "Confirmed"
-    },
-    {
-      "app": "Instagram",
-      "works": true,
-      "notes": "Confirmed"
-    },
-    {
-      "app": "YouTube",
-      "works": true,
-      "notes": "Confirmed"
+      "city": "Nanchong",
+      "spot": "Chunxi Road, outdoors",
+      "network": "China Mobile",
+      "downMbps": 82.9,
+      "upMbps": 51.3,
+      "pingMs": 42,
+      "hotspot": "Connected but no data",
+      "date": "2026-07-26",
+      "screenshot": "trip.com-speed-2607.png"
     }
   ],
-  "speedTests": [],
   "pros": [
     "Unlimited plans well-suited for 10+ day stays",
     "Hotspot included by default at no extra cost",
