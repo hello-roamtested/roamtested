@@ -1,7 +1,13 @@
 ---
-const { provider } = Astro.props;
+/**
+ * 正文内嵌联盟链接。用法:
+ *   <Aff provider="en/yesim">Yesim</Aff>                        默认链接
+ *   <Aff provider="en/yesim" product="asia_pacific">Yesim</Aff> 指定产品链接
+ */
+import { resolveAffiliateUrl } from '../config/affiliates';
+const { provider, product } = Astro.props;
 const mods = import.meta.glob('../content/providers/**/*.json', { eager: true });
-const data = mods[`../content/providers/${provider}.json`];
-const url = data?.commercial?.affiliate_url ?? '#';
+const data = mods[`../content/providers/${provider}.json`] as any;
+const url = resolveAffiliateUrl(data?.commercial, product);
 ---
 <a href={url} target="_blank" rel="sponsored nofollow noopener"><slot /></a>
