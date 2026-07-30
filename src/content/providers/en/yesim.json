@@ -76,6 +76,10 @@
   ],
   "commercial": {
     "affiliate_url": "https://yesim.app/?partner_id=5005&sid=593",
+    "products": {
+      "china": { "affiliate_url": "https://yesim.app/?partner_id=5005&sid=593" },
+      "asia_pacific": { "affiliate_url": "https://yesim.app/regions/asia-pacific-esim/?partner_id=5005" }
+    },
     "china_from_price": 0.54,
     "china_20gb_30d": 20.0,
     "china_unlimited_7d": 28.8,
