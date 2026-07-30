@@ -7,6 +7,7 @@ interface Props {
     network: string;
     downMbps: number;
     upMbps: number;
+    pingMs?: number;
     hotspot?: string;
     date: string;
   }[];
@@ -27,6 +28,7 @@ const { tests, afterCap, exitCountry } = Astro.props;
         <th scope="col">Network</th>
         <th scope="col">Down</th>
         <th scope="col">Up</th>
+        <th scope="col">Ping</th>
         <th scope="col">Hotspot</th>
         <th scope="col">Date</th>
       </tr>
@@ -41,6 +43,7 @@ const { tests, afterCap, exitCountry } = Astro.props;
           <td class="mono">{t.network}</td>
           <td class="mono strong-num">{t.downMbps} Mbps</td>
           <td class="mono">{t.upMbps} Mbps</td>
+          <td class="mono">{typeof t.pingMs === 'number' ? `${t.pingMs} ms` : '—'}</td>
           <td class="mono">{t.hotspot ?? '—'}</td>
           <td class="mono">{t.date}</td>
         </tr>
