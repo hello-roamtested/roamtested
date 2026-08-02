@@ -1,7 +1,7 @@
 {
   "name": "NXTL",
   "lang": "en",
-  "sampleData": true,
+  "sampleData": false,
   "listed": true,
   "listedSpeedTests": true,
   "verdict": "Pay-as-you-go pioneer — no bundles, no expiry",
