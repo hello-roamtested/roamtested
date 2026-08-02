@@ -8,20 +8,14 @@
   "price": {
     "headline": "$13.99 · 1GB"
   },
-  "scores": {
-    "appAccess": 7.0,
-    "activation": 7.5,
-    "throttling": 5.5,
-    "speed": 6.5,
-    "price": 3.0
+"scores": {
+    "appAccess": 8,
+    "speed": 7,
+    "price": 5,
+    "activation": 10,
+    "usability": 9
   },
   "exitCountry": "Unverified by field test",
-  "throttlePolicy": {
-    "dailyCap": "Not published",
-    "afterCap": "Not published",
-    "published": false,
-    "notes": "No throttling policy found for China plans. Fixed-data plans (not unlimited) so throttling less of a concern, but the per-GB cost makes this a poor value for data-heavy use."
-  },
   "appAccess": [
     {
       "app": "Google Search",
@@ -35,16 +29,6 @@
     },
     {
       "app": "WhatsApp (messages)",
-      "works": true,
-      "notes": "Expected — unverified"
-    },
-    {
-      "app": "Instagram",
-      "works": true,
-      "notes": "Expected — unverified"
-    },
-    {
-      "app": "YouTube",
       "works": true,
       "notes": "Expected — unverified"
     }
