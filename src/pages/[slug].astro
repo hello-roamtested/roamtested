@@ -93,6 +93,7 @@ function evidenceChip(p: any): string | undefined {
     {provider && (
       <section class="data-block">
         <ProsCons pros={provider.data.pros} cons={provider.data.cons} />
+        {provider.data.faqs && <FAQ faqs={provider.data.faqs} />}
         <p>
           <AffiliateButton
             href={affiliateUrlFor(provider)}
