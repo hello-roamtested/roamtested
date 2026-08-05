@@ -10,10 +10,10 @@
   },
   "scores": {
     "appAccess": 7.0,
-    "activation": 7.5,
-    "throttling": 5.0,
     "speed": 6.5,
-    "price": 6.5
+    "price": 6.5,
+    "activation": 7.5,
+    "usability": 6.0
   },
   "exitCountry": "Unverified (claims VPN-style routing via own infra)",
   "throttlePolicy": {
