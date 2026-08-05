@@ -89,16 +89,6 @@ function evidenceChip(p: any): string | undefined {
 
     {provider && (
       <section class="data-block">
-        {provider.data.appAccess && (
-          <AppAccessMatrix items={provider.data.appAccess} chip={evidenceChip(provider)} />
-        )}
-        {provider.data.speedTests && (
-          <SpeedTable
-            tests={provider.data.speedTests}
-            afterCap={provider.data.throttleAfterCap}
-            exitCountry={provider.data.exitCountry}
-          />
-        )}
         <ProsCons pros={provider.data.pros} cons={provider.data.cons} />
         <p>
           <AffiliateButton
