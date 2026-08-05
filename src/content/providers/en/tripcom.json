@@ -57,6 +57,32 @@
     "Hotspot connected but passed no data to a second device in my test.",
     "The \"All AI\" plan was stuck on slow LTE while other plans got 4G in the same spot — avoid it."
   ],
+  "faqs": [
+    {
+      "question": "Do Trip.com eSIMs work well in China?",
+      "answer": "Yes, in my testing. I ran one in Chengdu on the China Mobile network and measured about 83 Mbps down and 51 Mbps up — plenty for maps, streaming and video calls. Google, Instagram, TikTok and WhatsApp all loaded without a VPN. Speeds drop to 384 kbps once your daily high-speed allowance is used up."
+    },
+    {
+      "question": "Are Trip.com eSIMs legit?",
+      "answer": "Yes. They are sold by Trip.com, one of the world's largest online travel agencies, and they run on China's three official licensed carriers — China Mobile, Unicom and Telecom — not a grey-market reseller. You can also refund the plan any time before you install the eSIM, so there is no risk in buying ahead of your trip."
+    },
+    {
+      "question": "Does the Trip.com eSIM come with a VPN?",
+      "answer": "No, and you do not need one. The plan routes your data out through Hong Kong, so apps that are normally blocked inside mainland China work directly. In my Chengdu test, Google, Instagram, TikTok and WhatsApp all loaded with no VPN app installed."
+    },
+    {
+      "question": "How does the Trip.com eSIM work, and how do you set it up?",
+      "answer": "You buy the plan inside the Trip.com app and install the eSIM straight from the app — there is no QR code to scan, and you do not need a Chinese ID or a local phone number. Once installed, it connects automatically to a local Chinese carrier for data."
+    },
+    {
+      "question": "Can I use WhatsApp in China with a Trip.com eSIM?",
+      "answer": "Yes. WhatsApp and Facebook both worked in my Chengdu test with no VPN needed, because the plan's data exits through Hong Kong and bypasses the mainland block."
+    },
+    {
+      "question": "Which eSIM is best for China travel?",
+      "answer": "It depends on what you need. Trip.com's strengths are its very flexible pricing — plans start at $0.10 for 500MB a day and scale up to unlimited — plus being refundable and running on official carriers. If hotspot sharing matters most to you, another provider may suit you better, since tethering passed no data in my test. I compare the ones I have field-tested side by side in my China eSIM comparison."
+    }
+  ],
   "commercial": {
     "affiliate_url": "https://www.trip.com/t/uLJS77W0bV2",
     "china_from_price": 0.10,
