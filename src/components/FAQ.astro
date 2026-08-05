@@ -1,0 +1,49 @@
+---
+// FAQ.astro
+// 作用:接收一个 faqs 数组(每项是 {question, answer}),渲染成可点击展开的问答。
+// 如果没有 faqs(null 或空数组),整块自动不显示——所以没实测的 provider 不会露出空 FAQ。
+const faqs = Astro.props.faqs ?? [];
+const heading = Astro.props.heading ?? 'Frequently asked questions';
+---
+
+{faqs.length > 0 && (
+  <section class="faq">
+    <h2>{heading}</h2>
+    {faqs.map((item) => (
+      <details class="faq-item">
+        <summary>{item.question}</summary>
+        <p class="faq-answer">{item.answer}</p>
+      </details>
+    ))}
+  </section>
+)}
+
+<style>
+  .faq { max-width: 44rem; }
+  .faq h2 { font-size: 1.4rem; margin-bottom: 0.5rem; }
+  .faq-item {
+    border-bottom: 1px solid #e5e7eb;
+    padding: 0.9rem 0;
+  }
+  .faq-item summary {
+    cursor: pointer;
+    font-weight: 600;
+    list-style: none;
+    position: relative;
+    padding-right: 1.5rem;
+  }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary::after {
+    content: "+";
+    position: absolute;
+    right: 0;
+    color: #888;
+    font-weight: 400;
+  }
+  .faq-item[open] summary::after { content: "–"; }
+  .faq-answer {
+    margin: 0.6rem 0 0;
+    color: #444;
+    line-height: 1.6;
+  }
+</style>
