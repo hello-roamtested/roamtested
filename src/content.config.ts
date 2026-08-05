@@ -178,7 +178,8 @@ const posts = defineCollection({
     kind: z.enum(['review', 'roundup', 'guide']).default('guide'),
     // review 类型文章填对应 provider 的文件名(不带 .json)
     provider: z.string().optional(),
-    draft: z.boolean().default(false),
+    intro: z.string().optional(), 
+    draft: z.boolean().default(false)
   })
   .superRefine((data, ctx) => {
     // 【跨文件校验3】review 文章的 provider 必须指向真实存在的服务商。
