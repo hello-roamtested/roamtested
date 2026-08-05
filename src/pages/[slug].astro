@@ -65,6 +65,24 @@ function evidenceChip(p: any): string | undefined {
     {provider && <ReviewSchema provider={provider} post={post} />}
     {provider && <ScoreCard provider={provider} />}
 
+    {/* ↓↓↓ App 矩阵 + 测速表提前到这里(评分卡之后、正文之前) ↓↓↓ */}
+    {provider && (
+      <section class="data-block">
+        {provider.data.appAccess && (
+          <AppAccessMatrix items={provider.data.appAccess} chip={evidenceChip(provider)} />
+        )}
+        {provider.data.speedTests && (
+          <SpeedTable
+            tests={provider.data.speedTests}
+            afterCap={provider.data.throttleAfterCap}
+            exitCountry={provider.data.exitCountry}
+          />
+        )}
+      </section>
+    )}
+    {/* ↑↑↑ 提前的两块结束 ↑↑↑ */}
+
+
     <div class="prose">
       <Content />
     </div>
