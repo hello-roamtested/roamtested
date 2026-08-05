@@ -65,7 +65,10 @@ function evidenceChip(p: any): string | undefined {
     {provider && <ReviewSchema provider={provider} post={post} />}
     {provider && <ScoreCard provider={provider} />}
 
-    {/* ↓↓↓ App 矩阵 + 测速表提前到这里(评分卡之后、正文之前) ↓↓↓ */}
+    {/* 手写开场段(来自每篇 MDX 的 frontmatter intro),放在表格上方 */}
+    {post.data.intro && <p class="intro">{post.data.intro}</p>}
+
+    {/* App 矩阵 + 测速表 */}
     {provider && (
       <section class="data-block">
         {provider.data.appAccess && (
@@ -80,9 +83,8 @@ function evidenceChip(p: any): string | undefined {
         )}
       </section>
     )}
-    {/* ↑↑↑ 提前的两块结束 ↑↑↑ */}
 
-
+    {/* 正文(MDX 主体) */}
     <div class="prose">
       <Content />
     </div>
@@ -105,4 +107,11 @@ function evidenceChip(p: any): string | undefined {
   .post-head { padding-top: 2rem; max-width: 44rem; }
   .post-head .chip { margin-right: 0.4rem; }
   .data-block { margin: 2rem 0; }
+  .intro {
+    max-width: 44rem;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #333;
+    margin: 1.5rem 0 2rem;
+  }
 </style>
