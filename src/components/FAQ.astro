@@ -12,7 +12,7 @@ const heading = Astro.props.heading ?? 'Frequently asked questions';
     {faqs.map((item) => (
       <details class="faq-item">
         <summary>{item.question}</summary>
-        <p class="faq-answer">{item.answer}</p>
+        <p class="faq-answer" set:html={item.answer}></p>
       </details>
     ))}
   </section>
