@@ -107,6 +107,16 @@ const providers = defineCollection({
       .optional(),
     pros: z.array(z.string()).default([]),
     cons: z.array(z.string()).default([]),
+    // 常见问题:每篇 review 底部显示,面向"到底能不能翻墙"这类临门一脚的疑虑。
+    // 只给实测过的服务商写;没写的自动不显示。question / answer 都不能为空。
+    faqs: z
+      .array(
+        z.object({
+          question: z.string().min(1),
+          answer: z.string().min(1),
+        })
+      )
+      .optional(),
   })
   .superRefine((data, ctx) => {
     // 【跨文件校验1】reviewSlug 必须指向真实存在的文章。
