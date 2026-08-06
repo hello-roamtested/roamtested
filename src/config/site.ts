@@ -8,8 +8,13 @@ export const SITE = {
   description:
     'Independent, hands-on eSIM reviews for travel in China. Real speed tests, app-by-app firewall checks, and transparent scoring — tested in China, not from a desk.',
   contactEmail: 'hello@roamtested.com',
-  // 笔名/作者名,想好了改这里
-  author: 'RoamTested',
+  // 作者档案:测评署名用。集中存这里,不写进每篇文章的 frontmatter。
+  author: {
+    name: 'Vesper D.',
+    // 标题下那行短署名(面向英文读者),点名字跳转到下面的 url
+    role: 'Digital nomad currently based in China, focused on travel eSIMs',
+    url: '/about/',
+  },
 };
 
 export const NAV = [
