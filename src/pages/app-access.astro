@@ -23,6 +23,7 @@ interface AccessEntry {
   city?: string;
   date?: string;
   screenshot?: string;
+  video?: string;
   sampleData: boolean;
 }
 
@@ -37,6 +38,7 @@ const allTests: AccessEntry[] = providers
       city: t.city,
       date: t.date,
       screenshot: t.screenshot,
+      video: t.video,
       sampleData: p.data.sampleData ?? false,
     }))
   )
@@ -71,7 +73,30 @@ const total = allTests.length;
           </div>
 
           <div class="entry-body">
-            {t.screenshot ? (
+            {t.video ? (
+              <a
+                href={`/appaccess/${t.video}`}
+                class="thumb-wrap"
+                target="_blank"
+                rel="noopener"
+                aria-label={`Play clip: ${t.app} on ${t.provider}`}
+              >
+                {t.screenshot ? (
+                  <img
+                    src={`/appaccess/${t.screenshot}`}
+                    alt={`${t.provider} — ${t.app} without a VPN${t.date ? `, ${t.date}` : ''}`}
+                    class="thumb"
+                    loading="lazy"
+                    width="240"
+                    height="160"
+                  />
+                ) : (
+                  <span class="video-poster" aria-hidden="true"></span>
+                )}
+                <span class="play-badge" aria-hidden="true">▶</span>
+                <span class="zoom-hint" aria-hidden="true">▶ play clip</span>
+              </a>
+            ) : t.screenshot ? (
               <a
                 href={`/appaccess/${t.screenshot}`}
                 class="thumb-wrap"
@@ -90,7 +115,7 @@ const total = allTests.length;
                 <span class="zoom-hint" aria-hidden="true">↗ full size</span>
               </a>
             ) : (
-              <div class="no-shot">screenshot pending</div>
+              <div class="no-shot">proof pending</div>
             )}
 
             <div class="detail">
@@ -189,6 +214,31 @@ const total = allTests.length;
     transition: opacity 120ms;
   }
   .thumb-wrap:hover .zoom-hint { opacity: 1; }
+
+  /* video: play badge over the poster (or dark fallback) */
+  .video-poster {
+    display: block;
+    width: 120px;
+    height: 80px;
+    background: #1a2421;
+  }
+  .play-badge {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.6);
+    color: #fff;
+    font-size: 0.7rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 2px;
+    pointer-events: none;
+  }
 
   .no-shot {
     flex-shrink: 0;
