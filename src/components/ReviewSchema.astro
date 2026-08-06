@@ -32,7 +32,7 @@ const schema = {
       bestRating: 10,
       worstRating: 0,
     },
-    author: { '@type': 'Organization', name: SITE.name, url: `https://${SITE.domain}/about/` },
+    author: { '@type': 'Person', name: SITE.author.name, url: `https://${SITE.domain}${SITE.author.url}` },
     datePublished: post.data.date,
     ...(post.data.updated ? { dateModified: post.data.updated } : {}),
   },
