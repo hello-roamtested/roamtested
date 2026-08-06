@@ -85,7 +85,8 @@ const providers = defineCollection({
           notes: z.string().optional(),
           city: z.string().optional(),       // 实测城市(证据库用)
           date: z.string().optional(),       // YYYY-MM-DD(证据库用)
-          screenshot: z.string().optional(), // 截图文件名,放在 public/appaccess/ 下
+          screenshot: z.string().optional(), // 图片证据文件名,放在 public/appaccess/ 下
+          video: z.string().optional(),      // 视频证据(录屏)文件名,放在 public/appaccess/ 下
         })
       )
       .optional(),
@@ -107,6 +108,8 @@ const providers = defineCollection({
           date: z.string(), // YYYY-MM-DD
           // 截图文件名,放在 public/images/speedtests/ 下
           screenshot: z.string().optional(),
+          // 视频证据(录屏)文件名,放在 public/speedtests/ 下
+          video: z.string().optional(),
         })
       )
       .optional(),
