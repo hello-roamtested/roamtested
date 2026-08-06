@@ -53,7 +53,7 @@ function evidenceChip(p: any): string | undefined {
       <p class="muted">{post.data.description}</p>
       {/* 作者署名:数据来自 site.ts 的 SITE.author,点名字跳到 About 页 */}
       <p class="byline">
-        By <a href={SITE.author.url}>{SITE.author.name}</a> · {SITE.author.role}
+        By <a href={SITE.author.url}>{SITE.author.name}</a> — {SITE.author.role}
       </p>
       <p>
         <span class="chip">Published {post.data.date}</span>
@@ -96,46 +96,4 @@ function evidenceChip(p: any): string | undefined {
       <Content />
     </div>
 
-    {provider && (
-      <section class="data-block">
-        <ProsCons pros={provider.data.pros} cons={provider.data.cons} />
-        {provider.data.faqs && (
-          <Fragment>
-            <FAQ faqs={provider.data.faqs} />
-            {/* 给 Google 的结构化数据:把 question/answer 转成组件要的 q/a。
-               内容和上面可见的 FAQ 完全一致 —— Google 要求两边必须对得上。 */}
-            <FaqSchema items={provider.data.faqs.map((f) => ({ q: f.question, a: f.answer }))} />
-          </Fragment>
-        )}
-        <p>
-          <AffiliateButton
-            href={affiliateUrlFor(provider)}
-            label={`Check ${provider.data.name} plans`}
-          />
-        </p>
-      </section>
-    )}
-  </article>
-</Base>
-
-<style>
-  .post-head { padding-top: 2rem; max-width: 44rem; }
-  .post-head .chip { margin-right: 0.4rem; }
-  .byline {
-    font-size: 0.95rem;
-    color: var(--muted, #666);
-    margin: 0.4rem 0 0.8rem;
-  }
-  .byline a { color: var(--jade); text-decoration: none; font-weight: 600; }
-  .byline a:hover { text-decoration: underline; }
-  .data-block { margin: 2rem 0; }
-  .intro {
-  max-width: 44rem;
-  font-size: 1.4rem;
-  line-height: 1.7;
-  color: var(--ink);
-  margin: 1.75rem 0 2rem;
-  padding: 0.2rem 0 0.2rem 1.1rem;
-  border-left: 5.5px solid var(--jade);
-}
-</style>
+    {provider
