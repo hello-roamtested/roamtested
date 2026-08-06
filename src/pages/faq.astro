@@ -1,0 +1,28 @@
+---
+// faq.astro —— 统一 FAQ 页
+// 读 generalFaqs 数据 → 用已有的 FAQ 组件渲染。
+import Base from '../layouts/Base.astro';
+import FAQ from '../components/FAQ.astro';
+import { generalFaqs } from '../data/generalFaqs';
+---
+
+<Base
+  title="China Travel eSIM & VPN FAQ"
+  description="Common questions about getting online in China — eSIMs, VPNs, blocked apps, and what actually works, based on hands-on field testing."
+>
+  <article class="wrap">
+    <header class="post-head">
+      <h1>Getting online in China: FAQ</h1>
+      <p class="muted">
+        The questions travelers ask most about staying connected in China —
+        answered from real, on-the-ground testing, not spec sheets.
+      </p>
+    </header>
+
+    <FAQ faqs={generalFaqs} heading="Frequently asked questions" />
+  </article>
+</Base>
+
+<style>
+  .post-head { padding-top: 2rem; max-width: 44rem; }
+</style>
