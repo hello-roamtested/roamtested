@@ -36,12 +36,18 @@ const { items, chip } = Astro.props;
   </table>
 </div>
 
+<p class="small muted foot">
+  Every app opened cold, no VPN, on cellular data in China.
+  <a href="/app-access/">Compare app access across every eSIM →</a>
+</p>
+
 <style>
   .matrix-head {
     display: flex;
     align-items: baseline;
     gap: 0.8rem;
     flex-wrap: wrap;
+  .foot { font-size: 0.78rem; margin: 0.6rem 0 0; }
   }
   .matrix-head h3 { margin-bottom: 0.6rem; }
 </style>
