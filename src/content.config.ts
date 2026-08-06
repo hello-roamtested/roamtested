@@ -40,6 +40,8 @@ const providers = defineCollection({
     listed: z.boolean().default(true),
     // 是否进入 Speed Tests 页面(默认显示;设 false 可隐藏某家)
     listedSpeedTests: z.boolean().default(true),
+    // 是否进入 App Access Database 页面(默认显示;设 false 可隐藏某家)
+    listedAppAccess: z.boolean().default(true),
     verdict: z.string().optional(), // 一句话结论(测评用);只有市场数据的存根可省略
     // 联盟链接现在存在下面的 commercial.affiliate_url 里,
     // 由 src/config/affiliates.ts 的 affiliateUrlFor() 解析。
@@ -81,6 +83,9 @@ const providers = defineCollection({
           app: z.string(),
           works: z.boolean(),
           notes: z.string().optional(),
+          city: z.string().optional(),       // 实测城市(证据库用)
+          date: z.string().optional(),       // YYYY-MM-DD(证据库用)
+          screenshot: z.string().optional(), // 截图文件名,放在 public/appaccess/ 下
         })
       )
       .optional(),
