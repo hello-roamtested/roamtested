@@ -18,6 +18,7 @@ export const NAV = [
   { href: '/esim-promo-codes/', label: 'Deals' },
   { href: '/guides/', label: 'Guides' },
   { href: '/speed-tests/', label: 'Speed Tests' },
+  { href: '/app-access/', label: 'App Access' },
   { href: '/faq/', label: 'FAQ' },
   { href: '/about/', label: 'About' },
 ];
