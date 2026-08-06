@@ -1,5 +1,6 @@
 ---
 /** App 直连实测矩阵:本站的招牌栏目。逐个 App 打 WORKS / BLOCKED。 */
+import { SITE } from '../config/site';
 interface Props {
   items: { app: string; works: boolean; notes?: string }[];
   chip?: string; // 存证标签,如 "Tested Chengdu · Jul 2026"
@@ -41,13 +42,20 @@ const { items, chip } = Astro.props;
   <a href="/app-access/">Compare app access across every eSIM →</a>
 </p>
 
+{/* 邀请读者点名要测的 App:打"我人在中国"这张时效牌。邮箱从 SITE.contactEmail 取,不写死。 */}
+<p class="small muted suggest">
+  Need an app that's not on this list? I'm in China right now —
+  <a href={`mailto:${SITE.contactEmail}`}>email me</a> and I'll test it.
+</p>
+
 <style>
   .matrix-head {
     display: flex;
     align-items: baseline;
     gap: 0.8rem;
     flex-wrap: wrap;
-  .foot { font-size: 0.78rem; margin: 0.6rem 0 0; }
   }
   .matrix-head h3 { margin-bottom: 0.6rem; }
+  .foot { font-size: 0.78rem; margin: 0.6rem 0 0; }
+  .suggest { font-size: 0.78rem; margin: 0.3rem 0 0; }
 </style>
