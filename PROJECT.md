@@ -132,7 +132,7 @@ scripts/price-watch/         ← 价格监控脚本(独立运行,不碰网站数
 ## 8. 内容工作流
 
 - **文章草稿**：Notion（纯文本，无富格式）→ 复制为 Markdown 贴进 GitHub 网页编辑器 → AI 协助润色英文与 frontmatter。
-- **图片**：放 `public/` 下，测速截图命名 `providername-city-location-YYYY-MM-DD.jpg`；上传前用 squoosh.app 压到 300KB 以内。
+- **图片**：全部放 `src/assets/images/`（子文件夹随意），引用时只写文件名，所以文件名必须唯一。命名 `providername-city-location-YYYY-MM-DD.png`。原图直接传，构建时自动转 WebP、生成多种尺寸、懒加载，不用再手动压缩。测速 / App 截图在 provider JSON 里填 `screenshot`；文章里用 `<Shot>` 插图（见 README「加截图 / 图片」）。
 - **视频**：上传 YouTube（不公开），页面用嵌入，不放仓库。
 - **实测取证**：Timestamp Camera（带时间戳的照片）。
 

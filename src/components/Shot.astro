@@ -1,0 +1,66 @@
+---
+/**
+ * 文章里插一张截图。用法(MDX 里直接写,不用 import):
+ *
+ *   <Shot name="tripcom-plan-picker-2026-10-23.png" alt="Trip.com China eSIM plan list" caption="Screenshot taken 23 Oct 2026." />
+ *
+ * name    文件名(带扩展名)。图片放在 src/assets/images/ 里,子文件夹随意。
+ * alt     用英文描述图里是什么,给看不到图的读者和 Google 看。必填。
+ * caption 图下面的小字说明,比如截图日期。可不填。
+ * eager   只有打开页面第一屏就能看到的图才设 true,其余保持默认(滚动到附近才加载)。
+ *
+ * 构建时自动完成:转成 WebP、按屏幕生成 1x/2x/3x 三种尺寸、写好宽高(加载时不跳版)、
+ * 懒加载、点击看大图。竖屏截图最宽显示 360px,横屏图铺满正文栏。
+ */
+import { Image } from 'astro:assets';
+import { getShot, fullSizeUrl } from '../lib/images';
+
+interface Props {
+  name: string;
+  alt: string;
+  caption?: string;
+  eager?: boolean;
+}
+
+const { name, alt, caption, eager = false } = Astro.props;
+const img = getShot(name);
+
+const portrait = img.height > img.width;
+const maxW = portrait ? 360 : 704; // 704px = 正文栏宽度(.prose 的 44rem)
+const widths = [...new Set([1, 2, 3].map((x) => Math.min(maxW * x, img.width)))];
+// 手机上正文栏 = 屏幕宽度减去两边各 1.25rem 的留白
+const sizes = `(max-width: ${maxW + 40}px) calc(100vw - 2.5rem), ${maxW}px`;
+const full = await fullSizeUrl(name);
+---
+
+<figure class:list={['shot', { portrait }]}>
+  <a href={full} target="_blank" rel="noopener" aria-label={`Open full-size image: ${alt}`}>
+    <Image
+      src={img}
+      alt={alt}
+      widths={widths}
+      sizes={sizes}
+      loading={eager ? 'eager' : 'lazy'}
+      fetchpriority={eager ? 'high' : 'auto'}
+    />
+  </a>
+  {caption && <figcaption>{caption}</figcaption>}
+</figure>
+
+<style>
+  .shot { margin: 1.75rem auto; max-width: 704px; }
+  .shot.portrait { max-width: 360px; }
+  .shot img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+  }
+  .shot figcaption {
+    margin-top: 0.5rem;
+    font-size: 0.8rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+</style>

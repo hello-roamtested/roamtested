@@ -14,6 +14,7 @@
 - [任务：把演示数据换成真实实测数据](#任务把演示数据换成真实实测数据)
 - [任务：新增一家 provider](#任务新增一家-provider)
 - [任务：新增一篇测评文章](#任务新增一篇测评文章)
+- [任务：加截图 / 图片](#任务加截图--图片)
 - [任务：让某家上榜 / 下榜](#任务让某家上榜--下榜)
 - [任务：加一个新品类（如随身 WiFi）](#任务加一个新品类如随身-wifi)
 - [任务：跑价格监控](#任务跑价格监控)
@@ -113,6 +114,24 @@ draft: false                   # true = 不生成页面
 
 ---
 
+## 任务：加截图 / 图片
+
+所有图片都传到 **`src/assets/images/`**（建不建子文件夹随你）。原图直接传，**不用先压缩**：构建时会自动转成 WebP、按屏幕生成几种尺寸、写好宽高（加载时不跳版），并且滚动到附近才加载。
+
+1. **改文件名**：全小写、用连字符，带上服务商和日期，例如 `tripcom-plan-picker-2026-10-23.png`。引用时只写文件名、不写路径，所以文件名在整个文件夹里必须唯一。
+2. **上传**：GitHub 网页端打开 `src/assets/images/` → Add file → Upload files → 把图拖进去 → 提交。
+3. **引用**：
+   - **测速 / App 截图**：在那家 provider JSON 的 `speedTests` 或 `appAccess` 里填 `"screenshot": "文件名"`，测速库和 App 库页面会自动显示缩略图，点开是大图。
+   - **文章里插图**：在 MDX 正文里直接写，不用 import：
+     ```mdx
+     <Shot name="tripcom-plan-picker-2026-10-23.png" alt="Trip.com China eSIM plan list" caption="Screenshot taken 23 Oct 2026." />
+     ```
+     `alt` 用英文写图里是什么（必填）；`caption` 是图下的小字（可不填）。竖屏截图最宽显示 360px，横屏图铺满正文栏，点图看大图。
+
+> 先传图，再填文件名。文件名写错时构建会报红，报错里会列出最接近的文件名。
+
+---
+
 ## 任务：让某家上榜 / 下榜
 
 改那家 provider JSON 的 `"listed"`：`true` 上首页排行榜，`false` 下榜。
@@ -161,6 +180,8 @@ node scripts/price-watch/check-prices.mjs
 | 上榜服务商必须有 scores | listed:true 但没填分 | 要么补 scores，要么设 listed:false |
 | reviewSlug 指向的文章不存在 | 指向了不存在/已删的文章 | 改对，或删掉这个字段 |
 | provider 指向的服务商不存在 | 文章的 provider 名不对 | 改成真实存在的 provider 文件名 |
+| 找不到图片 | `screenshot` 或 `<Shot name>` 里的文件名在 `src/assets/images/` 下不存在（常见：少个字母、扩展名或大小写不对） | 照报错里「最接近的文件」改；或者图还没传，先传图 |
+| 有两张图都叫… | 不同子文件夹里有同名图片 | 改掉其中一张的文件名 |
 
 > 这些报红是**好事**——它在上线前替你拦住了 bug。别绕过校验，去修数据。
 
