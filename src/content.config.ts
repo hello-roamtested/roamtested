@@ -2,6 +2,7 @@ import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
 import fs from 'node:fs';
 import { metricsFor, CATEGORIES } from './config/metrics';
+import { IMAGE_DIR, IMAGE_EXT_RE, missingImageMessage } from './lib/image-names';
 
 // 【构建时点名·自动扫描版】递归扫描整个目录树,不写死任何子文件夹。
 // 以后按品类重排(esim/、vpn/、pocket-wifi/ ...)后无需回来改这里,新板块自动纳入检查。
@@ -17,6 +18,15 @@ const PROVIDER_IDS = new Set(scanFiles('src/content/providers', /\.json$/));
 // reviewSlug 存的是纯 slug(不含文件夹),所以只取 basename(最后一段)
 const POST_SLUGS = new Set(
   scanFiles('src/content/posts', /\.mdx?$/).map((p) => p.split('/').pop()!)
+);
+// 截图只按文件名引用(不写路径),所以这里收集 src/assets/images/ 下所有图片的文件名(含子文件夹)
+const IMAGE_NAMES = new Set(
+  fs.existsSync(IMAGE_DIR)
+    ? fs
+        .readdirSync(IMAGE_DIR, { recursive: true })
+        .map((p) => String(p).split('\\').join('/').split('/').pop()!)
+        .filter((name) => IMAGE_EXT_RE.test(name))
+    : []
 );
 
 /**
@@ -85,7 +95,7 @@ const providers = defineCollection({
           notes: z.string().optional(),
           city: z.string().optional(),       // 实测城市(证据库用)
           date: z.string().optional(),       // YYYY-MM-DD(证据库用)
-          screenshot: z.string().optional(), // 图片证据文件名,放在 public/appaccess/ 下
+          screenshot: z.string().optional(), // 截图文件名(带扩展名),图片放在 src/assets/images/ 下
           video: z.string().optional(),      // 视频证据(录屏)文件名,放在 public/appaccess/ 下
         })
       )
@@ -106,7 +116,7 @@ const providers = defineCollection({
           pingMs: z.number().optional(),
           hotspot: z.string().optional(),
           date: z.string(), // YYYY-MM-DD
-          // 截图文件名,放在 public/images/speedtests/ 下
+          // 截图文件名(带扩展名),图片放在 src/assets/images/ 下(子文件夹随意)
           screenshot: z.string().optional(),
           // 视频证据(录屏)文件名,放在 public/speedtests/ 下
           video: z.string().optional(),
@@ -144,6 +154,23 @@ const providers = defineCollection({
         message: `未知品类 "${data.category}"。已登记的品类:${CATEGORIES.join(', ')}(在 src/config/metrics.ts 里登记新品类)`,
       });
       return; // 品类都不对,后面按品类取指标就没意义了
+    }
+    // 【跨文件校验4】截图必须真的存在。演示数据放行(反正实测后要整条重写)。
+    // 防的正是"JSON 里写 trip.com-speed-2607.png、实际文件叫 trip.com-speedn-2607.png"这种悄悄裂图。
+    if (!data.sampleData) {
+      const shots = [
+        ...(data.speedTests ?? []).map((t, i) => ({ path: ['speedTests', i, 'screenshot'], name: t.screenshot })),
+        ...(data.appAccess ?? []).map((t, i) => ({ path: ['appAccess', i, 'screenshot'], name: t.screenshot })),
+      ];
+      for (const shot of shots) {
+        if (shot.name && !IMAGE_NAMES.has(shot.name)) {
+          ctx.addIssue({
+            code: z.ZodIssueCode.custom,
+            path: shot.path,
+            message: missingImageMessage(shot.name, IMAGE_NAMES),
+          });
+        }
+      }
     }
     // 【跨文件校验2】评分键名:演示数据(sampleData=true)放行——反正实测后要整条重写,先放行。
     // 只对真实数据强制:scores 的键必须正好等于【该品类】的指标集,不多不少。

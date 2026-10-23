@@ -3,13 +3,16 @@
  * Speed Test Database — 存档展示页。
  * 数据来源:各 provider JSON 里的 speedTests 数组。
  * 新增一条测速:在对应的 provider JSON 里 speedTests 数组追加一个对象,
- * 把截图传到 public/images/speedtests/,填上文件名,这里自动显示。
+ * 把截图传到 src/assets/images/(子文件夹随意),在 screenshot 里填文件名,
+ * 这里自动显示缩略图。缩略图和大图都会在构建时自动压缩成 WebP。
  *
  * 显示开关:每个 provider 默认都会显示(listedSpeedTests 默认 true)。
  * 想隐藏某家,在它的 JSON 里加 "listedSpeedTests": false 即可。
  * (前提是这家 speedTests 里有数据 —— 开关不会凭空造出卡片。)
  */
 import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
+import { getShot, fullSizeUrls } from '../lib/images';
 import Base from '../layouts/Base.astro';
 
 // 汇总所有 provider 的 speedTests,打上服务商标签,按日期倒序排列
@@ -50,6 +53,8 @@ const allTests: TestEntry[] = providers
   .sort((a, b) => b.date.localeCompare(a.date)); // 最新在前
 
 const hasSampleData = allTests.some((t) => t.sampleData);
+// 每张截图的大图地址(点缩略图打开),构建时一次算好
+const shotUrls = await fullSizeUrls(allTests.map((t) => t.screenshot));
 const total = allTests.length;
 ---
 
@@ -82,13 +87,12 @@ const total = allTests.length;
                 aria-label={`Play clip: ${t.provider} in ${t.city}`}
               >
                 {t.screenshot ? (
-                  <img
-                    src={`/speedtests/${t.screenshot}`}
+                  <Image
+                    src={getShot(t.screenshot)}
                     alt={`${t.provider} Speedtest — ${t.city}, ${t.date}`}
                     class="thumb"
-                    loading="lazy"
-                    width="240"
-                    height="160"
+                    widths={[120, 240]}
+                    sizes="120px"
                   />
                 ) : (
                   <span class="video-poster" aria-hidden="true"></span>
@@ -98,19 +102,18 @@ const total = allTests.length;
               </a>
             ) : t.screenshot ? (
               <a
-                href={`/speedtests/${t.screenshot}`}
+                href={shotUrls[t.screenshot]}
                 class="thumb-wrap"
                 target="_blank"
                 rel="noopener"
                 aria-label={`Full-size screenshot: ${t.provider} in ${t.city}`}
               >
-                <img
-                  src={`/speedtests/${t.screenshot}`}
+                <Image
+                  src={getShot(t.screenshot)}
                   alt={`${t.provider} Speedtest — ${t.city}, ${t.date}`}
                   class="thumb"
-                  loading="lazy"
-                  width="240"
-                  height="160"
+                  widths={[120, 240]}
+                  sizes="120px"
                 />
                 <span class="zoom-hint" aria-hidden="true">↗ full size</span>
               </a>
