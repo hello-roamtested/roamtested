@@ -1,9 +1,29 @@
-{
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "headline": "（文章标题，和页面上的 H1 一样）",
-  "datePublished": "2026-07-26",
-  "dateModified": "2026-10-23",
-  "author": { "@type": "Person", "name": "Vesper D.", "url": "https://roamtested.com/about/" },
-  "image": "https://roamtested.com/og-default.png"
+---
+// 文章结构化数据(BlogPosting):告诉 Google "这一页是一篇文章",
+// 以及标题、作者、发布日期、更新日期。
+// 标题和日期都直接读文章 frontmatter 的 title / date / updated,
+// 以后只改 frontmatter 就行,这个文件不用动。
+import { SITE } from '../config/site';
+
+interface Props {
+  post: any; // posts 集合的条目
 }
+const { post } = Astro.props;
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: post.data.title,
+  datePublished: post.data.date,
+  // 没填 updated 的文章,更新日期就用发布日期
+  dateModified: post.data.updated ?? post.data.date,
+  author: {
+    '@type': 'Person',
+    name: SITE.author.name,
+    url: `https://${SITE.domain}${SITE.author.url}`,
+  },
+  image: `https://${SITE.domain}/og-default.png`,
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />
