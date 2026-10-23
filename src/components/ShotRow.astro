@@ -1,0 +1,35 @@
+---
+/**
+ * 把几张竖屏截图排成一行:电脑上两张并排,手机上自动改成上下排(并排会小到看不清字)。
+ * 用法(MDX 里直接写,不用 import):
+ *
+ *   <ShotRow>
+ *     <Shot name="a.png" alt="…" caption="…" />
+ *     <Shot name="b.png" alt="…" caption="…" />
+ *   </ShotRow>
+ *
+ * 一行最多两张;放三张时第三张会换到下一行。适合手机竖屏截图,横屏图请单独用 <Shot>。
+ */
+---
+
+<div class="shot-row">
+  <slot />
+</div>
+
+<style>
+  .shot-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    margin: 1.75rem 0;
+  }
+  /* 正文栏够宽(约 720px 以上的屏幕)时才并排 */
+  @media (min-width: 720px) {
+    .shot-row {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      column-gap: 1.25rem;
+      row-gap: 1.75rem;
+      align-items: start;
+    }
+    .shot-row :global(.shot) { margin: 0 auto; }
+  }
+</style>

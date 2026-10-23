@@ -127,6 +127,14 @@ draft: false                   # true = 不生成页面
      <Shot name="tripcom-plan-picker-2026-10-23.png" alt="Trip.com China eSIM plan list" caption="Screenshot taken 23 Oct 2026." />
      ```
      `alt` 用英文写图里是什么（必填）；`caption` 是图下的小字（可不填）。竖屏截图最宽显示 360px，横屏图铺满正文栏，点图看大图。
+   - **两张竖屏截图并排**：用 `<ShotRow>` 包起来。电脑上两张并排，手机上自动改成上下排（手机上并排会小到看不清字）：
+     ```mdx
+     <ShotRow>
+       <Shot name="a.png" alt="…" caption="…" />
+       <Shot name="b.png" alt="…" caption="…" />
+     </ShotRow>
+     ```
+     一行最多两张，第三张会换到下一行。横屏图别放进去，单独用 `<Shot>`。
 
 > 先传图，再填文件名。文件名写错时构建会报红，报错里会列出最接近的文件名。
 
