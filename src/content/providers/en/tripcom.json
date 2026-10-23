@@ -85,11 +85,15 @@
   ],
   "commercial": {
     "affiliate_url": "https://www.trip.com/t/uLJS77W0bV2",
+    "products": {
+      "esimchina": { "affiliate_url": "https://www.trip.com/t/uLJS77W0bV2" },
+      "homepage": { "affiliate_url": "https://www.trip.com/?Allianceid=9402471&SID=325108911&trip_sub1=&trip_sub3=D18941204" }
+    },
     "china_from_price": 0.10,
     "china_1d_500mb": 0.10,
     "validity_min_days": 1,
     "validity_max_days": 365,
-    "data_min_gb": 1,
+    "data_min_gb": 0.50,
     "data_max_gb": 100
   }
 }
