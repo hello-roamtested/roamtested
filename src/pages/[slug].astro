@@ -13,6 +13,7 @@ import { SITE } from '../config/site';
 import FAQ from '../components/FAQ.astro';
 import FaqSchema from '../components/FaqSchema.astro';
 import ReviewSchema from '../components/ReviewSchema.astro';
+import ArticleSchema from '../components/ArticleSchema.astro';
 
 export async function getStaticPaths() {
   const posts = await getCollection('posts', ({ data }) => !data.draft);
@@ -69,6 +70,7 @@ function evidenceChip(p: any): string | undefined {
       </section>
     )}
 
+    <ArticleSchema post={post} />
     {provider && <ReviewSchema provider={provider} post={post} />}
     {provider && <ScoreCard provider={provider} />}
 
