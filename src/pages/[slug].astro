@@ -15,6 +15,7 @@ import FaqSchema from '../components/FaqSchema.astro';
 import ReviewSchema from '../components/ReviewSchema.astro';
 import ArticleSchema from '../components/ArticleSchema.astro';
 import Shot from '../components/Shot.astro';
+import ShotRow from '../components/ShotRow.astro';
 
 export async function getStaticPaths() {
   const posts = await getCollection('posts', ({ data }) => !data.draft);
@@ -94,9 +95,9 @@ function evidenceChip(p: any): string | undefined {
       </section>
     )}
 
-    {/* 正文(MDX 主体)。Shot 在这里传给正文,所以文章里写 <Shot … /> 不需要 import。 */}
+    {/* 正文(MDX 主体)。Shot / ShotRow 在这里传给正文,所以文章里直接写,不需要 import。 */}
     <div class="prose">
-      <Content components={{ Shot }} />
+      <Content components={{ Shot, ShotRow }} />
     </div>
 
     {provider && (
